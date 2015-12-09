@@ -1,9 +1,9 @@
 'use strict';
 
-const passport = require('passport');
-const FacebookStrategy = require('passport-facebook').Strategy;
-const User = require('../../api/user/user.model');
-const logger = require('../../components/logger');
+import passport from 'passport';
+import {Strategy as FacebookStrategy} from 'passport-facebook';
+import User from '../../api/user/user.model';
+import logger from '../../components/logger';
 
 export default () => {
   passport.use(new FacebookStrategy({
@@ -66,6 +66,5 @@ export default () => {
           done(err);
         });
     }
-
   ));
 };

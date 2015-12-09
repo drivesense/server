@@ -1,9 +1,9 @@
 'use strict';
 
 import passport from 'passport';
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const User = require('../../api/user/user.model');
-const logger = require('../../components/logger');
+import {OAuth2Strategy as GoogleStrategy} from 'passport-google-oauth';
+import User from '../../api/user/user.model';
+import logger from '../../components/logger';
 
 export default () => {
   passport.use(new GoogleStrategy({

@@ -1,15 +1,13 @@
 'use strict';
 
+import {} from 'dotenv/config';
 import http from 'http';
 import express from 'express';
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 import seeder from './config/seed';
 import expressConfig from './config/express';
 import sslConfig from './config/ssl';
 import routes from './routes';
-
-dotenv.load();
 
 mongoose.Promise = Promise;
 

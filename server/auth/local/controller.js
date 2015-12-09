@@ -1,9 +1,9 @@
 'use strict';
 
-const passport = require('passport');
-const auth = require('../auth.service');
+import passport from 'passport';
+import {signToken} from '../auth.service';
 
-exports.index = (req, res, next) => {
+export function index (req, res, next) {
   passport.authenticate('local', (err, user, info) => {
     const error = err || info;
 
@@ -15,6 +15,6 @@ exports.index = (req, res, next) => {
       return res.status(404).json({message: 'something went wrong, please try again.'});
     }
 
-    res.json({token: auth.signToken(user._id)});
+    res.json({token: signToken(user._id)});
   })(req, res, next);
-};
+}

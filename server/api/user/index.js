@@ -16,4 +16,4 @@ router.get('/:id', isAuthenticated(), controller.show);
 router.put('/:id', isAuthenticated(), controller.update);
 router.delete('/:id', isAuthenticated(), controller.destroy);
 
-module.exports = router;
+export default router;

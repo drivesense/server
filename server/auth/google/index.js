@@ -1,9 +1,9 @@
 'use strict';
 
 import {Router} from 'express';
-const passport = require('passport');
-const auth = require('../auth.service');
-const controller = require('./controller');
+import passport from 'passport';
+import {isAuthenticated, fillAuthorizationHeaderFromCookie} from '../auth.service';
+import * as controller from './controller';
 
 const router = new Router();
 
@@ -17,9 +17,9 @@ router
     session: false
   }), controller.signin)
 
-  .get('/connect', auth.fillAuthorizationHeaderFromCookie(), auth.isAuthenticated(), passport.authenticate('google', {callbackURL: '/auth/google/connect/callback'}))
-  .get('/connect/callback', auth.fillAuthorizationHeaderFromCookie(), auth.isAuthenticated(), controller.connect)
+  .get('/connect', fillAuthorizationHeaderFromCookie(), isAuthenticated(), passport.authenticate('google', {callbackURL: '/auth/google/connect/callback'}))
+  .get('/connect/callback', fillAuthorizationHeaderFromCookie(), isAuthenticated(), controller.connect)
 
-  .post('/disconnect', auth.isAuthenticated(), controller.disconnect);
+  .post('/disconnect', isAuthenticated(), controller.disconnect);
 
 export default router;

@@ -1,13 +1,15 @@
 'use strict';
 
 import path from 'path';
+import roleRoute from './api/role';
+import userRoute from './api/user';
+import authRoute from './auth';
 
 export default app => {
-  // Insert routes below
-  app.use('/api/roles', require('./api/role'));
-  app.use('/api/users', require('./api/user'));
+  app.use('/api/roles', roleRoute);
+  app.use('/api/users', userRoute);
 
-  app.use('/auth', require('./auth'));
+  app.use('/auth', authRoute);
 
   // All undefined api routes should return a 404
   app.route('/:url(api|auth)/*')

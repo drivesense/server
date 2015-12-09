@@ -18,4 +18,4 @@ router.use('/local', localRoute);
 router.use('/facebook', facebookRoute);
 router.use('/google', googleRoute);
 
-module.exports = router;
+export default router;

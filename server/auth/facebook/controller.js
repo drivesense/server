@@ -1,14 +1,14 @@
 'use strict';
 
-const passport = require('passport');
-const User = require('../../api/user/user.model');
-const auth = require('../auth.service');
+import passport from 'passport';
+import User from '../../api/user/user.model';
+import {setTokenCookie} from '../auth.service';
 
-exports.signin = (req, res) => {
-  auth.setTokenCookie(req, res);
-};
+export function signin (req, res) {
+  setTokenCookie(req, res);
+}
 
-exports.connect = (req, res, next) => {
+export function connect (req, res, next) {
   // TODO: already connected ?
 
   passport.authenticate('facebook', {callbackURL: '/auth/facebook/connect/callback'}, (err, user, info) => {
@@ -44,9 +44,9 @@ exports.connect = (req, res, next) => {
       });
     });
   })(req, res, next);
-};
+}
 
-exports.disconnect = (req, res, next) => {
+export function disconnect (req, res, next) {
   User.update({_id: req.user._id}, {$unset: {'providers.facebook': true}}, {multi: false}, err => {
     if (err) {
       // TODO: what?
@@ -55,4 +55,4 @@ exports.disconnect = (req, res, next) => {
 
     return res.status(204).end();
   });
-};
+}

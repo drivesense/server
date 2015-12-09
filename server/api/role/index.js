@@ -12,4 +12,4 @@ router.post('/', hasPermissions('write_roles'), controller.create);
 router.put('/:id', hasPermissions('write_roles'), controller.update);
 router.delete('/:id', hasPermissions('write_roles'), controller.destroy);
 
-module.exports = router;
+export default router;
