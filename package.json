@@ -1,0 +1,76 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "The official drivesense server",
+  "main": "server/app.js",
+  "scripts": {
+    "test": "gulp test",
+    "coveralls": "gulp coveralls"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "gulp eslint"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drivesense/server.git"
+  },
+  "keywords": [
+    "drive",
+    "school"
+  ],
+  "author": "Drivesense team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/drivesense/server/issues"
+  },
+  "homepage": "https://github.com/drivesense/server#readme",
+  "private": true,
+  "devDependencies": {
+    "babel-core": "^6.3.13",
+    "babel-eslint": "^4.1.6",
+    "babel-preset-es2015": "^6.3.13",
+    "eslint-config-noamokman": "^1.0.1",
+    "event-stream": "^3.3.2",
+    "ghooks": "^1.0.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-babel-istanbul": "^0.11.0",
+    "gulp-coveralls": "^0.1.4",
+    "gulp-env": "^0.2.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-file": "^0.2.0",
+    "gulp-if": "^2.0.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "nodemon": "^1.8.1",
+    "open": "0.0.5",
+    "pem": "^1.8.1",
+    "run-sequence": "^1.1.5"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "bunyan": "^1.5.1",
+    "composable-middleware": "^0.3.0",
+    "compression": "^1.6.0",
+    "cookie-parser": "^1.4.0",
+    "dotenv": "^1.2.0",
+    "ejs": "^2.3.4",
+    "email-address": "^1.2.2",
+    "errorhandler": "^1.4.2",
+    "express": "^4.13.3",
+    "express-jwt": "^3.3.0",
+    "http-auth": "^2.2.8",
+    "jsonwebtoken": "^5.4.1",
+    "lodash": "^3.10.1",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.2.9",
+    "morgan": "^1.6.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.0.0",
+    "passport-google-oauth": "^0.2.0",
+    "passport-local": "^1.0.0"
+  }
+}
