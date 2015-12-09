@@ -5,7 +5,7 @@ import Role from '../../api/role/role.model';
 export default () => {
   return Role.remove({})
     .exec()
-    .then(() => Role.create({
+    .then(() => Role.create([{
       name: 'admin',
       permissions: [
         'read_users',
@@ -15,5 +15,5 @@ export default () => {
         'read_packages',
         'write_packages'
       ]
-    }));
+    }]));
 };

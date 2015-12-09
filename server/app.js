@@ -8,6 +8,7 @@ import seeder from './config/seed';
 import expressConfig from './config/express';
 import sslConfig from './config/ssl';
 import routes from './routes';
+import logger from './components/logger';
 
 mongoose.Promise = Promise;
 
@@ -24,7 +25,7 @@ expressConfig(app);
 routes(app);
 
 server.listen(process.env.PORT, () => {
-  console.log('Express listening on port %s', process.env.PORT);
+  logger.info('Express listening on port %s', process.env.PORT);
 });
 
 export default app;

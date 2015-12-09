@@ -2,12 +2,13 @@
 
 import populateUsers from './seed-data/users';
 import populateRoles from './seed-data/roles';
+import logger from '../components/logger';
 
 export default () => populateRoles()
     .then(roles => populateUsers(roles))
     .then(() => {
-      console.log('Finished populating database.');
+      logger.info('Finished populating database.');
     })
     .catch(err => {
-      console.log(`Unable to populate database: ${err}`);
+      logger.info(`Unable to populate database: ${err}`);
     });

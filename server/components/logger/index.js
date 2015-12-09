@@ -1,6 +1,7 @@
 'use strict';
 
 import bunyan from 'bunyan';
+import BunyanFormatter from './formatter';
 
 export default bunyan.createLogger({
   name: 'Drivesense',
@@ -12,11 +13,11 @@ export default bunyan.createLogger({
   streams: [
     {
       level: 'info',
-      stream: process.stdout
+      stream: new BunyanFormatter(process.stdout)
     },
     {
       level: 'error',
-      path: 'errors.log'
+      stream: new BunyanFormatter(process.stderr)
     }
   ]
 });
