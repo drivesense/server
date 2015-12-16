@@ -5,19 +5,19 @@ import logger from '../../components/logger';
 import _ from 'lodash';
 
 /**
- * Get list of {{name}}s
+ * Get list of {{plur name}}
  *
  * @param {Object} req the express request object
  * @param {Object} res the express response object
  */
 export function index (req, res) {
   {{properCase name}}.find({})
-    .then({{name}}s => {
-      if (!{{name}}) {
+    .then({{plur name}} => {
+      if (!{{plur name}}) {
         res.status(404).end();
       }
       else {
-        res.status(200).json({{name}}s);
+        res.status(200).json({{plur name}});
       }
     })
     .catch(err => {

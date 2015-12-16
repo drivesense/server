@@ -10,6 +10,6 @@ export default gulp => {
       .pipe(sourcemaps.init())
       .pipe(babel())
       .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest('dist'));
+      .pipe(gulp.dest('dist/server'));
   });
 };

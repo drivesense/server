@@ -1,11 +1,15 @@
 'use strict';
 
-import path from 'path';
+import {resolve} from 'path';
+
+// inject:route-imports
 import roleRoute from './api/role';
 import userRoute from './api/user';
+
 import authRoute from './auth';
 
 export default app => {
+  // inject:route-usage
   app.use('/api/roles', roleRoute);
   app.use('/api/users', userRoute);
 
@@ -17,5 +21,5 @@ export default app => {
 
   // All other routes should redirect to the index.html
   app.route('/*')
-    .get((req, res) => res.sendFile(path.resolve('client/index.html')));
+    .get((req, res) => res.sendFile(resolve('client/index.html')));
 };
