@@ -25,7 +25,9 @@ export default gulp => {
     const compiler = webpack(webpackConfig);
 
     new WebpackDevServer(compiler, {
-      contentBase: 'client/'
+      proxy: {
+        '*': 'http://localhost:1337'
+      }
     }).listen(8080, 'localhost', err => {
       if (err) {
         return cb(new gutil.PluginError('webpack-dev-server', err));

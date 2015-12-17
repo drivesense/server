@@ -7,6 +7,7 @@ export default gulp => {
     runSequence(
       'eslint',
       'nodemon',
+      'webpack-dev-server',
       'open',
       cb);
   });

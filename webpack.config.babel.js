@@ -6,7 +6,7 @@ export default {
     app: ["./app/app.js"]
   },
   output: {
-    path: './dist/client',
+    path: join(__dirname, 'dist', 'client'),
     filename: 'bundle.js'
   },
   module: {
