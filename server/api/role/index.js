@@ -1,10 +1,10 @@
 'use strict';
 
-import {Router} from 'express';
+import {AsyncRouter} from 'express-async-router';
 import * as controller from './role.controller';
 import {hasPermissions} from '../../auth/auth.service';
 
-const router = new Router();
+const router = new AsyncRouter();
 
 router.get('/', hasPermissions('read_roles'), controller.index);
 router.get('/:id', hasPermissions('read_roles'), controller.show);

@@ -1,125 +1,43 @@
 'use strict';
 
 import {{properCase name}} from './{{name}}.model';
-import logger from '../../components/logger';
+import HttpError from '../../components/errors/http-error';
 import _ from 'lodash';
 
-/**
- * Get list of {{plur name}}
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
+// Get list of {{plur name}}
 export function index (req, res) {
-  {{properCase name}}.find({})
-    .then({{plur name}} => {
-      if (!{{plur name}}) {
-        res.status(404).end();
-      }
-      else {
-        res.status(200).json({{plur name}});
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
-    });
+  return {{properCase name}}.find({});
 }
 
-/**
- * Creates a new {{name}}
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function create (req, res) {
-  const new{{properCase name}} = new {{properCase name}}(req.body);
-
-  new{{properCase name}}.save()
-    .then({{name}} => {
-      if (!{{name}}) {
-        res.status(500).end();
-      }
-      else {
-        res.status(201).json({{name}});
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-    });
-}
-
-/**
- *
- * Get a single {{name}}
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
+// Get a single {{name}}
 export function show (req, res) {
-  {{properCase name}}.findById(req.params.id)
+  return {{properCase name}}.findById(req.params.id)
     .then({{name}} => {
       if (!{{name}}) {
-        res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
-      else {
-        res.status(200).json({{name}}.profile);
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
 
-      res.status(500).end();
+      return ({{name}});
     });
 }
 
-/**
- * Deletes a {{name}}
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function destroy (req, res) {
-  {{properCase name}}.findOneAndRemove({_id: req.params.id})
+// Creates a new {{name}}
+export function create (req, res) {
+  return new{{properCase name}}.save()
     .then({{name}} => {
       if (!{{name}}) {
-        res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
-      else {
-        res.status(204).end();
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
 
-      res.status(500).end();
+      return {{name}};
     });
 }
 
-/**
-*
-* Update a {{name}}
-*
-* @param {Object} req the express request object
-* @param {Object} res the express response object
-*/
+// Update a {{name}}
 export function update (req, res) {
   const data = _.pick(req.body, ['name']);
 
-  {{properCase name}}.findById(req.params.id)
+  return {{properCase name}}.findById(req.params.id)
     .then({{name}} => {
       if (!{{name}}) {
         return res.status(404).end();
@@ -129,13 +47,15 @@ export function update (req, res) {
 
       return {{name}}.save();
     })
-    .then(() => res.status(200).end())
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
+    .then(_.noop);
+}
 
-      res.status(500).end();
+// Deletes a {{name}}
+export function destroy (req, res) {
+  return {{properCase name}}.findOneAndRemove({_id: req.params.id})
+    .then({{name}} => {
+      if (!{{name}}) {
+        res.status(404).end();
+      }
     });
 }

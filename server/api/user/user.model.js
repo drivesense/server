@@ -1,7 +1,6 @@
 'use strict';
 
 import crypto from 'crypto';
-import _ from 'lodash';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import emailAddress from 'email-address';
@@ -18,10 +17,14 @@ const UserSchema = new Schema({
     last: String
   },
   email: {
+    match: emailAddress.single,
     type: String,
-    lowercase: true
+    required: true,
+    lowercase: true,
+    unique: true
   },
   gender: {
+    enum: genders,
     type: String,
     lowercase: true
   },
@@ -59,12 +62,8 @@ const UserSchema = new Schema({
 UserSchema
   .virtual('password')
   .set(function (password) {
-    this._password = password;
     this.salt = this.makeSalt();
     this.hashedPassword = this.encryptPassword(password);
-  })
-  .get(function () {
-    return this._password;
   });
 
 UserSchema
@@ -107,62 +106,6 @@ UserSchema
   });
 
 /**
- * Validations
- */
-
-// Validate empty email
-UserSchema
-  .path('email')
-  .validate(email => email.length, 'האימייל לא יכול להיות ריק.');
-
-// Validate permissions
-UserSchema
-  .path('gender')
-  .validate(gender => _.contains(genders, gender), 'הוכנס ערך לא נכון לשדה המין.');
-
-// Validate empty password
-UserSchema
-  .path('hashedPassword')
-  .validate(function (hashedPassword) {
-    // User with providers doesn't need a password
-    if (this.providers &&
-      ((this.providers.facebook && this.providers.facebook.id) ||
-      (this.providers.google && this.providers.google.id))) {
-      return true;
-    }
-
-    return hashedPassword.length;
-  }, 'הסיסמא לא יכולה להיות ריקה.');
-
-// Validate email is not taken
-UserSchema
-  .path('email')
-  .validate(function (email, respond) {
-    this.constructor.findOne({email}, (err, user) => {
-      if (err) {
-        throw err;
-      }
-
-      if (user) {
-        if (this.id === user.id) {
-          return respond(true);
-        }
-
-        return respond(false);
-      }
-
-      respond(true);
-    });
-  }, 'האימייל הנוכחי נמצא כבר בשימוש.');
-
-// Validate email is in a valid format
-UserSchema
-  .path('email')
-  .validate(email => emailAddress.isValid(email), 'האימייל אינו בפורמט תקין.');
-
-const validatePresenceOf = value => value && value.length;
-
-/**
  * Pre-save hook
  */
 UserSchema
@@ -172,14 +115,12 @@ UserSchema
     }
 
     // User with providers doesn't need a password
-    if (this.providers &&
-      ((this.providers.facebook && this.providers.facebook.id) ||
-      (this.providers.google && this.providers.google.id))) {
+    if (this.hasProvider()) {
       return next();
     }
 
-    if (!validatePresenceOf(this.hashedPassword)) {
-      next(new Error('סיסמא שגוייה.'));
+    if (!(this.hashedPassword && this.hashedPassword.length)) {
+      next(new Error('user without providers requires a password'));
     }
     else {
       next();
@@ -198,6 +139,16 @@ UserSchema.methods = {
    */
   authenticate (plainText) {
     return this.encryptPassword(plainText) === this.hashedPassword;
+  },
+
+  /**
+   * hasProvider - check if user has providers
+   * @returns {Boolean} if user has providers
+     */
+  hasProvider () {
+    return this.providers &&
+      ((this.providers.facebook && this.providers.facebook.id) ||
+      (this.providers.google && this.providers.google.id));
   },
 
   /**

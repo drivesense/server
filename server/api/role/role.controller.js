@@ -1,113 +1,63 @@
 'use strict';
 
-import _ from 'lodash';
-import Role from './role.model';
 import User from '../user/user.model';
-import logger from '../../components/logger';
+import Role from './role.model';
+import HttpError from '../../components/errors/http-error';
+import _ from 'lodash';
 
 // Get list of roles
-export function index (req, res) {
-  Role.find({})
-    .then(roles => {
-      if (!roles) {
-        res.status(404).end();
-      }
-      else {
-        res.status(200).json(roles);
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
-    });
+export function index () {
+  return Role.find({});
 }
 
 // Get a single role
-export function show (req, res) {
-  Role.findById(req.params.id)
+export function show (req) {
+  return Role.findById(req.params.id)
     .then(role => {
       if (!role) {
-        res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
-      else {
-        res.status(200).json(role);
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
 
-      res.status(500).end();
+      return role;
     });
 }
 
 // Creates a new role in the DB.
-export function create (req, res) {
-  const newRole = new Role(req.body);
-
-  newRole.save()
+export function create (req) {
+  return new Role(req.body).save()
     .then(role => {
       if (!role) {
-        res.status(500).end();
+        return Promise.reject(new HttpError(404));
       }
-      else {
-        res.status(201).json(role);
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
 
-      res.status(500).end();
+      return role;
     });
 }
 
 // Updates an existing role in the DB.
-export function update (req, res) {
-  // TODO: decide what more to pick
+export function update (req) {
   const data = _.pick(req.body, ['name', 'permissions']);
 
-  Role.findById(req.params.id)
+  return Role.findById(req.params.id)
     .then(role => {
       if (!role) {
-        res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
-      else {
-        role.set(data);
 
-        return role.saveQ();
-      }
-    })
-    .then(() => {
-      res.status(200).end();
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
+      role.set(data);
 
-      res.status(500).end();
-    });
+      return role.saveQ();
+    })
+    .then(_.noop);
 }
 
 // Deletes a role from the DB.
-export function destroy (req, res) {
-  Role.findOneAndRemove({_id: req.params.id})
+export function destroy (req) {
+  return Role.findOneAndRemove({_id: req.params.id})
     .then(role => {
       if (!role) {
-        return res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
-
-      res.status(204).end();
 
       return User.update(
         {roles: role._id},
@@ -115,12 +65,5 @@ export function destroy (req, res) {
         {multi: true}
       );
     })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
-    });
+    .then(_.noop);
 }

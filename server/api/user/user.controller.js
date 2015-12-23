@@ -11,6 +11,18 @@ export function index () {
   return User.find({});
 }
 
+// Get a single user
+export function show (req) {
+  return User.findById(req.params.id)
+    .then(user => {
+      if (!user) {
+        return Promise.reject(new HttpError(404));
+      }
+
+      return user.profile;
+    });
+}
+
 // Creates a new user
 export function create (req) {
   return new User(req.body).save()
@@ -25,16 +37,21 @@ export function create (req) {
     });
 }
 
-// Get a single user
-export function show (req) {
+// Updates an existing user in the DB.
+export function update (req) {
+  const data = _.pick(req.body, ['name', 'email', 'gender']);
+
   return User.findById(req.params.id)
     .then(user => {
       if (!user) {
         return Promise.reject(new HttpError(404));
       }
 
-      return user.profile;
-    });
+      user.set(data);
+
+      return user.save();
+    })
+    .then(_.noop);
 }
 
 // Deletes a user
@@ -65,23 +82,6 @@ export function changePassword (req) {
       }
 
       return Promise.reject(new HttpError(403));
-    })
-    .then(_.noop);
-}
-
-// Updates an existing user in the DB.
-export function update (req) {
-  const data = _.pick(req.body, ['name', 'email', 'gender']);
-
-  return User.findById(req.params.id)
-    .then(user => {
-      if (!user) {
-        return Promise.reject(new HttpError(404));
-      }
-
-      user.set(data);
-
-      return user.save();
     })
     .then(_.noop);
 }
