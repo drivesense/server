@@ -64,6 +64,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "api-error-handler": "^1.0.0",
     "body-parser": "^1.14.1",
     "bunyan": "^1.5.1",
     "composable-middleware": "^0.3.0",
@@ -71,7 +72,6 @@
     "cookie-parser": "^1.4.0",
     "dotenv": "^1.2.0",
     "email-address": "^1.2.2",
-    "errorhandler": "^1.4.2",
     "express": "^4.13.3",
     "express-jwt": "^3.3.0",
     "http-auth": "^2.2.8",
@@ -85,6 +85,7 @@
     "passport-google-oauth": "^0.2.0",
     "passport-local": "^1.0.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "statuses": "^1.2.1"
   }
 }

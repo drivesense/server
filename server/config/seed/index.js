@@ -1,10 +1,10 @@
 'use strict';
 
 // inject:seed-imports
-import populateUsers from './seed-data/users';
-import populateRoles from './seed-data/roles';
+import populateUsers from './users';
+import populateRoles from './roles';
 
-import logger from '../components/logger';
+import logger from '../../components/logger';
 
 export default () => populateRoles()
   .then(roles => populateUsers(roles))

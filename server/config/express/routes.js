@@ -1,12 +1,13 @@
 'use strict';
 
 import {resolve} from 'path';
+import errors from './errors';
 
 // inject:route-imports
-import roleRoute from './api/role';
-import userRoute from './api/user';
+import roleRoute from '../../api/role';
+import userRoute from '../../api/user';
 
-import authRoute from './auth';
+import authRoute from '../../auth';
 
 export default app => {
   // inject:route-usage
@@ -17,7 +18,7 @@ export default app => {
 
   // All undefined api routes should return a 404
   app.route('/:url(api|auth)/*')
-    .get((req, res) => res.status(404).send('opps'));
+    .get(errors(404));
 
   // All other routes should redirect to the index.html
   app.route('/*')

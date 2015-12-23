@@ -5,8 +5,9 @@ import compression from 'compression';
 import {urlencoded, json} from 'body-parser';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
-import errorHandler from 'errorhandler';
+import errorHandler from 'api-error-handler';
 import passport from 'passport';
+import routes from './routes';
 
 export default app => {
   app.use(compression());
@@ -17,7 +18,7 @@ export default app => {
   app.use(passport.initialize());
   app.use(morgan('dev'));
 
-  if (process.env.NODE_ENV !== 'production') {
-    app.use(errorHandler()); // Error handler - has to be last
-  }
+  routes(app);
+
+  app.use(errorHandler());
 };

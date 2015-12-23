@@ -22,8 +22,9 @@ export default class BunyanFormatter extends Stream {
   write (line) {
     if (this._std.isTTY) {
       const json = JSON.parse(line);
+      const msg = json.level === 50 ? json.err.message : json.msg;
 
-      this._std.write(`${levels[json.level.toString()]}: ${json.msg}\n`);
+      this._std.write(`${levels[json.level.toString()]}: ${msg}\n`);
     }
     else {
       this._std.write(line);

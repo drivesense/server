@@ -39,30 +39,30 @@ export default plop => {
       },
       {
         type: 'add',
-        path: 'server/config/seed-data/{{plur name}}.js',
+        path: 'server/config/seed/{{plur name}}.js',
         templateFile: 'plop/api/seed.hbs'
       },
       {
         type: 'modify',
-        path: 'server/routes.js',
+        path: 'server/config/express/routes.js',
         pattern: /(\/\/ inject:route-imports)/gi,
-        template: '$1\r\nimport {{name}}Route from \'./api/{{name}}\';'
+        template: '$1\r\nimport {{name}}Route from \'../../api/{{name}}\';'
       },
       {
         type: 'modify',
-        path: 'server/routes.js',
+        path: 'server/config/express/routes.js',
         pattern: /(\/\/ inject:route-usage)/gi,
         template: '$1\r\n  app.use(\'/api/{{plur name}}\'\, {{name}}Route);'
       },
       {
         type: 'modify',
-        path: 'server/config/seed.js',
+        path: 'server/config/seed/index.js',
         pattern: /(\/\/ inject:seed-imports)/gi,
-        template: '$1\r\nimport populate{{plurUpperCase name}} from \'./seed-data/{{plur name}}\';'
+        template: '$1\r\nimport populate{{plurUpperCase name}} from \'./{{plur name}}\';'
       },
       {
         type: 'modify',
-        path: 'server/config/seed.js',
+        path: 'server/config/seed/index.js',
         pattern: /(\/\/ inject:seed-populate)/gi,
         template: '$1\r\n  .then(() => populate{{plurUpperCase name}}())'
       }
