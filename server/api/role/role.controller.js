@@ -5,6 +5,8 @@ import Role from './role.model';
 import createError from 'http-errors';
 import _ from 'lodash';
 
+const errorIfEmpty = result => !result ? Promise.reject(createError(404)) : result;
+
 // Get list of roles
 export function index () {
   return Role.find({});
@@ -13,25 +15,13 @@ export function index () {
 // Get a single role
 export function show (req) {
   return Role.findById(req.params.id)
-    .then(role => {
-      if (!role) {
-        return Promise.reject(createError(404));
-      }
-
-      return role;
-    });
+    .then(errorIfEmpty);
 }
 
 // Creates a new role in the DB.
 export function create (req) {
   return new Role(req.body).save()
-    .then(role => {
-      if (!role) {
-        return Promise.reject(createError(404));
-      }
-
-      return role;
-    });
+    .then(errorIfEmpty);
 }
 
 // Updates an existing role in the DB.
@@ -39,11 +29,8 @@ export function update (req) {
   const data = _.pick(req.body, ['name', 'permissions']);
 
   return Role.findById(req.params.id)
+    .then(errorIfEmpty)
     .then(role => {
-      if (!role) {
-        return Promise.reject(createError(404));
-      }
-
       role.set(data);
 
       return role.saveQ();
@@ -54,11 +41,8 @@ export function update (req) {
 // Deletes a role from the DB.
 export function destroy (req) {
   return Role.findOneAndRemove({_id: req.params.id})
+    .then(errorIfEmpty)
     .then(role => {
-      if (!role) {
-        return Promise.reject(createError(404));
-      }
-
       return User.update(
         {roles: role._id},
         {$pull: {roles: role._id}},

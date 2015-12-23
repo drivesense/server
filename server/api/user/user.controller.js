@@ -6,6 +6,8 @@ import createError from 'http-errors';
 import {signToken} from '../../auth/auth.service';
 import _ from 'lodash';
 
+const errorIfEmpty = result => !result ? Promise.reject(createError(404)) : result;
+
 // Get list of users
 export function index () {
   return User.find({});
@@ -14,23 +16,14 @@ export function index () {
 // Get a single user
 export function show (req) {
   return User.findById(req.params.id)
-    .then(user => {
-      if (!user) {
-        return Promise.reject(createError(404));
-      }
-
-      return user.profile;
-    });
+    .then(errorIfEmpty);
 }
 
 // Creates a new user
 export function create (req) {
   return new User(req.body).save()
+    .then(errorIfEmpty)
     .then(user => {
-      if (!user) {
-        return Promise.reject(createError(404));
-      }
-
       return {
         token: signToken(user._id)
       };
@@ -42,11 +35,8 @@ export function update (req) {
   const data = _.pick(req.body, ['name', 'email', 'gender']);
 
   return User.findById(req.params.id)
+    .then(errorIfEmpty)
     .then(user => {
-      if (!user) {
-        return Promise.reject(createError(404));
-      }
-
       user.set(data);
 
       return user.save();
@@ -57,11 +47,8 @@ export function update (req) {
 // Deletes a user
 export function destroy (req) {
   return User.findOneAndRemove({_id: req.params.id})
-    .then(user => {
-      if (!user) {
-        return Promise.reject(createError(404));
-      }
-    });
+    .then(errorIfEmpty)
+    .then(_.noop);
 }
 
 // Change a users password
@@ -70,11 +57,8 @@ export function changePassword (req) {
   const newPass = String(req.body.newPassword);
 
   return User.findByIdQ(req.user._id, 'salt hashedPassword')
+    .then(errorIfEmpty)
     .then(user => {
-      if (!user) {
-        return Promise.reject(createError(404));
-      }
-
       if (user.authenticate(oldPass)) {
         user.password = newPass;
 

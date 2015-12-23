@@ -17,7 +17,7 @@ export default bunyan.createLogger({
   streams: [
     {
       level: 'info',
-      stream: debug(process.stderr)
+      stream: debug(process.stdout)
     },
     {
       level: 'error',
