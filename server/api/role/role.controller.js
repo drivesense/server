@@ -2,7 +2,7 @@
 
 import User from '../user/user.model';
 import Role from './role.model';
-import HttpError from '../../components/errors/http-error';
+import createError from 'http-errors';
 import _ from 'lodash';
 
 // Get list of roles
@@ -15,7 +15,7 @@ export function show (req) {
   return Role.findById(req.params.id)
     .then(role => {
       if (!role) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       return role;
@@ -27,7 +27,7 @@ export function create (req) {
   return new Role(req.body).save()
     .then(role => {
       if (!role) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       return role;
@@ -41,7 +41,7 @@ export function update (req) {
   return Role.findById(req.params.id)
     .then(role => {
       if (!role) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       role.set(data);
@@ -56,7 +56,7 @@ export function destroy (req) {
   return Role.findOneAndRemove({_id: req.params.id})
     .then(role => {
       if (!role) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       return User.update(

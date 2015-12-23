@@ -1,7 +1,11 @@
 'use strict';
 
 import bunyan from 'bunyan';
-import BunyanFormatter from './formatter';
+import format from 'bunyan-format';
+
+const debug = std => {
+  return std.isTTY ? format({outputMode: 'short', out: std}) : std;
+};
 
 export default bunyan.createLogger({
   name: 'Drivesense',
@@ -13,11 +17,11 @@ export default bunyan.createLogger({
   streams: [
     {
       level: 'info',
-      stream: new BunyanFormatter(process.stdout)
+      stream: debug(process.stderr)
     },
     {
       level: 'error',
-      stream: new BunyanFormatter(process.stderr)
+      stream: debug(process.stderr)
     }
   ]
 });

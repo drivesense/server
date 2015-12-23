@@ -1,7 +1,7 @@
 'use strict';
 
 import {resolve} from 'path';
-import HttpError from '../../components/errors/http-error';
+import createError from 'http-errors';
 
 // inject:route-imports
 import roleRoute from '../../api/role';
@@ -19,7 +19,7 @@ export default app => {
   // All undefined api routes should return a 404
   app.route('/:url(api|auth)/*')
     .get((req, res, next) => {
-      next(new HttpError(404));
+      next(createError(404));
     });
 
   // All other routes should redirect to the index.html

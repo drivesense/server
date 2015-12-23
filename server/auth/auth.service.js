@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
 import pify from 'pify';
 import User from '../api/user/user.model';
-import HttpError from '../components/errors/http-error';
+import createError from 'http-errors';
 const validateJwt = pify(expressJwt({secret: process.env.SESSION_SECRET}));
 
 /**
@@ -28,7 +28,7 @@ export function isAuthenticated () {
           .exec()
           .then(user => {
             if (!user) {
-              return Promise.reject(new HttpError(401));
+              return Promise.reject(createError(401));
             }
 
             req.user = user;
@@ -68,7 +68,7 @@ export function hasPermissions () {
         const permissions = _.flatten(_.pluck(req.user.roles, 'permissions'));
 
         if (!_.isEmpty(_.difference(wantedPermissions, permissions))) {
-          return Promise.reject(new HttpError(403));
+          return Promise.reject(createError(403));
         }
       });
   };

@@ -2,7 +2,7 @@
 
 import User from './user.model';
 import Role from '../role/role.model';
-import HttpError from '../../components/errors/http-error';
+import createError from 'http-errors';
 import {signToken} from '../../auth/auth.service';
 import _ from 'lodash';
 
@@ -16,7 +16,7 @@ export function show (req) {
   return User.findById(req.params.id)
     .then(user => {
       if (!user) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       return user.profile;
@@ -28,7 +28,7 @@ export function create (req) {
   return new User(req.body).save()
     .then(user => {
       if (!user) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       return {
@@ -44,7 +44,7 @@ export function update (req) {
   return User.findById(req.params.id)
     .then(user => {
       if (!user) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       user.set(data);
@@ -59,7 +59,7 @@ export function destroy (req) {
   return User.findOneAndRemove({_id: req.params.id})
     .then(user => {
       if (!user) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
     });
 }
@@ -72,7 +72,7 @@ export function changePassword (req) {
   return User.findByIdQ(req.user._id, 'salt hashedPassword')
     .then(user => {
       if (!user) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       if (user.authenticate(oldPass)) {
@@ -81,7 +81,7 @@ export function changePassword (req) {
         return user.save();
       }
 
-      return Promise.reject(new HttpError(403));
+      return Promise.reject(createError(403));
     })
     .then(_.noop);
 }
@@ -96,11 +96,11 @@ export function addRole (req) {
   return Promise.all([User.findById(req.params.id), Role.findById(req.body.roleId)])
     .spread((user, role) => {
       if (!user || !role) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       if (_.find(user.roles, id => id.equals(role._id))) {
-        return Promise.reject(new HttpError(409));
+        return Promise.reject(createError(409));
       }
 
       user.roles.push(role);
@@ -115,11 +115,11 @@ export function removeRole (req) {
   return Promise.all([User.findById(req.params.id), Role.findById(req.body.roleId)])
     .spread((user, role) => {
       if (!user || !role) {
-        return Promise.reject(new HttpError(404));
+        return Promise.reject(createError(404));
       }
 
       if (!_.find(user.roles, id => id.equals(role._id))) {
-        return Promise.reject(new HttpError(409));
+        return Promise.reject(createError(409));
       }
       _.remove(user.roles, id => id.equals(role._id));
 
