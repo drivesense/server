@@ -1,9 +1,10 @@
 import {join} from 'path';
+import webpack from 'webpack';
 
 export default {
   context: join(__dirname, 'client'),
   entry: {
-    app: ["./app/app.js"]
+    app: ['./app/app.js']
   },
   output: {
     path: join(__dirname, 'dist', 'client'),
@@ -11,9 +12,12 @@ export default {
   },
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style!css'},
       {test: /\.less$/, loader: 'style!css!less'},
-      {test: /\.js$/, exclude: /node_modules/, loader: 'babel'}
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']}
     ]
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
 };

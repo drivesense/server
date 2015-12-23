@@ -10,4 +10,12 @@ export default gulp => {
       cb
     );
   });
+
+  gulp.task('build:dist', cb => {
+    runSequence(
+      'clean',
+      'babel',
+      cb
+    );
+  });
 };

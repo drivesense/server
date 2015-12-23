@@ -1,14 +1,14 @@
 'use strict';
 
 import config from '../config';
-import pem from 'pem';
+import {createCertificate} from 'pem';
 import file from 'gulp-file';
-import es from 'event-stream';
+import {merge} from 'event-stream';
 import _ from 'lodash';
 
 export default gulp => {
   gulp.task('generate-certs', cb => {
-    pem.createCertificate({
+    createCertificate({
       days: 3650,
       selfSigned: true
     }, (err, keys) => {
@@ -29,11 +29,9 @@ export default gulp => {
         }
       ];
 
-      const streams = _.map(certs, cert => {
-        return file(cert.name, cert.data, {src: true});
-      });
+      const streams = _.map(certs, cert => file(cert.name, cert.data, {src: true}));
 
-      es.merge(streams)
+      merge(streams)
         .pipe(gulp.dest(config.certs))
         .on('end', cb);
     });
