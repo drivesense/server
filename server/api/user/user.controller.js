@@ -2,227 +2,124 @@
 
 import User from './user.model';
 import Role from '../role/role.model';
-import logger from '../../components/logger';
+import HttpError from '../../components/errors/http-error';
 import {signToken} from '../../auth/auth.service';
 import _ from 'lodash';
 
-/**
- * Get list of users
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function index (req, res) {
-  User.find({})
-    .then(users => {
-      if (!users) {
-        res.status(404).end();
-      }
-      else {
-        res.status(200).json(users);
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
-    });
+// Get list of users
+export function index () {
+  return User.find({});
 }
 
-/**
- * Creates a new user
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function create (req, res) {
-  const newUser = new User(req.body);
-
-  newUser.save()
+// Creates a new user
+export function create (req) {
+  return new User(req.body).save()
     .then(user => {
-      res.json({
+      if (!user) {
+        return Promise.reject(new HttpError(404));
+      }
+
+      return {
         token: signToken(user._id)
-      });
-    }, err => {
-      res.status(422).json(err);
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
+      };
     });
 }
 
-/**
- *
- * Get a single user
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function show (req, res) {
-  User.findById(req.params.id)
+// Get a single user
+export function show (req) {
+  return User.findById(req.params.id)
     .then(user => {
       if (!user) {
-        res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
-      else {
-        res.status(200).json(user.profile);
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
 
-      res.status(500).end();
+      return user.profile;
     });
 }
 
-/**
- * Deletes a user
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function destroy (req, res) {
-  User.findOneAndRemove({_id: req.params.id})
+// Deletes a user
+export function destroy (req) {
+  return User.findOneAndRemove({_id: req.params.id})
     .then(user => {
       if (!user) {
-        res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
-      else {
-        res.status(204).end();
-      }
-    })
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
     });
 }
 
-/**
- * Change a users password
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function changePassword (req, res) {
+// Change a users password
+export function changePassword (req) {
   const oldPass = String(req.body.oldPassword);
   const newPass = String(req.body.newPassword);
 
-  User.findByIdQ(req.user._id, 'salt hashedPassword')
+  return User.findByIdQ(req.user._id, 'salt hashedPassword')
     .then(user => {
+      if (!user) {
+        return Promise.reject(new HttpError(404));
+      }
+
       if (user.authenticate(oldPass)) {
         user.password = newPass;
 
         return user.save();
       }
 
-      res.status(403).end();
+      return Promise.reject(new HttpError(403));
     })
-    .then(() => res.status(200).end())
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
-    });
+    .then(_.noop);
 }
 
 // Updates an existing user in the DB.
-export function update (req, res) {
+export function update (req) {
   const data = _.pick(req.body, ['name', 'email', 'gender']);
 
-  User.findById(req.params.id)
+  return User.findById(req.params.id)
     .then(user => {
       if (!user) {
-        return res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
 
       user.set(data);
 
       return user.save();
     })
-    .then(() => res.status(200).end())
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
-    });
+    .then(_.noop);
 }
 
-/**
- * Get my info
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function me (req, res) {
-  res.json(req.user);
+// Get my info
+export function me (req) {
+  return Promise.resolve(req.user);
 }
 
-/**
- * Add role to user
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function addRole (req, res) {
-  Promise.all([User.findById(req.params.id), Role.findById(req.body.roleId)])
+// Add role to user
+export function addRole (req) {
+  return Promise.all([User.findById(req.params.id), Role.findById(req.body.roleId)])
     .spread((user, role) => {
       if (!user || !role) {
-        return res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
 
       if (_.find(user.roles, id => id.equals(role._id))) {
-        return res.status(409).end();
+        return Promise.reject(new HttpError(409));
       }
 
       user.roles.push(role);
 
       return user.save();
     })
-    .then(() => res.status(200).end())
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
-    });
+    .then(_.noop);
 }
 
-/**
- * Remove role from user
- *
- * @param {Object} req the express request object
- * @param {Object} res the express response object
- */
-export function removeRole (req, res) {
-  Promise.all([User.findById(req.params.id), Role.findById(req.body.roleId)])
+// Remove role from user
+export function removeRole (req) {
+  return Promise.all([User.findById(req.params.id), Role.findById(req.body.roleId)])
     .spread((user, role) => {
       if (!user || !role) {
-        return res.status(404).end();
+        return Promise.reject(new HttpError(404));
       }
 
       if (!_.find(user.roles, id => id.equals(role._id))) {
-        return res.status(409).end();
+        return Promise.reject(new HttpError(409));
       }
       _.remove(user.roles, id => id.equals(role._id));
 
@@ -230,13 +127,5 @@ export function removeRole (req, res) {
 
       return user.save();
     })
-    .then(() => res.status(200).end())
-    .catch(err => {
-      logger.error({
-        err,
-        req
-      });
-
-      res.status(500).end();
-    });
+    .then(_.noop);
 }

@@ -3,9 +3,10 @@
 import _ from 'lodash';
 import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
-import compose from 'composable-middleware';
+import pify from 'pify';
 import User from '../api/user/user.model';
-const validateJwt = expressJwt({secret: process.env.SESSION_SECRET});
+import HttpError from '../components/errors/http-error';
+const validateJwt = pify(expressJwt({secret: process.env.SESSION_SECRET}));
 
 /**
  * Attaches the user object to the request if authenticated
@@ -14,37 +15,30 @@ const validateJwt = expressJwt({secret: process.env.SESSION_SECRET});
  * @returns {Function} middleware
  */
 export function isAuthenticated () {
-  return compose()
-    .use((req, res, next) => {
-      // Allow access_token to be passed through query parameter as well
-      if (req.query && req.query.hasOwnProperty('access_token')) {
-        req.headers.authorization = `Bearer ${req.query.access_token}`;
-      }
+  return (req, res) => {
+    // Allow access_token to be passed through query parameter as well
+    if (req.query && req.query.hasOwnProperty('access_token')) {
+      req.headers.authorization = `Bearer ${req.query.access_token}`;
+    }
 
-      validateJwt(req, res, next);
-    })
+    return validateJwt(req, res)
+      .then(() => {
+        return User.findById(req.user._id)
+          .populate('roles')
+          .exec()
+          .then(user => {
+            if (!user) {
+              return Promise.reject(new HttpError(401));
+            }
 
-    // Attach user to request
-    .use((req, res, next) => {
-      User.findById(req.user._id)
-        .populate('roles')
-        .exec((err, user) => {
-          if (err) {
-            return next(err);
-          }
-
-          if (!user) {
-            return res.status(401).end();
-          }
-
-          req.user = user;
-          next();
-        });
-    });
+            req.user = user;
+          });
+      });
+  };
 }
 
 export function fillAuthorizationHeaderFromCookie () {
-  return (req, res, next) => {
+  return req => {
     if (req.cookies && req.cookies.token) {
       // Allow access_token to be passed through the token cookie as well
       let accessToken = req.cookies.token;
@@ -53,8 +47,6 @@ export function fillAuthorizationHeaderFromCookie () {
 
       req.headers.authorization = `Bearer ${accessToken}`;
     }
-
-    next();
   };
 }
 
@@ -70,17 +62,16 @@ export function hasPermissions () {
 
   const wantedPermissions = arguments;
 
-  return compose()
-    .use(isAuthenticated())
-    .use((req, res, next) => {
-      const permissions = _.flatten(_.pluck(req.user.roles, 'permissions'));
+  return (req, res) => {
+    return isAuthenticated(req, res)
+      .then(() => {
+        const permissions = _.flatten(_.pluck(req.user.roles, 'permissions'));
 
-      if (!_.isEmpty(_.difference(wantedPermissions, permissions))) {
-        return res.status(403).end();
-      }
-
-      next();
-    });
+        if (!_.isEmpty(_.difference(wantedPermissions, permissions))) {
+          return Promise.reject(new HttpError(403));
+        }
+      });
+  };
 }
 
 /**
