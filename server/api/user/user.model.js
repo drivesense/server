@@ -4,6 +4,8 @@ import crypto from 'crypto';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import emailAddress from 'email-address';
+import {plugin as seedPlugin} from 'mongoose-plugin-seed';
+import seed from './user.seed';
 const Schema = mongoose.Schema;
 
 const genders = [
@@ -53,6 +55,12 @@ const UserSchema = new Schema({
     }
   }
 });
+
+/**
+ * Plugins
+ */
+UserSchema
+  .plugin(seedPlugin, seed);
 
 /**
  * Virtuals
@@ -144,7 +152,7 @@ UserSchema.methods = {
   /**
    * hasProvider - check if user has providers
    * @returns {Boolean} if user has providers
-     */
+   */
   hasProvider () {
     return this.providers &&
       ((this.providers.facebook && this.providers.facebook.id) ||

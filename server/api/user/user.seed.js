@@ -1,10 +1,9 @@
 'use strict';
 
-import User from '../../api/user/user.model';
-
-export default roles => User.remove({})
-  .exec()
-  .then(() => User.create([{
+export default {
+  model: 'User',
+  dependencies: ['Role'],
+  seed: roles => [{
     name: {
       first: 'burrito',
       last: 'man'
@@ -23,4 +22,5 @@ export default roles => User.remove({})
     gender: 'male',
     email: 'nacho@gmail.com',
     password: 'nacho'
-  }]));
+  }]
+};

@@ -1,6 +1,8 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import {plugin as seedPlugin} from 'mongoose-plugin-seed';
+import seed from './role.seed';
 const Schema = mongoose.Schema;
 
 const permissions = [
@@ -26,5 +28,11 @@ const RoleSchema = new Schema({
     }
   ]
 });
+
+/**
+ * Plugins
+ */
+RoleSchema
+  .plugin(seedPlugin, seed);
 
 export default mongoose.model('Role', RoleSchema);
