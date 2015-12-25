@@ -56,18 +56,19 @@ export function changePassword (req) {
   const oldPass = String(req.body.oldPassword);
   const newPass = String(req.body.newPassword);
 
-  return User.findByIdQ(req.user._id, 'salt hashedPassword')
+  return User.findByIdQ(req.user._id)
     .then(errorIfEmpty)
     .then(user => {
-      if (user.authenticate(oldPass)) {
-        user.password = newPass;
+      return user.authenticate(oldPass)
+        .then(isAuth => {
+          if (isAuth) {
+            return user.setPassword(newPass);
+          }
 
-        return user.save();
-      }
-
-      return Promise.reject(createError(403));
-    })
-    .then(_.noop);
+          return Promise.reject(createError(403));
+        })
+        .then(_.noop);
+    });
 }
 
 // Get my info
