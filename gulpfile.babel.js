@@ -1,5 +1,6 @@
 'use strict';
 
+import {} from 'dotenv/config';
 import gulp from 'gulp';
 import fs from 'fs';
 

@@ -38,7 +38,7 @@ export default gulp => {
       gutil.log('[webpack-dev-server]', 'http://localhost:8080/');
 
       // keep the server alive or continue?
-      // cb();
+      cb();
     });
   });
 };
