@@ -4,7 +4,7 @@ import webpack from 'webpack';
 export default {
   context: join(__dirname, 'client'),
   entry: {
-    app: ['./app/app.js']
+    app: ['./index.js']
   },
   output: {
     path: join(__dirname, 'dist', 'client'),

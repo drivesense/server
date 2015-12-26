@@ -1,8 +1,11 @@
 import React from 'react';
 import {render} from 'react-dom';
-import HelloWorld from './hello-world'
+import {Router} from 'react-router';
+import App from './screens/App';
 
 render(
-  <HelloWorld>Hello, world!</HelloWorld>,
+  <Router>
+    {App}
+  </Router>,
   document.getElementById('container')
 );
