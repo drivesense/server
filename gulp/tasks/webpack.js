@@ -27,6 +27,9 @@ export default gulp => {
 
     const webpackDevServer = new WebpackDevServer(compiler, {
       contentBase: 'client/',
+      proxy: {
+        '*': 'http://localhost:1337'
+      },
       hot: true
     });
 
