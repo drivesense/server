@@ -1,8 +1,10 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import DevTools from '../components/DevTools';
 import {persistState} from 'redux-devtools';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise-middleware';
+import DevTools from '../components/DevTools';
 
-const middleware = [];
+const middlewares = [thunk, promise()];
 let finalCreateStore;
 
 /*
@@ -12,10 +14,10 @@ let finalCreateStore;
  http://rackt.org/redux/docs/api/compose.html
  */
 if (process.env.NODE_ENV === 'production') {
-  finalCreateStore = applyMiddleware(...middleware)(createStore)
+  finalCreateStore = applyMiddleware(...middlewares)(createStore)
 } else {
   finalCreateStore = compose(
-    applyMiddleware(...middleware),
+    applyMiddleware(...middlewares),
     window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
     persistState(
       window.location.href.match(/[?&]debug_session=([^&]+)\b/)

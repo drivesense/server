@@ -6,16 +6,18 @@ import { syncReduxAndRouter, routeReducer } from 'redux-simple-router'
 import createStore from './config/createStore';
 import App from './screens/App';
 import Root from './components/Root';
-import {createHistory} from 'history';
+import {createHashHistory, createHistory} from 'history';
 import leftNav from './screens/App/shared/redux/left-nav';
+import management from './screens/App/screens/Management/shared/redux/management/index';
 
 injectTapEventPlugin();
 
 const rootReducer = combineReducers({
   routing: routeReducer,
-  leftNav: leftNav
+  leftNav: leftNav,
+  management: management
 });
-const history = createHistory();
+const history = createHashHistory();
 const store = createStore(rootReducer);
 
 // Sync allows to listen to history changes and change location through redux

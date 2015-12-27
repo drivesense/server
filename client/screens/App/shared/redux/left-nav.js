@@ -15,7 +15,7 @@ export default function reducer(state = initialState, action = {}) {
       });
     case SET_OPEN:
       return Object.assign({}, state, {
-        open: action.open
+        open: action.payload.open
       });
     default:
       return state;
@@ -35,6 +35,8 @@ export function toggle() {
 export function setOpen(open) {
   return {
     type: SET_OPEN,
-    open: open
+    payload: {
+      open
+    }
   };
 }

@@ -12,8 +12,7 @@ class MyLeftNav extends React.Component {
     this.navigateTo = this.navigateTo.bind(this);
     this.menuItems = [
       {route: '/', text: 'Home'},
-      {route: '/about', text: 'About'},
-      {route: '/users', text: 'Users'},
+      {route: '/management', text: 'Management'},
       {route: '/login', text: 'Login'}
     ]
   }
