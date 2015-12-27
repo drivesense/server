@@ -1,3 +1,4 @@
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import {render} from 'react-dom';
 import { combineReducers } from 'redux';
@@ -6,9 +7,13 @@ import createStore from './config/createStore';
 import App from './screens/App';
 import Root from './components/Root';
 import {createHistory} from 'history';
+import leftNav from './screens/App/shared/redux/left-nav';
+
+injectTapEventPlugin();
 
 const rootReducer = combineReducers({
-  routing: routeReducer
+  routing: routeReducer,
+  leftNav: leftNav
 });
 const history = createHistory();
 const store = createStore(rootReducer);

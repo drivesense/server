@@ -16,6 +16,9 @@ export default {
       {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']}
     ]
   },
+  resolve: {
+    modulesDirectories: ['shared', 'node_modules']
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
