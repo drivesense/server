@@ -3,9 +3,7 @@
 import bunyan from 'bunyan';
 import format from 'bunyan-format';
 
-const debug = std => {
-  return std.isTTY ? format({outputMode: 'short', out: std}) : std;
-};
+const debug = std => std.isTTY ? format({outputMode: 'short', out: std}) : std;
 
 export default bunyan.createLogger({
   name: 'Drivesense',

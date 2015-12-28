@@ -2,11 +2,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import {render} from 'react-dom';
 import { combineReducers } from 'redux';
-import { syncReduxAndRouter, routeReducer } from 'redux-simple-router'
+import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
+import {createHashHistory, createHistory} from 'history';
 import createStore from './config/createStore';
 import App from './screens/App';
 import Root from './components/Root';
-import {createHashHistory, createHistory} from 'history';
 import leftNav from './screens/App/shared/redux/left-nav';
 import management from './screens/App/screens/Management/shared/redux/management/index';
 

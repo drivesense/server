@@ -6,10 +6,9 @@ import MenuItem from 'material-ui/lib/menus/menu-item';
 import * as leftNav from 'redux/left-nav';
 
 class MyLeftNav extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.navigateTo = this.navigateTo.bind(this);
     this.menuItems = [
       {route: '/', text: 'Home'},
       {route: '/management', text: 'Management'},

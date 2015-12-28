@@ -6,7 +6,7 @@ import createError from 'http-errors';
 import {signToken} from '../../auth/auth.service';
 import _ from 'lodash';
 
-const errorIfEmpty = result => !result ? Promise.reject(createError(404)) : result;
+const errorIfEmpty = result => result || Promise.reject(createError(404));
 
 // Get list of users
 export function index () {
@@ -36,11 +36,7 @@ export function update (req) {
 
   return User.findById(req.params.id)
     .then(errorIfEmpty)
-    .then(user => {
-      user.set(data);
-
-      return user.save();
-    })
+    .then(user => user.set(data).save())
     .then(_.noop);
 }
 

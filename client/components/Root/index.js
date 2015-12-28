@@ -1,28 +1,14 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import { Router } from 'react-router'
+'use strict';
+
+import React from 'react';
+import { Provider } from 'react-redux';
+import { Router } from 'react-router';
 import DevTools from '../DevTools';
 
 export default class Root extends React.Component {
-  constructor() {
-    super();
-
-    // React no longer binds non-component methods to `this`
-    this.content = this.content.bind(this);
-    this.devTools = this.devTools.bind(this);
-  }
-
-  content() {
-    return (
-      <Router history={this.props.history}>
-        {this.props.routes}
-      </Router>
-    )
-  }
-
   devTools() {
     if (process.env.NODE_ENV !== 'production') {
-      return <DevTools />
+      return <DevTools />;
     }
   }
 
@@ -30,11 +16,13 @@ export default class Root extends React.Component {
     return (
       <Provider store={this.props.store}>
         <div>
-          {this.content()}
+          <Router history={this.props.history}>
+            {this.props.routes}
+          </Router>
           {this.devTools()}
         </div>
       </Provider>
-    )
+    );
   }
 }
 

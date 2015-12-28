@@ -5,7 +5,7 @@ import Role from './role.model';
 import createError from 'http-errors';
 import _ from 'lodash';
 
-const errorIfEmpty = result => !result ? Promise.reject(createError(404)) : result;
+const errorIfEmpty = result => result || Promise.reject(createError(404));
 
 // Get list of roles
 export function index () {
@@ -30,11 +30,7 @@ export function update (req) {
 
   return Role.findById(req.params.id)
     .then(errorIfEmpty)
-    .then(role => {
-      role.set(data);
-
-      return role.saveQ();
-    })
+    .then(role => role.set(data).save())
     .then(_.noop);
 }
 

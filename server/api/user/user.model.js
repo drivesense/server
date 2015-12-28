@@ -106,7 +106,7 @@ UserSchema
 UserSchema
   .virtual('password')
   .set(function (password) {
-    this.virtualPassword = password;
+    this._password = password;
   });
 
 /**
@@ -114,11 +114,11 @@ UserSchema
  */
 UserSchema
   .pre('save', function (next) {
-    if (!this.virtualPassword) {
+    if (!this._password) {
       return next();
     }
 
-    this.setPassword(this.virtualPassword, () => {
+    this.setPassword(this._password, () => {
       next();
     });
   });
