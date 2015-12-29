@@ -1,3 +1,5 @@
+'use strict';
+
 import { pushPath } from 'redux-simple-router'
 
 const TOGGLE = 'left-nav/TOGGLE';

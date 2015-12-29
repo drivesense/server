@@ -1,8 +1,10 @@
+'use strict';
+
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import Management from './components/Management';
-import UsersContainer from './components/Users';
-import Roles from './components/Roles';
+import UsersContainer from './screens/Users';
+import Roles from './screens/Roles';
 
 export default (
   <Route path='management' component={Management}>

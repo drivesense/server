@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Menu from 'material-ui/lib/menus/menu';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+'use strict';
+
+import {MenuItem} from 'material-ui';
 import * as leftNav from 'redux/left-nav';
 
 const content = {
@@ -9,8 +11,8 @@ const content = {
 };
 
 class Management extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.navigateTo = this.navigateTo.bind(this);
   }
 

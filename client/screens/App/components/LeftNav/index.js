@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AppBar from 'material-ui/lib/app-bar';
 import LeftNav from 'material-ui/lib/left-nav';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+'use strict';
+
+import { MenuItem } from 'material-ui';
 import * as leftNav from 'redux/left-nav';
 
 class MyLeftNav extends React.Component {

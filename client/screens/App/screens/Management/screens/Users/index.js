@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import {connect} from 'react-redux';
 import * as users from 'redux/management/users';

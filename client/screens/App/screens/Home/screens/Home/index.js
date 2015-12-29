@@ -1,6 +1,7 @@
+'use strict';
+
 import React from 'react';
-import Paper from 'material-ui/lib/paper';
-import Card from 'material-ui/lib/card/card';
+import { Paper, Card } from 'material-ui';
 
 const styles = {
   textAlign: 'center',

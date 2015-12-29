@@ -1,3 +1,5 @@
+'use strict';
+
 const LOAD_USERS = 'management/LOAD_USERS';
 const LOAD_USERS_PENDING = 'management/LOAD_USERS_PENDING';
 const LOAD_USERS_FULFILLED = 'management/LOAD_USERS_FULFILLED';
