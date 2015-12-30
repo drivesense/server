@@ -1,9 +1,9 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import Menu from 'material-ui/lib/menus/menu';
 'use strict';
 
-import {MenuItem} from 'material-ui';
+import React from 'react';
+import {connect} from 'react-redux';
+import {Menu, MenuItem} from 'material-ui';
+
 import * as leftNav from 'redux/left-nav';
 
 const content = {

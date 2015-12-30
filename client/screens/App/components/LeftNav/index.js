@@ -1,11 +1,10 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import AppBar from 'material-ui/lib/app-bar';
-import LeftNav from 'material-ui/lib/left-nav';
 'use strict';
 
-import { MenuItem } from 'material-ui';
+import React from 'react';
+import {connect} from 'react-redux';
 import * as leftNav from 'redux/left-nav';
+
+import {AppBar, LeftNav, MenuItem} from 'material-ui';
 
 class MyLeftNav extends React.Component {
   constructor(props) {

@@ -11,6 +11,7 @@ import App from './screens/App';
 import Root from './components/Root';
 import leftNav from './screens/App/shared/redux/left-nav';
 import management from './screens/App/screens/Management/shared/redux/management/index';
+import styles from './index.less';
 
 injectTapEventPlugin();
 
