@@ -1,8 +1,9 @@
 'use strict';
 
+import Role from '../role/role.model';
+
 export default {
-  model: 'User',
-  dependencies: ['Role'],
+  dependencies: [Role],
   seed: roles => [{
     name: {
       first: 'burrito',

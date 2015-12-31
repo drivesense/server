@@ -1,7 +1,6 @@
 'use strict';
 
 export default {
-  model: 'Role',
   seed: () => [{
     name: 'admin',
     permissions: [

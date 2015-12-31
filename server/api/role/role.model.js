@@ -1,7 +1,7 @@
 'use strict';
 
 import mongoose from 'mongoose';
-import {plugin as seedPlugin} from 'mongoose-plugin-seed';
+import {addSeed} from 'mongoose-plugin-seed';
 import seed from './role.seed';
 const Schema = mongoose.Schema;
 
@@ -27,10 +27,8 @@ const RoleSchema = new Schema({
   ]
 });
 
-/**
- * Plugins
- */
-RoleSchema
-  .plugin(seedPlugin, seed);
+const Role = mongoose.model('Role', RoleSchema);
 
-export default mongoose.model('Role', RoleSchema);
+addSeed(Role, seed);
+
+export default Role;
