@@ -101,6 +101,7 @@
     "passport-facebook": "^2.0.0",
     "passport-google-oauth": "^0.2.0",
     "passport-local-mongoose": "^3.1.0",
-    "pify": "^2.3.0"
+    "pify": "^2.3.0",
+    "react-flexbox-grid": "^0.8.3"
   }
 }

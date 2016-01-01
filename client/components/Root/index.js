@@ -5,6 +5,17 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import DevTools from '../DevTools';
 
+const style = {
+  flex: 1,
+  flexDirection: 'column',
+  boxSizing: 'border-box',
+  display: 'flex',
+  margin: 0,
+  width: '100%',
+  minHeight: '100%',
+  height: '100%'
+};
+
 export default class Root extends React.Component {
   devTools() {
     if (process.env.NODE_ENV !== 'production') {
@@ -15,7 +26,7 @@ export default class Root extends React.Component {
   render() {
     return (
       <Provider store={this.props.store}>
-        <div>
+        <div style={style}>
           <Router history={this.props.history}>
             {this.props.routes}
           </Router>

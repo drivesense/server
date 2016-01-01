@@ -13,6 +13,7 @@ export default {
   module: {
     loaders: [
       {test: /\.less$/, loader: 'style!css!less'},
+      {test: /\.css$/, loader: 'style!css'},
       {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']}
     ]
   },

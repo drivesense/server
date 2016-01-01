@@ -4,6 +4,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import * as users from 'redux/management/users';
 import Users from './Users'
+import {Card} from 'material-ui';
+
+const card = {
+  backgroundColor: 'white'
+};
 
 class UsersContainer extends React.Component {
   componentWillMount() {
@@ -12,10 +17,10 @@ class UsersContainer extends React.Component {
 
   render() {
     return (
-      <div>
+      <Card style={card}>
         {this.props.loading && <div>Loading</div>}
         {this.props.loaded && <Users users={this.props.users} />}
-      </div>
+      </Card>
     );
   }
 }

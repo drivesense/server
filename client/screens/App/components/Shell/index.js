@@ -4,14 +4,23 @@ import React from 'react';
 import AppBar from '../AppBar';
 import LeftNav from '../LeftNav';
 
+const flex = {
+  flex: 1,
+  display: 'flex',
+  boxSizing: 'border-box',
+  flexDirection: 'column'
+};
+
 const content = {
-  margin: '50px'
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column'
 };
 
 export default class Shell extends React.Component {
   render() {
     return (
-      <div>
+      <div style={flex}>
         <AppBar />
         <LeftNav />
         <div style={content}>

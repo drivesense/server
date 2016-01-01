@@ -10,10 +10,14 @@ import {
   TableRowColumn
 } from 'material-ui';
 
+const table = {
+  backgroundColor: 'inherit'
+};
+
 export default class Users extends React.Component {
   render() {
     return (
-      <Table>
+      <Table style={table}>
         <TableHeader>
           <TableRow>
             <TableHeaderColumn>First Name</TableHeaderColumn>

@@ -7,7 +7,9 @@ import {Menu, MenuItem} from 'material-ui';
 import * as leftNav from 'redux/left-nav';
 
 const content = {
-  margin: '0 200px'
+  margin: '16px',
+  flexDirection: 'row',
+  display: 'flex'
 };
 
 class Management extends React.Component {
@@ -23,11 +25,11 @@ class Management extends React.Component {
   render() {
     return (
       <div style={content}>
-        <Menu style={{float: 'left'}}>
+        <Menu>
           <MenuItem onTouchTap={() => this.navigateTo('users')} primaryText="Users"/>
           <MenuItem onTouchTap={() => this.navigateTo('roles')} primaryText="Roles"/>
         </Menu>
-        <div style={content}>
+        <div style={{flex: 1, marginLeft: '16px'}}>
           {this.props.children}
         </div>
       </div>
