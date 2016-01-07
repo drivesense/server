@@ -14,7 +14,7 @@ const validateJwt = pify(expressJwt({secret: process.env.SESSION_SECRET}));
  *
  * @returns {Function} middleware
  */
-export function isAuthenticated() {
+export function isAuthenticated () {
   return (req, res) => {
     // Allow access_token to be passed through query parameter as well
     if (req.query && req.query.hasOwnProperty('access_token')) {
@@ -37,7 +37,7 @@ export function isAuthenticated() {
   };
 }
 
-export function fillAuthorizationHeaderFromCookie() {
+export function fillAuthorizationHeaderFromCookie () {
   return req => {
     if (req.cookies && req.cookies.token) {
       // Allow access_token to be passed through the token cookie as well
@@ -55,7 +55,7 @@ export function fillAuthorizationHeaderFromCookie() {
  *
  * @returns {Function} middleware
  */
-export function hasPermissions() {
+export function hasPermissions () {
   if (!arguments) {
     throw new Error('Required permission needs to be set');
   }
@@ -80,7 +80,7 @@ export function hasPermissions() {
  * @param {ObjectId} id the user id to keep in the jwt
  * @returns {String} signed jwt token
  */
-export function signToken(id) {
+export function signToken (id) {
   return jwt.sign({_id: id}, process.env.SESSION_SECRET, {expiresInMinutes: 300});
 }
 
@@ -90,7 +90,7 @@ export function signToken(id) {
  * @param {Object} req the express request object
  * @param {Object} res the express response object
  */
-export function setTokenCookie(req, res) {
+export function setTokenCookie (req, res) {
   if (!req.user) {
     res.status(404).json({message: 'something went wrong, try again'});
     return;

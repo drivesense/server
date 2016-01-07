@@ -6,7 +6,7 @@ import {isAuthenticated} from '../../auth/auth.service';
 
 const router = new AsyncRouter();
 
-router.get('/', controller.index);
+router.get('/', isAuthenticated(), controller.index);
 router.post('/', controller.create);
 router.get('/me', isAuthenticated(), controller.me);
 router.post('/:id/addRole', isAuthenticated(), controller.addRole);
