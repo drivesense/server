@@ -1,6 +1,5 @@
 'use strict';
 
-import {resolve} from 'path';
 import createError from 'http-errors';
 
 // inject:route-imports
@@ -21,8 +20,4 @@ export default app => {
     .get((req, res, next) => {
       next(createError(404));
     });
-
-  // All other routes should redirect to the index.html
-  app.route('/*')
-    .get((req, res) => res.sendFile(resolve('client/index.html')));
 };
