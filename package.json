@@ -12,7 +12,7 @@
     "lint-plop": "eslint plop --fix",
     "start-dev-api": "nodemon --debug --watch api --exec \"babel-node\" api/app.js",
     "start-dev-src": "babel-node src/server.js",
-    "start": "concurrent \"npm run start-dev-api\" \"npm run start-dev-src\" \"npm run open\"",
+    "start-dev": "concurrent \"npm run start-dev-api\" \"npm run start-dev-src\" \"npm run open\"",
     "open": "opn http://localhost:9000/",
     "test": "npm run lint"
   },
