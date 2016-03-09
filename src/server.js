@@ -13,17 +13,21 @@ const apiUrl = 'http://' + process.env.API_HOST + ':' + process.env.API_PORT;
 const app = express();
 const server = new http.Server(app);
 const proxy = httpProxy.createProxyServer({
-  target: targetUrl,
+  target: apiUrl,
   ws: true
 });
 
 app.use(compression());
-app.use(favicon(join(__dirname, '..', 'static', 'favicon.ico')));
+// app.use(favicon(join(__dirname, '..', 'static', 'favicon.ico')));
 app.use(express.static(join(__dirname, '..', 'static')));
 
 // Proxy to API server
 app.use('/api', (req, res) => {
-  proxy.web(req, res, {target: apiUrl});
+  proxy.web(req, res, {target: apiUrl + '/api'});
+});
+
+app.use('/auth', (req, res) => {
+  proxy.web(req, res, {target: apiUrl + '/auth'});
 });
 
 app.use('/ws', (req, res) => {

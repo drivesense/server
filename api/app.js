@@ -14,8 +14,8 @@ const app = express();
 
 expressConfig(app);
 
-app.listen(process.env.PORT, () => {
-  logger.info('Express listening on port %s', process.env.PORT);
+app.listen(process.env.API_PORT, () => {
+  logger.info('Express listening on port %s', process.env.API_PORT);
 });
 
 export default app;
