@@ -4,12 +4,19 @@
   "description": "The official drivesense server",
   "main": "server/app.js",
   "scripts": {
-    "test": "gulp test",
-    "coveralls": "gulp coveralls"
+    "babel": "babel server -d dist/server -s",
+    "build": "rimraf dist && npm run babel",
+    "lint": "npm run lint-server && npm run lint-client && npm run lint-plop",
+    "lint-server": "eslint server --fix",
+    "lint-client": "echo \"build eslint-config-noamokman\"",
+    "lint-plop": "eslint plop --fix",
+    "nodemon": "nodemon --debug --watch server --exec \"babel-node\" server/app.js",
+    "open": "opn http://localhost:3000/",
+    "test": "npm run lint"
   },
   "config": {
     "ghooks": {
-      "pre-commit": "gulp eslint"
+      "pre-commit": "npm run lint"
     }
   },
   "repository": {
@@ -36,6 +43,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.3.13",
     "css-loader": "^0.23.1",
+    "eslint": "^1.10.3",
     "eslint-config-noamokman": "^1.0.1",
     "event-stream": "^3.3.2",
     "ghooks": "^1.0.3",
@@ -53,8 +61,9 @@
     "less": "^2.5.3",
     "less-loader": "^2.2.2",
     "material-ui": "^0.14.1",
-    "nodemon": "^1.8.1",
+    "nodemon": "^1.9.1",
     "open": "0.0.5",
+    "opn-cli": "^3.1.0",
     "pem": "^1.8.1",
     "plur": "^2.1.2",
     "react": "^0.14.6",
@@ -71,6 +80,7 @@
     "redux-promise-middleware": "^2.3.2",
     "redux-simple-router": "^2.0.4",
     "redux-thunk": "^2.0.1",
+    "rimraf": "^2.5.2",
     "run-sequence": "^1.1.5",
     "style-loader": "^0.13.0",
     "uppercamelcase": "^1.1.0",
