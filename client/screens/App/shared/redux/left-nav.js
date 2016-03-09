@@ -1,6 +1,6 @@
 'use strict';
 
-import { pushPath } from 'redux-simple-router'
+import { push } from 'react-router-redux'
 
 const TOGGLE = 'left-nav/TOGGLE';
 const SET_OPEN = 'left-nav/SET_OPEN';
@@ -25,7 +25,7 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function navigateTo(url) {
-  return pushPath(url);
+  return push(url);
 }
 
 export function toggle() {

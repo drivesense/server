@@ -3,9 +3,9 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import {render} from 'react-dom';
+import { hashHistory } from 'react-router';
 import { combineReducers } from 'redux';
-import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
-import {createHashHistory, createHistory} from 'history';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 import createStore from './config/createStore';
 import App from './screens/App';
 import Root from './components/Root';
@@ -16,17 +16,16 @@ import styles from './index.less';
 injectTapEventPlugin();
 
 const rootReducer = combineReducers({
-  routing: routeReducer,
+  routing: routerReducer,
   leftNav: leftNav,
   management: management
 });
-const history = createHashHistory();
 const store = createStore(rootReducer);
 
 // Sync allows to listen to history changes and change location through redux
-syncReduxAndRouter(history, store);
+const history = syncHistoryWithStore(hashHistory, store);
 
 render(
-  <Root store={store} history={history} routes={App} />,
+  <Root store={store} history={history} routes={App}/>,
   document.getElementById('container')
 );

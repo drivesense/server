@@ -4,9 +4,11 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import {persistState} from 'redux-devtools';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
+import { hashHistory } from 'react-router';
+import { routerMiddleware } from 'react-router-redux';
 import DevTools from '../components/DevTools';
 
-const middlewares = [thunk, promise()];
+const middlewares = [thunk, promise(), routerMiddleware(hashHistory)];
 let finalCreateStore;
 
 /*
