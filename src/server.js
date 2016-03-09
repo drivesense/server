@@ -22,16 +22,8 @@ app.use(compression());
 app.use(express.static(join(__dirname, '..', 'static')));
 
 // Proxy to API server
-app.use('/api', (req, res) => {
-  proxy.web(req, res, {target: apiUrl + '/api'});
-});
-
-app.use('/auth', (req, res) => {
-  proxy.web(req, res, {target: apiUrl + '/auth'});
-});
-
-app.use('/ws', (req, res) => {
-  proxy.web(req, res, {target: apiUrl + '/ws'});
+app.all('/:url(api|auth|ws)/*', (req, res) => {
+  proxy.web(req, res, {target: apiUrl});
 });
 
 server.on('upgrade', (req, socket, head) => {
@@ -51,8 +43,25 @@ proxy.on('error', (error, req, res) => {
   res.send({error: 'proxy_error', reason: error.message}).end();
 });
 
-if (!development) {
-  // Use webpack reloading here
+if (development) {
+  const webpack = require('webpack');
+  const webpackConfig = require('../webpack.config.dev.babel').default;
+  const compiler = webpack(webpackConfig);
+
+  const options = {
+    contentBase: `http://localhost:${process.env.PORT}`,
+    quiet: true,
+    noInfo: true,
+    hot: true,
+    inline: true,
+    lazy: false,
+    publicPath: webpackConfig.output.publicPath,
+    headers: {'Access-Control-Allow-Origin': '*'},
+    stats: {colors: true}
+  };
+
+  app.use(require('webpack-dev-middleware')(compiler, options));
+  app.use(require('webpack-hot-middleware')(compiler));
 }
 
 app.use((req, res) => {
