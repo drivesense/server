@@ -5,3 +5,4 @@ dist
 errors.log
 /server/config/certs
 coverage
+webpack-assets.json

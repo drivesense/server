@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {connect} from 'react-redux';
+import {asyncConnect} from 'redux-async-connect';
 import * as users from 'redux/management/users';
 import Users from './Users'
 import {Card} from 'material-ui';
@@ -11,9 +11,9 @@ const card = {
 };
 
 class UsersContainer extends React.Component {
-  componentWillMount() {
+  /*componentWillMount() {
     this.props.loadUsers();
-  }
+  }*/
 
   render() {
     return (
@@ -25,4 +25,4 @@ class UsersContainer extends React.Component {
   }
 }
 
-export default connect(state => state.management.users, users)(UsersContainer);
+export default asyncConnect(state => state.management.users, users)(UsersContainer);

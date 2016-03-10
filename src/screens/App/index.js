@@ -8,15 +8,17 @@ import AuthRoutes from './screens/Auth';
 import HomeRoutes from './screens/Home';
 import ManagementRoutes from './screens/Management';
 
-export default (
-  <Route path="/" component={App}>
-    <Route component={Shell}>
-      {HomeRoutes}
-      {ManagementRoutes}
-    </Route>
+export default store =>{
+  return (
+    <Route path="/" component={App}>
+      <Route component={Shell}>
+        {HomeRoutes}
+        {ManagementRoutes}
+      </Route>
 
-    <Route>
-      {AuthRoutes}
+      <Route>
+        {AuthRoutes}
+      </Route>
     </Route>
-  </Route>
-);
+  );
+}
