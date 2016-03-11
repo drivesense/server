@@ -3,7 +3,9 @@
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import {render} from 'react-dom';
-import { browserHistory } from 'react-router';
+import { browserHistory, Router } from 'react-router';
+import { Provider } from 'react-redux';
+import { ReduxAsyncConnect } from 'redux-async-connect';
 import { syncHistoryWithStore } from 'react-router-redux';
 import createStore from './config/create-store';
 import createRoutes from './screens/App';
@@ -18,6 +20,15 @@ const store = createStore(browserHistory, window.__data);
 const history = syncHistoryWithStore(browserHistory, store);
 
 const routes = createRoutes(store);
+
+render(
+  <Provider store={store} key="provider">
+    <Router render={(props) => <ReduxAsyncConnect {...props} />} history={history}>
+      {routes}
+    </Router>
+  </Provider>,
+  document.getElementById('content')
+);
 
 render(
   <Root store={store} history={history} routes={routes}/>,

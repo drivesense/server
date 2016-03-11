@@ -1,9 +1,7 @@
 'use strict';
 
+import { resolve, reject } from 'redux-simple-promise';
 const LOAD_USERS = 'management/LOAD_USERS';
-const LOAD_USERS_PENDING = 'management/LOAD_USERS_PENDING';
-const LOAD_USERS_FULFILLED = 'management/LOAD_USERS_FULFILLED';
-const LOAD_USERS_REJECTED = 'management/LOAD_USERS_REJECTED';
 
 const initialState = {
   loaded: false
@@ -11,22 +9,22 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOAD_USERS_PENDING:
+    case LOAD_USERS:
       return Object.assign({}, state, {
         loading: true,
         loaded: false
       });
-    case LOAD_USERS_FULFILLED:
+    case resolve(LOAD_USERS):
       return Object.assign({}, state, {
         loading: false,
         loaded: true,
         users: action.payload
       });
-    case LOAD_USERS_REJECTED:
+    case reject(LOAD_USERS):
       return Object.assign({}, state, {
         loading: false,
         loaded: false,
-        error: action.error
+        error: action.payload
       });
     default:
       return state;

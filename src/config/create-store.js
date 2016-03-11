@@ -2,13 +2,13 @@
 
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import promise from 'redux-promise-middleware';
+import promiseMiddleware from 'redux-simple-promise';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import reducer from './reducer';
 
 export default (history, data) => {
-  const middlewares = [thunk, promise(), routerMiddleware(history)];
+  const middlewares = [thunk, promiseMiddleware(), routerMiddleware(history)];
   let finalCreateStore;
 
   /*

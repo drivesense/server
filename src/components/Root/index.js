@@ -3,6 +3,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
+import { ReduxAsyncConnect } from 'redux-async-connect';
 import DevTools from '../DevTools';
 
 const style = {
@@ -25,9 +26,9 @@ export default class Root extends React.Component {
 
   render() {
     return (
-      <Provider store={this.props.store}>
+      <Provider store={this.props.store} key="provider">
         <div style={style}>
-          <Router history={this.props.history}>
+          <Router history={this.props.history} render={(props) => <ReduxAsyncConnect {...props}/>}>
             {this.props.routes}
           </Router>
           {this.devTools()}

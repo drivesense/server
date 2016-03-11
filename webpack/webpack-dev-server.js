@@ -20,6 +20,7 @@ var serverOptions = {
 
 var app = new Express();
 
+app.use(require('cors')());
 app.use(require('webpack-dev-middleware')(compiler, serverOptions));
 app.use(require('webpack-hot-middleware')(compiler));
 
