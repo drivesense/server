@@ -17,7 +17,7 @@ export default (history, data) => {
    https://github.com/gaearon/redux-devtools
    http://rackt.org/redux/docs/api/compose.html
    */
-  if (__DEVELOPMENT__ && __CLIENT__) {
+  if (process.env.NODE_ENV !== 'production' && process.env.WEBPACK_ENV === 'client') {
     const persistState = require('redux-devtools').persistState;
     const DevTools = require('../components/DevTools').default;
 

@@ -35,10 +35,10 @@ export default {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      __DEVELOPMENT__: true,
-      __DEVTOOLS__: true,
-      __CLIENT__: true,
-      __SERVER__: false,
+      'process.env': {
+        NODE_ENV: '\'development\'',
+        WEBPACK_ENV: '\'client\''
+      }
     }),
     webpackIsomorphicToolsPlugin.development()
   ]

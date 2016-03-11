@@ -13,6 +13,7 @@ import ReactDOM from 'react-dom/server';
 import { ReduxAsyncConnect, loadOnServer, reducer as reduxAsyncConnect } from 'redux-async-connect';
 import {match, createMemoryHistory} from 'react-router';
 import Html from './components/Html';
+import Root from './components/Root';
 import createStore from './config/create-store';
 import createRoutes from './screens/App';
 
@@ -51,7 +52,7 @@ proxy.on('error', (error, req, res) => {
 });
 
 app.use((req, res) => {
-  if (__DEVELOPMENT__) {
+  if (process.env.NODE_ENV !== 'production') {
     // Do not cache webpack stats: the script file would change since
     // hot module replacement is enabled in the development env
     webpackIsomorphicTools.refresh();
@@ -77,9 +78,9 @@ app.use((req, res) => {
     loadOnServer(renderProps, store)
       .then(() => {
         const component = (
-          <Provider store={store} key="provider">
+          <Root store={store}>
             <ReduxAsyncConnect {...renderProps} />
-          </Provider>
+          </Root>
         );
 
         global.navigator = {userAgent: req.headers['user-agent']};

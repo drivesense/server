@@ -18,20 +18,12 @@ const style = {
 };
 
 export default class Root extends React.Component {
-  devTools() {
-    if (process.env.NODE_ENV !== 'production') {
-      return <DevTools />;
-    }
-  }
-
   render() {
     return (
       <Provider store={this.props.store} key="provider">
         <div style={style}>
-          <Router history={this.props.history} render={(props) => <ReduxAsyncConnect {...props}/>}>
-            {this.props.routes}
-          </Router>
-          {this.devTools()}
+          {this.props.children}
+          {this.props.renderDevTools && <DevTools />}
         </div>
       </Provider>
     );
@@ -39,7 +31,5 @@ export default class Root extends React.Component {
 }
 
 Root.propTypes = {
-  history: React.PropTypes.object.isRequired,
-  routes: React.PropTypes.element.isRequired,
   store: React.PropTypes.object.isRequired
 };
