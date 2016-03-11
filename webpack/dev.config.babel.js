@@ -10,7 +10,7 @@ export default {
   context: resolve(__dirname, '..'),
   entry: {
     main: [
-      `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr'`,
+      `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr`,
       './src/client.js'
     ]
   },
