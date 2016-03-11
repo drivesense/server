@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 
 import ThemeManager from 'material-ui/lib/styles/theme-manager';
@@ -9,7 +7,8 @@ import theme from './theme.js';
 const style = {
   flex: 1,
   boxSizing: 'border-box',
-  display: 'flex'
+  display: 'flex',
+  flexDirection: 'column'
 };
 
 export default class App extends React.Component {

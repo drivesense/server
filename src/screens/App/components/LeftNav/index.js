@@ -6,7 +6,7 @@ import * as leftNav from 'redux/left-nav';
 
 import {AppBar, LeftNav, MenuItem} from 'material-ui';
 
-class MyLeftNav extends React.Component {
+class AppLeftNav extends React.Component {
   constructor(props) {
     super(props);
 
@@ -37,4 +37,4 @@ class MyLeftNav extends React.Component {
   }
 }
 
-export default connect(state => state.leftNav, leftNav)(MyLeftNav);
+export default connect(state => state.leftNav, leftNav)(AppLeftNav);
