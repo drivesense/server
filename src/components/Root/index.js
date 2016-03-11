@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import DevTools from '../DevTools';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import styles from './root.less';
 
 const style = {
   flex: 1,
@@ -17,7 +19,7 @@ const style = {
   height: '100%'
 };
 
-export default class Root extends React.Component {
+class Root extends React.Component {
   render() {
     return (
       <Provider store={this.props.store} key="provider">
@@ -33,3 +35,5 @@ export default class Root extends React.Component {
 Root.propTypes = {
   store: React.PropTypes.object.isRequired
 };
+
+export default withStyles(Root, styles)

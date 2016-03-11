@@ -3,7 +3,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {asyncConnect} from 'redux-async-connect';
-import * as users from 'redux/management/users';
+import * as users from '../../shared/redux/management/users';
 import Users from './Users'
 import {Card} from 'material-ui';
 

@@ -1,26 +1,13 @@
 import 'dotenv/config';
-var Express = require('express');
-var webpack = require('webpack');
+import express from 'express';
+import webpack from 'webpack';
+import webpackConfig from './client-dev.config.babel';
 
-var webpackConfig = require('./dev.config.babel').default;
-var compiler = webpack(webpackConfig);
+const compiler = webpack(webpackConfig);
+const port = process.env.WEBPACK_PORT;
+const app = express();
 
-var port = process.env.WEBPACK_PORT;
-var serverOptions = {
-  contentBase: 'http://localhost:' + port,
-  quiet: true,
-  noInfo: true,
-  hot: true,
-  inline: true,
-  lazy: false,
-  publicPath: webpackConfig.output.publicPath,
-  headers: {'Access-Control-Allow-Origin': '*'},
-  stats: {colors: true}
-};
-
-var app = new Express();
-
-app.use(require('webpack-dev-middleware')(compiler, serverOptions));
+app.use(require('webpack-dev-middleware')(compiler, webpackConfig.devServer));
 app.use(require('webpack-hot-middleware')(compiler));
 
 app.listen(port, function onAppListening(err) {

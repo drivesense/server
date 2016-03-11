@@ -1,9 +1,7 @@
 import 'dotenv/config';
 import {resolve} from 'path';
 import webpack from 'webpack';
-import WebpackIsomorphicToolsPlugin from 'webpack-isomorphic-tools/plugin';
 
-const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 const port = process.env.WEBPACK_PORT;
 
 export default {
@@ -16,20 +14,29 @@ export default {
   },
   output: {
     path: resolve(__dirname, '../dist'),
-    filename: '[name]-[hash].js',
-    chunkFilename: '[name]-[chunkhash].js',
+    filename: 'bundle.js',
     publicPath: `http://localhost:${port}/dist/`
+  },
+  devServer: {
+    contentBase: `http://localhost:${port}`,
+    quiet: true,
+    noInfo: true,
+    hot: true,
+    inline: true,
+    lazy: false,
+    publicPath: `http://localhost:${port}/dist/`,
+    headers: {'Access-Control-Allow-Origin': '*'},
+    stats: {colors: true}
   },
   module: {
     loaders: [
-      {test: /\.less$/, loader: 'style!css!less'},
-      {test: /\.css$/, loader: 'style!css'},
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']},
-      {test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: 'url-loader?limit=10240'}
+      {test: /\.less$/, loader: 'style!css?modules&localIdentName=[name]_[local]_[hash:base64:3]!less'},
+      {test: /\.css$/, loader: 'style!css?modules&localIdentName=[name]_[local]_[hash:base64:3]'},
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']}
     ]
   },
   resolve: {
-    modulesDirectories: ['shared', 'node_modules'],
+    modulesDirectories: ['node_modules'],
     extensions: ['', '.json', '.js', '.jsx']
   },
   plugins: [
@@ -39,7 +46,6 @@ export default {
         NODE_ENV: '\'development\'',
         WEBPACK_ENV: '\'client\''
       }
-    }),
-    webpackIsomorphicToolsPlugin.development()
+    })
   ]
 };

@@ -1,5 +1,6 @@
 'use strict';
 
+import {} from 'dotenv/config';
 import {join} from 'path';
 import express from 'express';
 import http from 'http';
@@ -52,12 +53,6 @@ proxy.on('error', (error, req, res) => {
 });
 
 app.use((req, res) => {
-  if (process.env.NODE_ENV !== 'production') {
-    // Do not cache webpack stats: the script file would change since
-    // hot module replacement is enabled in the development env
-    webpackIsomorphicTools.refresh();
-  }
-
   const history = createMemoryHistory(req.originalUrl);
   const store = createStore(history);
   const routes = createRoutes(store);
@@ -77,8 +72,10 @@ app.use((req, res) => {
 
     loadOnServer(renderProps, store)
       .then(() => {
+        const css = [];
+        const context = {insertCss: styles => css.push(styles._getCss())};
         const component = (
-          <Root store={store}>
+          <Root store={store} context={context}>
             <ReduxAsyncConnect {...renderProps} />
           </Root>
         );
@@ -86,8 +83,8 @@ app.use((req, res) => {
         global.navigator = {userAgent: req.headers['user-agent']};
 
         res.send('<!doctype html>\n' +
-          ReactDOM.renderToString(<Html assets={webpackIsomorphicTools.assets()} component={component}
-                                        store={store}/>));
+          ReactDOM.renderToString(<Html component={component} css={css}
+                                        store={store} />));
       })
       .catch(err => {
         console.log(err.stack);

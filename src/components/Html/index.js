@@ -14,7 +14,7 @@ import Helmet from 'react-helmet';
  */
 export default class Html extends Component {
   render() {
-    const {assets, component, store} = this.props;
+    const {component, store, css} = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
 
@@ -27,31 +27,25 @@ export default class Html extends Component {
         {head.link.toComponent()}
         {head.script.toComponent()}
 
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* styles (will be present only in production with webpack extract text plugin) */}
-        {Object.keys(assets.styles).map((style, key) =>
-          <link href={assets.styles[style]} key={key} media="screen, projection"
-                rel="stylesheet" type="text/css" charSet="UTF-8"/>
-        )}
-
-        {/* (will be present only in development mode) */}
-        {/* outputs a <style/> tag with all bootstrap styles + App.scss + it could be CurrentPage.scss. */}
-        {/* can smoothen the initial style flash (flicker) on page load in development mode. */}
-        {/* ideally one could also include here the style for the current page (Home.scss, About.scss, etc) */}
+        <link rel="shortcut icon" href="/favicon.ico"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <style type="text/css">${this.css.join('')}</style>
       </head>
       <body>
       <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
       <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} charSet="UTF-8"/>
-      <script src={assets.javascript.main} charSet="UTF-8"/>
+      <script src="http://localhost:9001/dist/bundle.js"></script>
       </body>
       </html>
     );
   }
 }
 
+Html.childContextTypes = {
+  insertCss: React.PropTypes.func
+};
+
 Html.propTypes = {
-  assets: PropTypes.object,
   component: PropTypes.node,
   store: PropTypes.object
 };

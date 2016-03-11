@@ -9,7 +9,6 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import createStore from './config/create-store';
 import createRoutes from './screens/App';
 import Root from './components/Root';
-import styles from './index.less';
 
 injectTapEventPlugin();
 

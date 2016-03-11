@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import * as leftNav from 'redux/left-nav';
+import * as leftNav from '../../shared/redux/left-nav';
 
 import {AppBar, LeftNav, MenuItem} from 'material-ui';
 

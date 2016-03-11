@@ -3,7 +3,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {AppBar} from 'material-ui';
-import * as leftNav from 'redux/left-nav';
+import * as leftNav from '../../shared/redux/left-nav';
 
 class MyAppBar extends React.Component {
   render() {

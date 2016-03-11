@@ -4,7 +4,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Menu, MenuItem} from 'material-ui';
 
-import * as leftNav from 'redux/left-nav';
+import * as leftNav from '../../../../shared/redux/left-nav';
 
 const content = {
   margin: '16px',
