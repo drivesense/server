@@ -20,7 +20,10 @@ const style = {
   height: '100%'
 };
 
-const StyledRoot = withStyles(class extends React.Component {
+const decoratorWithStyles = styles => Component => withStyles(Component, styles);
+
+@decoratorWithStyles(styles)
+class StyledRoot extends React.Component {
   render() {
     return (
       <Provider store={this.props.store} key="provider">
@@ -31,7 +34,7 @@ const StyledRoot = withStyles(class extends React.Component {
       </Provider>
     );
   }
-}, styles);
+}
 
 export default class Root extends React.Component {
   getChildContext() {
