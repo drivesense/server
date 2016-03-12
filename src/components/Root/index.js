@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import Layout from 'react-layout';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-async-connect';
@@ -19,7 +20,7 @@ const style = {
   height: '100%'
 };
 
-class Root extends React.Component {
+const StyledRoot = withStyles(class extends React.Component {
   render() {
     return (
       <Provider store={this.props.store} key="provider">
@@ -30,10 +31,28 @@ class Root extends React.Component {
       </Provider>
     );
   }
+}, styles);
+
+export default class Root extends React.Component {
+  getChildContext() {
+    return this.props.context;
+  }
+
+  render() {
+    return (
+      <StyledRoot store={this.props.store} renderDevTools={this.props.renderDevTools}>
+        {this.props.children}
+      </StyledRoot>
+    );
+  }
 }
 
-Root.propTypes = {
-  store: React.PropTypes.object.isRequired
+Root.childContextTypes = {
+  insertCss: React.PropTypes.func.isRequired
 };
 
-export default withStyles(Root, styles)
+Root.propTypes = {
+  store: React.PropTypes.object.isRequired,
+  context: React.PropTypes.object.isRequired
+};
+

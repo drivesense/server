@@ -15,9 +15,10 @@ injectTapEventPlugin();
 const store = createStore(browserHistory, window.__data);
 const history = syncHistoryWithStore(browserHistory, store);
 const routes = createRoutes(store);
+const context = {insertCss: styles => styles._insertCss()};
 
 render(
-  <Root store={store}>
+  <Root store={store} context={context}>
     <Router history={history} render={(props) => <ReduxAsyncConnect {...props}/>}>
       {routes}
     </Router>
@@ -27,7 +28,7 @@ render(
 
 if (process.env.NODE_ENV !== 'production' && process.env.WEBPACK_ENV === 'client') {
   render(
-    <Root store={store} renderDevTools={true}>
+    <Root store={store} context={context} renderDevTools={true}>
       <Router history={history} render={(props) => <ReduxAsyncConnect {...props}/>}>
         {routes}
       </Router>

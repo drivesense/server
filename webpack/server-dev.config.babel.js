@@ -22,8 +22,8 @@ export default {
   },
   module: {
     loaders: [
-      {test: /\.less$/, loader: 'isomorphic-style!css?modules&localIdentName=[name]_[local]_[hash:base64:3]!less'},
-      {test: /\.css$/, loader: 'isomorphic-style!css?modules&localIdentName=[name]_[local]_[hash:base64:3]'},
+      {test: /\.less$/, loader: 'isomorphic-style!css?modules!less'},
+      {test: /\.css$/, loader: 'isomorphic-style!css?modules'},
       {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']}
     ]
   },

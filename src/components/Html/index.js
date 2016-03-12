@@ -29,7 +29,7 @@ export default class Html extends Component {
 
         <link rel="shortcut icon" href="/favicon.ico"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <style type="text/css">${this.css.join('')}</style>
+        <style type="text/css">{css.join('')}</style>
       </head>
       <body>
       <div id="content" dangerouslySetInnerHTML={{__html: content}}/>

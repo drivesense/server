@@ -10,11 +10,11 @@
     "lint-api": "eslint api --fix",
     "lint-src": "echo \"build eslint-config-noamokman\"",
     "lint-plop": "eslint plop --fix",
-    "start-dev-api": "nodemon --watch api --exec \"babel-node\" api/app.js",
+    "api-dev": "nodemon --watch api --exec \"babel-node\" api/app.js",
     "client-dev": "babel-node webpack/webpack-dev-server.js",
     "server-dev": "concurrent \"webpack --watch --config webpack/server-dev.config.babel.js\" \"npm run server-dev-start\"",
     "server-dev-start": "just-wait -p \"dist/*.js\" && nodemon --watch dist/server.js dist/server.js",
-    "start-dev": "concurrent \"npm run start-dev-api\" \"npm run start-dev-webpack\" \"npm run start-dev-src\" \"npm run open\"",
+    "dev": "concurrent \"npm run api-dev\" \"npm run client-dev\" \"npm run server-dev\" \"npm run open\"",
     "open": "opn http://localhost:9000/",
     "test": "npm run lint"
   },
