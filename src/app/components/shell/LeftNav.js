@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import * as leftNav from '../../shared/redux/left-nav';
+import * as leftNav from './redux';
 
 import {AppBar, LeftNav, MenuItem} from 'material-ui';
 
@@ -12,7 +12,8 @@ class AppLeftNav extends React.Component {
 
     this.menuItems = [
       {route: '/', text: 'Home'},
-      {route: '/management', text: 'Management'},
+      {route: '/management/users', text: 'Users'},
+      {route: '/management/roles', text: 'Roles'},
       {route: '/login', text: 'Login'}
     ]
   }

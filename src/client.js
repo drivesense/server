@@ -6,13 +6,13 @@ import {render} from 'react-dom';
 import { browserHistory, Router } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-async-connect';
 import { syncHistoryWithStore } from 'react-router-redux';
-import createStore from './config/create-store';
-import createRoutes from './screens/App';
+import createStore from './app/create-store';
+import createRoutes from './app/routes';
 import Root from './components/Root';
 
 injectTapEventPlugin();
 
-const store = createStore(browserHistory, window.__data);
+const store = createStore(browserHistory, 'client', window.__data);
 const history = syncHistoryWithStore(browserHistory, store);
 const routes = createRoutes(store);
 const context = {insertCss: styles => styles._insertCss()};

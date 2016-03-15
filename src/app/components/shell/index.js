@@ -1,8 +1,8 @@
 'use strict';
 
 import React from 'react';
-import AppBar from '../AppBar';
-import LeftNav from '../LeftNav';
+import AppBar from './AppBar';
+import LeftNav from './LeftNav';
 
 const flex = {
   flex: 1,

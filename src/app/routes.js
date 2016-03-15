@@ -1,14 +1,12 @@
-'use strict';
-
 import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 import App from './components/App';
-import Shell from './components/Shell';
-import AuthRoutes from './screens/Auth';
-import HomeRoutes from './screens/Home';
-import ManagementRoutes from './screens/Management';
+import Shell from './components/shell';
+import HomeRoutes from './home';
+import AuthRoutes from './auth';
+import ManagementRoutes from './management';
 
-export default store =>{
+export default store => {
   return (
     <Route path="/" component={App}>
       <Route component={Shell}>

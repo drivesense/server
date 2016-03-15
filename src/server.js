@@ -15,8 +15,8 @@ import { ReduxAsyncConnect, loadOnServer, reducer as reduxAsyncConnect } from 'r
 import {match, createMemoryHistory} from 'react-router';
 import Html from './components/Html';
 import Root from './components/Root';
-import createStore from './config/create-store';
-import createRoutes from './screens/App';
+import createStore from './app/create-store';
+import createRoutes from './app/routes';
 
 const apiUrl = 'http://' + process.env.API_HOST + ':' + process.env.API_PORT;
 const app = express();
@@ -54,7 +54,7 @@ proxy.on('error', (error, req, res) => {
 
 app.use((req, res) => {
   const history = createMemoryHistory(req.originalUrl);
-  const store = createStore(history);
+  const store = createStore(history, 'server');
   const routes = createRoutes(store);
 
   match({routes, location: req.originalUrl, history}, (err, redirectLocation, renderProps) => {

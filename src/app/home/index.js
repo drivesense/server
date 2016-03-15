@@ -2,7 +2,7 @@
 
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import Home from './screens/Home';
+import Home from './Home';
 
 export default (
   <Route>

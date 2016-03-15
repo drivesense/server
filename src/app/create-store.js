@@ -1,14 +1,31 @@
 'use strict';
 
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import promiseMiddleware from 'redux-simple-promise';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import reducer from './reducer';
 
-export default (history, data) => {
-  const middlewares = [thunk, promiseMiddleware(), routerMiddleware(history)];
+const clientMiddleware = client => {
+  return ({dispatch, getState}) => {
+    return next => action => {
+      if (typeof action === 'function') {
+        return action(dispatch, getState);
+      }
+
+      const { payload: {promise} = {} } = action;
+
+      if (promise) {
+        action.payload.promise = promise(client);
+      }
+
+      return next(action);
+    };
+  };
+};
+
+export default (history, client, data) => {
+  const middlewares = [clientMiddleware(client), promiseMiddleware(), routerMiddleware(history)];
   let finalCreateStore;
 
   /*
@@ -19,7 +36,7 @@ export default (history, data) => {
    */
   if (process.env.NODE_ENV !== 'production' && process.env.WEBPACK_ENV === 'client') {
     const persistState = require('redux-devtools').persistState;
-    const DevTools = require('../components/DevTools').default;
+    const DevTools = require('../components/DevTools/index').default;
 
     finalCreateStore = compose(
       applyMiddleware(...middlewares),

@@ -12,9 +12,6 @@ export default {
       './src/server.js'
     ]
   },
-  /*externals: [function filter(context, request, cb) {
-    cb(null, Boolean(request.match(/^[@a-z][a-z\/\.\-0-9]*$/i)));
-  }],*/
   output: {
     path: resolve(__dirname, '../dist'),
     filename: 'server.js',
@@ -31,11 +28,13 @@ export default {
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.json', '.js', '.jsx']
-  }/*,
+  },
   plugins: [
-    new ExternalsPlugin({
-      type: 'commonjs',
-      include: join(__dirname, '../node_modules')
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '\'development\'',
+        WEBPACK_ENV: '\'server\''
+      }
     })
-  ]*/
+  ]
 };

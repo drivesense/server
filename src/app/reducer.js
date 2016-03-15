@@ -3,8 +3,8 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as reduxAsyncConnect } from 'redux-async-connect';
-import leftNav from '../screens/App/shared/redux/left-nav';
-import management from '../screens/App/screens/Management/shared/redux/management/index';
+import leftNav from './components/Shell/redux';
+import management from './management/redux';
 
 export default combineReducers({
   routing: routerReducer,

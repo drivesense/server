@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import Layout from 'react-layout';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { ReduxAsyncConnect } from 'redux-async-connect';
