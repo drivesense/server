@@ -20,19 +20,19 @@ export default class Users extends React.Component {
       <Table style={table}>
         <TableHeader>
           <TableRow>
+            <TableHeaderColumn>Email</TableHeaderColumn>
             <TableHeaderColumn>First Name</TableHeaderColumn>
             <TableHeaderColumn>Last Name</TableHeaderColumn>
             <TableHeaderColumn>Gender</TableHeaderColumn>
-            <TableHeaderColumn>Role</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
         {this.props.users.map(user => (
-          <TableRow key={user.gender}>
-            <TableRowColumn>John</TableRowColumn>
-            <TableRowColumn>Smith</TableRowColumn>
+          <TableRow key={user._id}>
+            <TableRowColumn>{user.email}</TableRowColumn>
+            <TableRowColumn>{user.name.first}</TableRowColumn>
+            <TableRowColumn>{user.name.last}</TableRowColumn>
             <TableRowColumn>{user.gender}</TableRowColumn>
-            <TableRowColumn>Super</TableRowColumn>
           </TableRow>
         ))};
         </TableBody>

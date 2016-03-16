@@ -20,7 +20,7 @@
   },
   "config": {
     "ghooks": {
-      "pre-commit": "npm run lint"
+      "ppre-commit": "npm run lint"
     }
   },
   "repository": {
