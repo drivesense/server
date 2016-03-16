@@ -35,7 +35,7 @@ export function loadUsers() {
   return {
     type: LOAD_USERS,
     payload: {
-      promise: client => new Promise((yes, no) => setTimeout(() => yes([{gender: client}, {gender: 'Female'}]), 3000))
+      promise: client => new Promise((yes, no) => setTimeout(() => yes([{gender: 'Male'}, {gender: 'Female'}]), 3000))
     }
   };
 }

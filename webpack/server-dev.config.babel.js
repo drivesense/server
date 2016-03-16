@@ -1,8 +1,7 @@
 import 'dotenv/config';
-import {resolve, join} from 'path';
+import {resolve} from 'path';
 import webpack from 'webpack';
 import nodeExternals from 'webpack-node-externals';
-import ExternalsPlugin from 'webpack-externals-plugin';
 
 export default {
   target:  "node",
@@ -28,13 +27,5 @@ export default {
   resolve: {
     modulesDirectories: ['node_modules'],
     extensions: ['', '.json', '.js', '.jsx']
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: '\'development\'',
-        WEBPACK_ENV: '\'server\''
-      }
-    })
-  ]
+  }
 };

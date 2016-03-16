@@ -43,7 +43,6 @@ export default {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '\'development\'',
         WEBPACK_ENV: '\'client\''
       }
     })

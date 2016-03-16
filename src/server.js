@@ -1,13 +1,10 @@
-'use strict';
-
 import {} from 'dotenv/config';
-import {join} from 'path';
+import {resolve} from 'path';
 import express from 'express';
 import http from 'http';
 import compression from 'compression';
 import favicon from 'serve-favicon';
 import httpProxy from 'http-proxy';
-
 import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/server';
@@ -17,6 +14,7 @@ import Html from './components/Html';
 import Root from './components/Root';
 import createStore from './app/create-store';
 import createRoutes from './app/routes';
+import createClient from './helpers/client';
 
 const apiUrl = 'http://' + process.env.API_HOST + ':' + process.env.API_PORT;
 const app = express();
@@ -27,8 +25,8 @@ const proxy = httpProxy.createProxyServer({
 });
 
 app.use(compression());
-// app.use(favicon(join(__dirname, '..', 'static', 'favicon.ico')));
-app.use(express.static(join(__dirname, '..', 'static')));
+app.use(favicon(resolve('static', 'favicon.ico')));
+app.use(express.static(resolve('static')));
 
 // Proxy to API server
 app.all('/:url(api|auth|ws)/*', (req, res) => {
@@ -53,8 +51,9 @@ proxy.on('error', (error, req, res) => {
 });
 
 app.use((req, res) => {
+  const client = createClient(req);
   const history = createMemoryHistory(req.originalUrl);
-  const store = createStore(history, 'server');
+  const store = createStore(history, client);
   const routes = createRoutes(store);
 
   match({routes, location: req.originalUrl, history}, (err, redirectLocation, renderProps) => {
