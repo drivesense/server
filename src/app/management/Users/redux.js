@@ -18,13 +18,13 @@ export default function reducer(state = initialState, action = {}) {
       return Object.assign({}, state, {
         loading: false,
         loaded: true,
-        users: action.payload
+        users: action.payload.data
       });
     case reject(LOAD_USERS):
       return Object.assign({}, state, {
         loading: false,
         loaded: false,
-        error: action.payload
+        error: action.payload.data
       });
     default:
       return state;
@@ -35,7 +35,7 @@ export function loadUsers() {
   return {
     type: LOAD_USERS,
     payload: {
-      promise: client => client.get('/api/users').then(res => res.data)
+      promise: client => client.get('/api/users')
     }
   };
 }

@@ -1,12 +1,9 @@
 'use strict';
 
 import React from 'react';
-import {connect} from 'react-redux';
-import * as leftNav from './redux';
-
 import {AppBar, LeftNav, MenuItem} from 'material-ui';
 
-class AppLeftNav extends React.Component {
+export default class AppLeftNav extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,8 +16,8 @@ class AppLeftNav extends React.Component {
   }
 
   navigateTo(url) {
-    this.props.navigateTo(url);
-    this.props.setOpen(false);
+    this.props.redirect(url);
+    this.props.toggle(false);
   }
 
   render() {
@@ -28,8 +25,8 @@ class AppLeftNav extends React.Component {
       <LeftNav
         docked={false}
         open={this.props.open}
-        onRequestChange={open => this.props.setOpen(open)}>
-        <AppBar onLeftIconButtonTouchTap={this.props.toggle} title="DriveSense"/>
+        onRequestChange={open => this.props.toggle(open)}>
+        <AppBar onLeftIconButtonTouchTap={() => this.props.toggle()} title="DriveSense"/>
         {this.menuItems.map(item => (
           <MenuItem key={item.route} onTouchTap={() => this.navigateTo(item.route)}>{item.text}</MenuItem>
         ))}
@@ -37,5 +34,3 @@ class AppLeftNav extends React.Component {
     );
   }
 }
-
-export default connect(state => state.leftNav, leftNav)(AppLeftNav);
