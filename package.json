@@ -100,6 +100,7 @@
     "passport-local-mongoose": "^4.0.0",
     "pify": "^2.3.0",
     "react": "^0.14.6",
+    "react-cookie": "^0.4.5",
     "react-dom": "^0.14.6",
     "react-helmet": "^2.3.1",
     "react-redux": "^4.0.6",
@@ -108,6 +109,7 @@
     "react-tap-event-plugin": "^0.2.1",
     "redux": "^3.0.5",
     "redux-async-connect": "^0.1.13",
+    "redux-form": "^4.2.2",
     "redux-simple-promise": "^2.0.2",
     "serialize-javascript": "^1.2.0",
     "serve-favicon": "^2.3.0"

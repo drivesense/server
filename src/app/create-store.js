@@ -1,22 +1,25 @@
 'use strict';
 
-import { createStore as _createStore, applyMiddleware, compose } from 'redux';
+import {createStore as _createStore, applyMiddleware, compose} from 'redux';
 import promiseMiddleware from 'redux-simple-promise';
-import { browserHistory } from 'react-router';
-import { routerMiddleware } from 'react-router-redux';
+import {browserHistory} from 'react-router';
+import {routerMiddleware} from 'react-router-redux';
+import cookie from 'react-cookie';
+import createClient from '../helpers/client';
 import reducer from './reducer';
+import {getToken} from './auth/redux';
 
-const clientMiddleware = client => {
+const clientMiddleware = () => {
   return ({dispatch, getState}) => {
     return next => action => {
       if (typeof action === 'function') {
         return action(dispatch, getState);
       }
 
-      const { payload: {promise} = {} } = action;
+      const {payload: {promise} = {}} = action;
 
       if (promise) {
-        action.payload.promise = promise(client);
+        action.payload.promise = promise(createClient(getToken(getState())));
       }
 
       return next(action);
@@ -24,8 +27,10 @@ const clientMiddleware = client => {
   };
 };
 
-export default (history, client, data) => {
-  const middlewares = [clientMiddleware(client), promiseMiddleware(), routerMiddleware(history)];
+export default (history, data = {}) => {
+  const authData = {auth: {token: cookie.load('token')}};
+  const initialState = Object.assign({}, authData, data);
+  const middlewares = [clientMiddleware(), promiseMiddleware(), routerMiddleware(history)];
   let finalCreateStore;
 
   /*
@@ -49,5 +54,5 @@ export default (history, client, data) => {
     finalCreateStore = applyMiddleware(...middlewares)(_createStore)
   }
 
-  return finalCreateStore(reducer, data);
+  return finalCreateStore(reducer, initialState);
 }

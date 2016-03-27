@@ -1,12 +1,15 @@
 import React from 'react';
+import {reduxForm} from 'redux-form';
+import {connect} from 'react-redux';
+import * as auth from '../redux';
 import Colors from '../../../../node_modules/material-ui/lib/styles/colors';
 
 import { Card,
-         CardTitle,
-         CardText,
-         CardActions,
-         FlatButton,
-         TextField } from 'material-ui';
+  CardTitle,
+  CardText,
+  CardActions,
+  FlatButton,
+  TextField } from 'material-ui';
 
 const styles = {
   container: {
@@ -35,19 +38,28 @@ const styles = {
   }
 };
 
+@reduxForm({form: 'login', fields: ['email', 'password']})
+@connect(state => state.auth, auth)
 export default class Login extends React.Component {
   render() {
+    const {
+      fields: {email, password},
+      handleSubmit,
+      values
+      } = this.props;
+
     return (
       <div style={styles.container}>
         <Card>
           <CardTitle title="Login"></CardTitle>
           <CardText style={styles.card.text}>
-            <TextField floatingLabelText="Email"></TextField>
-            <TextField floatingLabelText="Password" type="password"></TextField>
+            <TextField floatingLabelText="Email" {...email}></TextField>
+            <TextField floatingLabelText="Password" type="password" {...password}></TextField>
           </CardText>
           <CardActions style={styles.card.actions}>
             <FlatButton label="Not a user?"></FlatButton>
-            <FlatButton label="Let's go!" secondary={true}></FlatButton>
+            <FlatButton label="Let's go!" secondary={true}
+                        onClick={handleSubmit(() => this.props.login(values))}></FlatButton>
           </CardActions>
         </Card>
       </div>

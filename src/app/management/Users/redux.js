@@ -1,5 +1,3 @@
-'use strict';
-
 import { resolve, reject } from 'redux-simple-promise';
 const LOAD_USERS = 'management/LOAD_USERS';
 
@@ -12,12 +10,15 @@ export default function reducer(state = initialState, action = {}) {
     case LOAD_USERS:
       return Object.assign({}, state, {
         loading: true,
-        loaded: false
+        loaded: false,
+        error: null,
+        users: null
       });
     case resolve(LOAD_USERS):
       return Object.assign({}, state, {
         loading: false,
         loaded: true,
+        error: null,
         users: action.payload.data
       });
     case reject(LOAD_USERS):
