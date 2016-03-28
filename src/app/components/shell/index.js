@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import AppBar from './AppBar';
 import LeftNav from './LeftNav';
 import * as leftNav from './redux';
-import {loadUser} from '../../auth/redux';
+import {loadUser, logout} from '../../auth/redux';
 
 const flex = {
   flex: 1,
@@ -24,13 +24,13 @@ const content = {
 @asyncConnect([
   ({}, {store: {dispatch, getState}}) => dispatch(loadUser())
 ])
-@connect(state => state.leftNav, leftNav)
+@connect(state => state.leftNav, Object.assign({}, leftNav, {logout}))
 export default class Shell extends React.Component {
   render() {
     return (
       <div style={flex}>
         <AppBar toggle={this.props.toggle}/>
-        <LeftNav open={this.props.open} toggle={this.props.toggle} redirect={this.props.redirect}/>
+        <LeftNav open={this.props.open} toggle={this.props.toggle} logout={this.props.logout} redirect={this.props.redirect}/>
         <div style={content}>
           {this.props.children}
         </div>

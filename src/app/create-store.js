@@ -2,7 +2,6 @@
 
 import {createStore as _createStore, applyMiddleware, compose} from 'redux';
 import promiseMiddleware from 'redux-simple-promise';
-import {browserHistory} from 'react-router';
 import {routerMiddleware} from 'react-router-redux';
 import cookie from 'react-cookie';
 import createClient from '../helpers/client';

@@ -1,7 +1,23 @@
 'use strict';
 
 import React from 'react';
-import {AppBar, LeftNav, MenuItem} from 'material-ui';
+import {AppBar, LeftNav, MenuItem, Divider} from 'material-ui';
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: '1'
+  },
+  bottom: {
+    display: 'flex',
+    flexDirection: 'column'
+  }
+};
 
 export default class AppLeftNav extends React.Component {
   constructor(props) {
@@ -10,8 +26,7 @@ export default class AppLeftNav extends React.Component {
     this.menuItems = [
       {route: '/', text: 'Home'},
       {route: '/management/users', text: 'Users'},
-      {route: '/management/roles', text: 'Roles'},
-      {route: '/login', text: 'Login'}
+      {route: '/management/roles', text: 'Roles'}
     ]
   }
 
@@ -23,13 +38,20 @@ export default class AppLeftNav extends React.Component {
   render() {
     return (
       <LeftNav
+        style={styles.container}
         docked={false}
         open={this.props.open}
         onRequestChange={open => this.props.toggle(open)}>
         <AppBar onLeftIconButtonTouchTap={() => this.props.toggle()} title="DriveSense"/>
-        {this.menuItems.map(item => (
-          <MenuItem key={item.route} onTouchTap={() => this.navigateTo(item.route)}>{item.text}</MenuItem>
-        ))}
+        <div style={styles.content}>
+          {this.menuItems.map(item => (
+            <MenuItem key={item.route} onTouchTap={() => this.navigateTo(item.route)}>{item.text}</MenuItem>
+          ))}
+        </div>
+        <Divider />
+        <div style={styles.bottom}>
+          <MenuItem xs key="Logout" onTouchTap={() => this.props.logout()}>Logout</MenuItem>
+        </div>
       </LeftNav>
     );
   }

@@ -3,10 +3,19 @@ import {push} from 'react-router-redux'
 import cookie from 'react-cookie';
 
 const LOGIN = 'auth/LOGIN';
+const LOGOUT = 'auth/LOGOUT';
 const LOAD_USER = 'auth/LOAD_USER';
 
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
+    case LOGOUT:
+      cookie.remove('token');
+
+      return Object.assign({}, state, {
+        token: null,
+        user: null,
+        error: null
+      });
     case LOGIN:
       return Object.assign({}, state, {
         token: null,
@@ -73,4 +82,15 @@ export function login({email, password}) {
   };
 
   return dispatch => dispatch(action).then(() => dispatch(push('/')));
+}
+
+export function logout() {
+  const action = {
+    type: LOGOUT
+  };
+
+  return dispatch => {
+    dispatch(action);
+    dispatch(push('/login'));
+  };
 }

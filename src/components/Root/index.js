@@ -2,8 +2,6 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
-import { ReduxAsyncConnect } from 'redux-async-connect';
 import DevTools from '../DevTools';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import styles from './root.less';
