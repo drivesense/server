@@ -7,7 +7,8 @@ export default {
       last: 'man'
     },
     email: 'burrito@gmail.com',
-    password: 'burrito'
+    password: 'burrito',
+    type: 'admin'
   }, {
     name: {
       first: 'nacho',
@@ -15,6 +16,7 @@ export default {
     },
     gender: 'male',
     email: 'nacho@gmail.com',
-    password: 'nacho'
+    password: 'nacho',
+    type: 'admin'
   }]
 };

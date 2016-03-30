@@ -31,7 +31,7 @@ export function create (req) {
 
 // Updates an existing user in the DB.
 export function update (req) {
-  const data = _.pick(req.body, ['name', 'email', 'gender']);
+  const data = _.pick(req.body, ['name', 'email', 'type']);
 
   return User.findById(req.params.id)
     .then(errorIfEmpty)
