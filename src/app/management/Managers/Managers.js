@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import {
   Table,
@@ -14,7 +12,7 @@ const table = {
   backgroundColor: 'inherit'
 };
 
-export default class Users extends React.Component {
+export default class Managers extends React.Component {
   render() {
     return (
       <Table style={table}>
@@ -27,14 +25,14 @@ export default class Users extends React.Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-        {this.props.users.map(user => (
-          <TableRow key={user._id}>
-            <TableRowColumn>{user.email}</TableRowColumn>
-            <TableRowColumn>{user.name.first}</TableRowColumn>
-            <TableRowColumn>{user.name.last}</TableRowColumn>
-            <TableRowColumn>{user.gender}</TableRowColumn>
-          </TableRow>
-        ))};
+          {this.props.managers.map(manager => (
+            <TableRow key={manager._id}>
+              <TableRowColumn>{manager.email}</TableRowColumn>
+              <TableRowColumn>{manager.name.first}</TableRowColumn>
+              <TableRowColumn>{manager.name.last}</TableRowColumn>
+              <TableRowColumn>{manager.gender}</TableRowColumn>
+            </TableRow>
+          ))};
         </TableBody>
       </Table>
     );

@@ -1,8 +1,8 @@
 'use strict';
 
 import { combineReducers } from 'redux';
-import users from './Users/redux';
+import managers from './Managers/redux';
 
 export default combineReducers({
-  users
+  managers
 })
