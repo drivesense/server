@@ -7,21 +7,19 @@ import Login from './Login';
 @reduxForm({form: 'login', fields: ['email', 'password']})
 @connect(state => state.auth, auth)
 export default class LoginContainer extends React.Component {
-  componentWillMount() {
-    const {initializeForm} = this.props;
-
-    // initializeForm({email: 'nacho@gmail.com', password: 'nacho'});
-  }
-
   render() {
     const {
       fields,
       handleSubmit,
-      values
+      values,
+      login,
+      goToSignup
     } = this.props;
 
     return (
-      <Login fields={fields} handleSubmit={() => handleSubmit(() => this.props.login(values))}/>
+      <Login fields={fields}
+             handleSubmit={() => handleSubmit(() => login(values))}
+             goToSignup={goToSignup}/>
     );
   }
 }

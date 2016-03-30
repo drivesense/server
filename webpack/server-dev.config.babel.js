@@ -20,7 +20,8 @@ export default {
     loaders: [
       {test: /\.less$/, loader: 'isomorphic-style!css?modules!less'},
       {test: /\.css$/, loader: 'isomorphic-style!css?modules'},
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']}
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']},
+      {test: /\.(png|svg)$/, loader: 'url?limit=10000'}
     ]
   },
   externals: [nodeExternals()],

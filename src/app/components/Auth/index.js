@@ -1,6 +1,10 @@
 import React from 'react';
 import Colors from 'material-ui/lib/styles/colors';
 
+import { Card } from 'material-ui';
+
+import logo from '../../../static/logo.svg';
+
 const styles = {
   container: {
     flex: 1,
@@ -15,6 +19,12 @@ const styles = {
     minHeight: '100%',
 
     backgroundColor: Colors.indigo500
+  },
+  logo: {
+    display: 'flex',
+    alignSelf: 'center',
+    width: '630px',
+    marginBottom: '32px'
   }
 };
 
@@ -22,7 +32,10 @@ export default class Auth extends React.Component {
   render() {
     return (
       <div style={styles.container}>
-        {this.props.children}
+        <img src={logo} style={styles.logo}/>
+        <Card>
+          {this.props.children}
+        </Card>
       </div>
     );
   }

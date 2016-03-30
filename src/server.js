@@ -24,7 +24,7 @@ const proxy = httpProxy.createProxyServer({
 });
 
 app.use(compression());
-app.use(favicon(resolve('static', 'favicon.ico')));
+app.use(favicon(resolve('src', 'static', 'favicon.ico')));
 app.use(express.static(resolve('static')));
 
 // Proxy to API server

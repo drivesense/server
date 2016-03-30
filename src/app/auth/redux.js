@@ -4,6 +4,7 @@ import cookie from 'react-cookie';
 
 const LOGIN = 'auth/LOGIN';
 const LOGOUT = 'auth/LOGOUT';
+const SIGNUP = 'auth/SIGNUP';
 const LOAD_USER = 'auth/LOAD_USER';
 
 export default function reducer(state = {}, action = {}) {
@@ -82,6 +83,25 @@ export function login({email, password}) {
   };
 
   return dispatch => dispatch(action).then(() => dispatch(push('/')));
+}
+
+export function signup({name, email, password}) {
+  const action = {
+    type: SIGNUP,
+    payload: {
+      promise: client => client.post('/api/users', {name, email, password})
+    }
+  };
+
+  return dispatch => dispatch(action).then(() => dispatch(push('/login')));
+}
+
+export function goToSignup() {
+  return push('/signup');
+}
+
+export function goToLogin() {
+  return push('/login');
 }
 
 export function logout() {
