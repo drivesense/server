@@ -1,11 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router'
 import App from './components/App';
-import Shell from './components/shell';
+import Shell from './components/Shell';
+import Auth from './components/Auth';
 import HomeRoutes from './home';
 import AuthRoutes from './auth';
 import ManagementRoutes from './management';
-import {isAuthenticated, loadUser} from './auth/redux';
+import {isAuthenticated} from './auth/redux';
 
 export default store => {
   const requireLogin = (nextState, replace, cb) => {
@@ -23,7 +24,7 @@ export default store => {
         {ManagementRoutes}
       </Route>
 
-      <Route>
+      <Route component={Auth}>
         {AuthRoutes}
       </Route>
     </Route>
