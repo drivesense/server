@@ -35,6 +35,11 @@ export default class AppLeftNav extends React.Component {
     this.props.toggle(false);
   }
 
+  logout() {
+    this.props.logout()
+    this.props.toggle(false);
+  }
+
   render() {
     return (
       <LeftNav
@@ -50,7 +55,7 @@ export default class AppLeftNav extends React.Component {
         </div>
         <Divider />
         <div style={styles.bottom}>
-          <MenuItem xs key="Logout" onTouchTap={() => this.props.logout()}>Logout</MenuItem>
+          <MenuItem xs key="Logout" onTouchTap={() => this.logout()}>Logout</MenuItem>
         </div>
       </LeftNav>
     );

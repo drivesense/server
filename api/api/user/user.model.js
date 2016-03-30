@@ -4,7 +4,7 @@ import pify from 'pify';
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import emailAddress from 'email-address';
-import {addSeed} from 'mongoose-plugin-seed';
+import {createSeedModel} from 'mongoose-plugin-seed';
 import seed from './user.seed';
 import passportLocalMongoose from 'passport-local-mongoose';
 const Schema = mongoose.Schema;
@@ -154,8 +154,4 @@ UserSchema.methods.hasProvider = function () {
 UserSchema.methods.setPassword = pify(UserSchema.methods.setPassword);
 UserSchema.methods.authenticate = pify(UserSchema.methods.authenticate);
 
-const User = mongoose.model('User', UserSchema);
-
-addSeed(User, seed);
-
-export default User;
+export default createSeedModel('User', UserSchema, seed);
