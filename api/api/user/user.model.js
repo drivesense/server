@@ -9,11 +9,6 @@ import seed from './user.seed';
 import passportLocalMongoose from 'passport-local-mongoose';
 const Schema = mongoose.Schema;
 
-const genders = [
-  'male',
-  'female'
-];
-
 const UserSchema = new Schema({
   name: {
     first: String,
@@ -26,17 +21,6 @@ const UserSchema = new Schema({
     lowercase: true,
     unique: true
   },
-  gender: {
-    enum: genders,
-    type: String,
-    lowercase: true
-  },
-  roles: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Role'
-    }
-  ],
   providers: {
     facebook: {
       id: String,

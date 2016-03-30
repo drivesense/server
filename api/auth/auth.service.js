@@ -1,6 +1,3 @@
-'use strict';
-
-import _ from 'lodash';
 import jwt from 'jsonwebtoken';
 import expressJwt from 'express-jwt';
 import pify from 'pify';
@@ -51,37 +48,13 @@ export function fillAuthorizationHeaderFromCookie () {
 }
 
 /**
- * Checks if the user permission meets the minimum requirements of the route
- *
- * @returns {Function} middleware
- */
-export function hasPermissions () {
-  if (!arguments) {
-    throw new Error('Required permission needs to be set');
-  }
-
-  const wantedPermissions = arguments;
-
-  return (req, res) => {
-    return isAuthenticated(req, res)
-      .then(() => {
-        const permissions = _.flatten(_.pluck(req.user.roles, 'permissions'));
-
-        if (!_.isEmpty(_.difference(wantedPermissions, permissions))) {
-          return Promise.reject(createError(403));
-        }
-      });
-  };
-}
-
-/**
  * Returns a jwt token signed by the app secret
  *
  * @param {ObjectId} id the user id to keep in the jwt
  * @returns {String} signed jwt token
  */
 export function signToken (id) {
-  return jwt.sign({_id: id}, process.env.SESSION_SECRET, {expiresInMinutes: 300});
+  return jwt.sign({_id: id}, process.env.SESSION_SECRET, {expiresIn: "7d"});
 }
 
 /**

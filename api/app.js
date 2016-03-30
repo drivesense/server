@@ -1,6 +1,6 @@
 'use strict';
 
-import {} from 'dotenv/config';
+import 'dotenv/config';
 import mongoose from 'mongoose';
 import mongooseConfig from './config/mongoose';
 import express from 'express';
