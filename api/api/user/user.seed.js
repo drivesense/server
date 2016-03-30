@@ -3,20 +3,36 @@
 export default {
   seed: () => [{
     name: {
-      first: 'burrito',
-      last: 'man'
+      first: 'Noam',
+      last: 'Okman'
     },
-    email: 'burrito@gmail.com',
-    password: 'burrito',
+    email: 'noamokman@gmail.com',
+    password: '1',
     type: 'admin'
   }, {
     name: {
-      first: 'nacho',
+      first: 'Omri',
+      last: 'Litov'
+    },
+    email: 'omrilitov@gmail.com',
+    password: '1',
+    type: 'admin'
+  }, {
+    name: {
+      first: 'Elad',
+      last: 'Bezalel'
+    },
+    email: 'elad.bezalel@gmail.com',
+    password: '1',
+    type: 'admin'
+  }, {
+    name: {
+      first: '',
       last: 'nachos'
     },
     gender: 'male',
     email: 'nacho@gmail.com',
     password: 'nacho',
-    type: 'admin'
+    type: 'teacher'
   }]
 };

@@ -9,7 +9,7 @@ import seed from './user.seed';
 import passportLocalMongoose from 'passport-local-mongoose';
 const Schema = mongoose.Schema;
 
-const types = ['admin', 'student', 'manager', 'teacher'];
+const types = ['admin', 'student', 'teacher'];
 
 const UserSchema = new Schema({
   name: {
@@ -28,6 +28,7 @@ const UserSchema = new Schema({
     type: String,
     lowercase: true
   },
+  isManager: Boolean,
   providers: {
     facebook: {
       id: String,
