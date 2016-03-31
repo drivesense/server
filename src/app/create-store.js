@@ -40,7 +40,7 @@ export default (history, data = {}) => {
    */
   if (process.env.NODE_ENV !== 'production' && process.env.WEBPACK_ENV === 'client') {
     const persistState = require('redux-devtools').persistState;
-    const DevTools = require('../components/DevTools/index').default;
+    const DevTools = require('./components/DevTools').default;
 
     finalCreateStore = compose(
       applyMiddleware(...middlewares),

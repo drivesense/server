@@ -1,7 +1,7 @@
 import React from 'react';
 import Colors from 'material-ui/lib/styles/colors';
 
-import { Card } from 'material-ui';
+import {Card} from 'material-ui';
 
 import logo from '../../../static/logo.svg';
 

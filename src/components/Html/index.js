@@ -13,8 +13,12 @@ import Helmet from 'react-helmet';
  * by the server.js file.
  */
 export default class Html extends Component {
+  static childContextTypes = {
+    insertCss: React.PropTypes.func
+  };
+
   render() {
-    const {component, store, css} = this.props;
+    const {component, store, data} = this.props;
     const content = component ? ReactDOM.renderToString(component) : '';
     const head = Helmet.rewind();
 
@@ -29,7 +33,7 @@ export default class Html extends Component {
 
         <link rel="shortcut icon" href="/favicon.ico"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <style type="text/css">{css.join('')}</style>
+        <style type="text/css">{data.css.join('')}</style>
       </head>
       <body>
       <div id="content" dangerouslySetInnerHTML={{__html: content}}/>
@@ -40,12 +44,3 @@ export default class Html extends Component {
     );
   }
 }
-
-Html.childContextTypes = {
-  insertCss: React.PropTypes.func
-};
-
-Html.propTypes = {
-  component: PropTypes.node,
-  store: PropTypes.object
-};

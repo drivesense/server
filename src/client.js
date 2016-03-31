@@ -1,5 +1,3 @@
-'use strict';
-
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import {render} from 'react-dom';
@@ -25,14 +23,3 @@ render(
   </Root>,
   document.getElementById('content')
 );
-
-if (process.env.NODE_ENV !== 'production' && process.env.WEBPACK_ENV === 'client') {
-  render(
-    <Root store={store} context={context} renderDevTools={true}>
-      <Router history={history} render={(props) => <ReduxAsyncConnect {...props}/>}>
-        {routes}
-      </Router>
-    </Root>,
-    document.getElementById('content')
-  );
-}

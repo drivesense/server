@@ -8,7 +8,7 @@ import httpProxy from 'http-proxy';
 import React from 'react';
 import cookie from 'react-cookie';
 import ReactDOM from 'react-dom/server';
-import { ReduxAsyncConnect, loadOnServer } from 'redux-async-connect';
+import {ReduxAsyncConnect, loadOnServer} from 'redux-async-connect';
 import {match, createMemoryHistory} from 'react-router';
 import Html from './components/Html';
 import Root from './components/Root';
@@ -52,6 +52,8 @@ proxy.on('error', (error, req, res) => {
 app.use((req, res) => {
   cookie.plugToRequest(req, res);
 
+  const data = {css: []};
+  const context = {insertCss: styles => data.css.push(styles._getCss())};
   const history = createMemoryHistory(req.originalUrl);
   const store = createStore(history);
   const routes = createRoutes(store);
@@ -71,8 +73,6 @@ app.use((req, res) => {
 
     loadOnServer(renderProps, store)
       .then(() => {
-        const css = [];
-        const context = {insertCss: styles => css.push(styles._getCss())};
         const component = (
           <Root store={store} context={context}>
             <ReduxAsyncConnect {...renderProps} />
@@ -82,8 +82,8 @@ app.use((req, res) => {
         global.navigator = {userAgent: req.headers['user-agent']};
 
         res.send('<!doctype html>\n' +
-          ReactDOM.renderToString(<Html component={component} css={css}
-                                        store={store} />));
+          ReactDOM.renderToString(<Html component={component} data={data}
+                                        store={store}/>));
       })
       .catch(err => {
         console.log(err.stack);
