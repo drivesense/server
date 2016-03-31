@@ -25,8 +25,8 @@ export default class AppLeftNav extends React.Component {
 
     this.menuItems = [
       {route: '/', text: 'Home'},
-      {route: '/management/users', text: 'Users'},
-      {route: '/management/roles', text: 'Roles'}
+      {route: '/management/managers', text: 'Managers'},
+      {route: '/management/schools', text: 'Schools'}
     ]
   }
 
@@ -36,7 +36,7 @@ export default class AppLeftNav extends React.Component {
   }
 
   logout() {
-    this.props.logout()
+    this.props.logout();
     this.props.toggle(false);
   }
 

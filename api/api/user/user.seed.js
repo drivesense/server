@@ -27,12 +27,14 @@ export default {
     type: 'admin'
   }, {
     name: {
-      first: '',
-      last: 'nachos'
+      first: 'Moti',
+      last: 'Luchim'
     },
-    gender: 'male',
-    email: 'nacho@gmail.com',
-    password: 'nacho',
-    type: 'teacher'
+    email: 'moti.luchim@gmail.com',
+    password: '1',
+    type: 'teacher',
+    data: {
+      isManager: true
+    }
   }]
 };

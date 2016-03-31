@@ -5,6 +5,7 @@ import {
   TableHeader,
   TableHeaderColumn,
   TableRow,
+  IconButton,
   TableRowColumn
 } from 'material-ui';
 
@@ -21,6 +22,7 @@ export default class Schools extends React.Component {
             <TableHeaderColumn></TableHeaderColumn>
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Location</TableHeaderColumn>
+            <TableHeaderColumn>asd</TableHeaderColumn>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -29,6 +31,11 @@ export default class Schools extends React.Component {
               <TableRowColumn>{school.logo}</TableRowColumn>
               <TableRowColumn>{school.name}</TableRowColumn>
               <TableRowColumn>{school.location}</TableRowColumn>
+              <TableRowColumn>
+                <IconButton onClick={() => this.props.editSchool(school)} iconClassName="material-icons">
+                  settings_system_daydream
+                </IconButton>
+              </TableRowColumn>
             </TableRow>
           ))};
         </TableBody>

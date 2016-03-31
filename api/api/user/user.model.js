@@ -26,9 +26,9 @@ const UserSchema = new Schema({
   type: {
     enum: types,
     type: String,
-    lowercase: true
+    lowercase: true,
+    required: true
   },
-  isManager: Boolean,
   providers: {
     facebook: {
       id: String,
@@ -38,7 +38,8 @@ const UserSchema = new Schema({
       id: String,
       link: String
     }
-  }
+  },
+  data: {}
 });
 
 /**
