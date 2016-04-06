@@ -125,11 +125,10 @@ UserSchema
     }
 
     if (!(this.hash && this.hash.length)) {
-      next(new Error('user without providers requires a password'));
+      return next(new Error('user without providers requires a password'));
     }
-    else {
-      next();
-    }
+
+    next();
   });
 
 /**

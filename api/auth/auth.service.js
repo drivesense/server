@@ -18,13 +18,9 @@ export function isAuthenticated() {
       req.headers.authorization = `Bearer ${req.query.access_token}`;
     }
 
-    return Promise.resolve();
-
     return validateJwt(req, res)
       .then(() => {
-        return User.findById(req.user._id)
-          .populate('roles')
-          .exec();
+        return User.findById(req.user._id);
       })
       .then(user => {
         if (!user) {

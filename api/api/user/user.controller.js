@@ -20,7 +20,11 @@ export function show (req) {
 
 // Creates a new user
 export function create (req) {
-  return new User(req.body).save()
+  const data = req.body;
+  
+  data.type = 'student';
+
+  return new User(data).save()
     .then(errorIfEmpty)
     .then(user => {
       return {

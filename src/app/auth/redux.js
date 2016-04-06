@@ -18,11 +18,13 @@ export default function reducer(state = {}, action = {}) {
         error: null
       });
     case LOGIN:
+    case SIGNUP:
       return Object.assign({}, state, {
         token: null,
         user: null,
         error: null
       });
+    case resolve(SIGNUP):
     case resolve(LOGIN):
       cookie.save('token', action.payload.data.token);
 
@@ -32,6 +34,7 @@ export default function reducer(state = {}, action = {}) {
         error: null
       });
     case reject(LOGIN):
+    case reject(SIGNUP):
       return Object.assign({}, state, {
         token: null,
         user: null,
@@ -93,7 +96,7 @@ export function signup({name, email, password}) {
     }
   };
 
-  return dispatch => dispatch(action).then(() => dispatch(push('/login')));
+  return dispatch => dispatch(action).then(() => dispatch(push('/')));
 }
 
 export function goToSignup() {
