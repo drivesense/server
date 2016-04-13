@@ -5,14 +5,14 @@ import { push } from 'react-router-redux'
 const TOGGLE = 'left-nav/TOGGLE';
 
 const initialState = {
-  open: false
+  isOpen: false
 };
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case TOGGLE:
       return Object.assign({}, state, {
-        open: action.payload.open === null ? !state.open : action.payload.open
+        isOpen: action.payload.open === null ? !state.isOpen : action.payload.open
       });
     default:
       return state;
