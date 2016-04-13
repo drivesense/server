@@ -1,11 +1,11 @@
 import 'dotenv/config';
-import {resolve} from 'path';
 import webpack from 'webpack';
+import _ from 'lodash';
+import config from './dev.config.babel';
 
 const port = process.env.WEBPACK_PORT;
 
-export default {
-  context: resolve(__dirname, '..'),
+export default _.defaultsDeep(config, {
   entry: {
     main: [
       `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr`,
@@ -13,7 +13,6 @@ export default {
     ]
   },
   output: {
-    path: resolve(__dirname, '../dist'),
     filename: 'bundle.js',
     publicPath: `http://localhost:${port}/dist/`
   },
@@ -28,18 +27,6 @@ export default {
     headers: {'Access-Control-Allow-Origin': '*'},
     stats: {colors: true}
   },
-  module: {
-    loaders: [
-      {test: /\.less$/, loader: 'isomorphic-style!css?modules!less'},
-      {test: /\.css$/, loader: 'isomorphic-style!css?modules'},
-      {test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel']},
-      {test: /\.(png|svg)$/, loader: 'url?limit=10000'}
-    ]
-  },
-  resolve: {
-    modulesDirectories: ['node_modules'],
-    extensions: ['', '.json', '.js', '.jsx']
-  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
@@ -48,4 +35,4 @@ export default {
       }
     })
   ]
-};
+});

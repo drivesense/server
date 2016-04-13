@@ -30,11 +30,19 @@ export default {
       first: 'Moti',
       last: 'Luchim'
     },
-    email: 'moti.luchim@gmail.com',
+    email: 'moti@d.com',
     password: '1',
     type: 'teacher',
     data: {
       isManager: true
     }
+  }, {
+    name: {
+      first: 'Buck',
+      last: 'leup'
+    },
+    email: 'buck@d.com',
+    password: '1',
+    type: 'student'
   }]
 };
