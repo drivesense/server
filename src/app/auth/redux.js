@@ -51,7 +51,9 @@ export default function reducer(state = {}, action = {}) {
         error: null
       });
     case reject(LOAD_USER):
+      // TODO: change token to null only if error 401
       return Object.assign({}, state, {
+        token: null,
         user: null,
         error: action.payload.data
       });
@@ -112,8 +114,5 @@ export function logout() {
     type: LOGOUT
   };
 
-  return dispatch => {
-    dispatch(action);
-    dispatch(push('/login'));
-  };
+  return dispatch => dispatch(action).then(() => dispatch(push('/login')));
 }
