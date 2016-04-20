@@ -8,7 +8,6 @@ import * as app from './redux';
 import theme from './theme.js';
 import appStyles from './app.less';
 
-const decoratorWithStyles = styles => Component => withStyles(Component, styles);
 const styles = {
   app: {
     flex: 1,
@@ -28,7 +27,7 @@ const styles = {
   }
 };
 
-@decoratorWithStyles(appStyles)
+@withStyles(appStyles)
 @connect(state => state.app, app, null)
 export default class AppContainer extends React.Component {
   static childContextTypes = {
