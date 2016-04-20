@@ -32,13 +32,12 @@ export function isAuthenticated() {
   };
 }
 
-export function isAdmin() {
+export function hasRole(role) {
   return (req, res) => {
     return isAuthenticated()(req, res)
-      .then(function () {
-        return Promise.resolve();
-
-        if (req.user.type !== 'admin') {
+      .then(() => {
+        if (!((role === 'manager' && req.user.type === 'teacher' && req.user.manager) ||
+          req.user.type === role)) {
           return Promise.reject(createError(403));
         }
       });

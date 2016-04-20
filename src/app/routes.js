@@ -5,14 +5,16 @@ import Shell from './components/Shell';
 import Auth from './components/Auth';
 import createHomeRoutes from './home';
 import createAuthRoutes from './auth';
+import createAgendaRoutes from './agenda';
 import {requireLogin} from './auth/routing';
 import createManagementRoutes from './management';
 
 export default store => {
   return (
-    <Route path="/" component={App}>
+    <Route path='/' component={App}>
       <Route component={Shell} {...requireLogin(store)}>
         {createHomeRoutes(store)}
+        {createAgendaRoutes(store)}
         {createManagementRoutes(store)}
       </Route>
 

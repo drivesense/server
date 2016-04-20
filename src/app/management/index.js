@@ -10,7 +10,7 @@ export default function (store) {
   return (
     <Route path='management'>
       <Route path='managers' component={Managers} {...requireRole(store, 'admin')}/>
-      <Route path='schools' component={Schools} {...requireRole(store, 'manager')}/>
+      <Route path='schools' component={Schools} {...requireRole(store, 'admin')}/>
     </Route>
   )
 }

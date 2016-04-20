@@ -36,10 +36,8 @@ export default {
     email: 'manager@d.com',
     password: '1',
     type: 'teacher',
-    data: {
-      isManager: true,
-      school: schools[0]
-    }
+    manager: true,
+    school: schools[0]
   }, {
     name: {
       first: 'First',
@@ -48,10 +46,7 @@ export default {
     email: 'teacher@d.com',
     password: '1',
     type: 'teacher',
-    data: {
-      isManager: false,
-      school: schools[0]
-    }
+    school: schools[0]
   }, {
     name: {
       first: 'Second',
@@ -60,8 +55,6 @@ export default {
     email: 'student@d.com',
     password: '1',
     type: 'student',
-    data: {
-      school: schools[0]
-    }
+    school: schools[0]
   }]
 };

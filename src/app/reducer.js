@@ -8,12 +8,14 @@ import leftNav from './components/Shell/redux';
 import app from './components/App/redux';
 import management from './management/redux';
 import auth from './auth/redux';
+import agenda from './agenda/redux';
 
 export default combineReducers({
   routing: routerReducer,
   form,
   app,
   auth,
+  agenda,
   leftNav,
   management,
   reduxAsyncConnect

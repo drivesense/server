@@ -75,8 +75,8 @@ export function hasUser(globalState) {
 }
 
 export function hasRole(user, role) {
-  return (role === 'manager' && user.type === 'teacher' && user.data.isManager) ||
-    (user.type === role)
+  return (role === 'manager' && user.type === 'teacher' && user.manager) ||
+    user.type === role;
 }
 
 export function loadUser() {
@@ -85,7 +85,7 @@ export function loadUser() {
     payload: {
       promise: client => client.get('/api/users/me')
     }
-  }
+  };
 }
 
 export function login({email, password}) {

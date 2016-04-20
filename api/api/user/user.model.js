@@ -29,6 +29,11 @@ const UserSchema = new Schema({
     lowercase: true,
     required: true
   },
+  school: {
+    type: Schema.Types.ObjectId,
+    ref: 'School'
+  },
+  manager: Boolean,
   providers: {
     facebook: {
       id: String,
@@ -38,8 +43,7 @@ const UserSchema = new Schema({
       id: String,
       link: String
     }
-  },
-  data: {}
+  }
 });
 
 /**

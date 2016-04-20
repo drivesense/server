@@ -66,8 +66,9 @@ export default class AppLeftNav extends React.Component {
 
     this.menuItems = [
       {route: '/', text: 'Home'},
+      {route: '/agenda', text: 'Agenda'},
       {route: '/management/managers', text: 'Managers', role: 'admin'},
-      {route: '/management/schools', text: 'Schools', role: 'manager'}
+      {route: '/management/schools', text: 'Schools', role: 'admin'}
     ]
   }
 
@@ -100,7 +101,7 @@ export default class AppLeftNav extends React.Component {
           </div>
         </AppBar>
         <div style={styles.content}>
-          {this.menuItems.filter(item => this.props.hasRole(this.props.user, item.role)).map(item => (
+          {this.menuItems.filter(item => !item.role || this.props.hasRole(this.props.user, item.role)).map(item => (
             <MenuItem key={item.route} onTouchTap={() => this.navigateTo(item.route)}>{item.text}</MenuItem>
           ))}
         </div>
