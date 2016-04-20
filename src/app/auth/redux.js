@@ -113,6 +113,9 @@ export function logout() {
   const action = {
     type: LOGOUT
   };
-
-  return dispatch => dispatch(action).then(() => dispatch(push('/login')));
+  
+  return dispatch => {
+    dispatch(action);
+    dispatch(push('/login'));
+  };
 }
