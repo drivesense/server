@@ -3,29 +3,21 @@ import {Route} from 'react-router'
 import App from './components/App';
 import Shell from './components/Shell';
 import Auth from './components/Auth';
-import HomeRoutes from './home';
-import AuthRoutes from './auth';
-import ManagementRoutes from './management';
-import {isAuthenticated} from './auth/redux';
+import createHomeRoutes from './home';
+import createAuthRoutes from './auth';
+import {requireLogin} from './auth/routing';
+import createManagementRoutes from './management';
 
 export default store => {
-  const requireLogin = (nextState, replace, cb) => {
-    if (!isAuthenticated(store.getState())) {
-      replace('/login');
-    }
-
-    cb();
-  };
-
   return (
     <Route path="/" component={App}>
-      <Route component={Shell} onEnter={requireLogin}>
-        {HomeRoutes}
-        {ManagementRoutes}
+      <Route component={Shell} {...requireLogin(store)}>
+        {createHomeRoutes(store)}
+        {createManagementRoutes(store)}
       </Route>
 
       <Route component={Auth}>
-        {AuthRoutes}
+        {createAuthRoutes(store)}
       </Route>
     </Route>
   );

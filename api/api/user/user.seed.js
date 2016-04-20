@@ -1,7 +1,10 @@
 'use strict';
 
+import School from '../school/school.model';
+
 export default {
-  seed: () => [{
+  dependencies: [School],
+  seed: schools => [{
     name: {
       first: 'Noam',
       last: 'Okman'
@@ -30,19 +33,35 @@ export default {
       first: 'Moti',
       last: 'Luchim'
     },
-    email: 'moti@d.com',
+    email: 'manager@d.com',
     password: '1',
     type: 'teacher',
     data: {
-      isManager: true
+      isManager: true,
+      school: schools[0]
     }
   }, {
     name: {
-      first: 'Buck',
-      last: 'leup'
+      first: 'First',
+      last: 'Gear'
     },
-    email: 'buck@d.com',
+    email: 'teacher@d.com',
     password: '1',
-    type: 'student'
+    type: 'teacher',
+    data: {
+      isManager: false,
+      school: schools[0]
+    }
+  }, {
+    name: {
+      first: 'Second',
+      last: 'Gear'
+    },
+    email: 'student@d.com',
+    password: '1',
+    type: 'student',
+    data: {
+      school: schools[0]
+    }
   }]
 };

@@ -66,8 +66,17 @@ export function getToken(globalState) {
   return globalState.auth.token;
 }
 
-export function isAuthenticated(globalState) {
+export function hasToken(globalState) {
   return globalState.auth && globalState.auth.token;
+}
+
+export function hasUser(globalState) {
+  return globalState.auth && globalState.auth.user;
+}
+
+export function hasRole(user, role) {
+  return (role === 'manager' && user.type === 'teacher' && user.data.isManager) ||
+    (user.type === role)
 }
 
 export function loadUser() {
@@ -113,7 +122,7 @@ export function logout() {
   const action = {
     type: LOGOUT
   };
-  
+
   return dispatch => {
     dispatch(action);
     dispatch(push('/login'));
