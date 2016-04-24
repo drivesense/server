@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .constant('PERMISSIONS', [
     'read_users',
     'write_users',

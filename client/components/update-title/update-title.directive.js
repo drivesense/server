@@ -3,7 +3,7 @@
 /**
  * Updates the title with data from the state
  */
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .directive('updateTitle', function ($rootScope, $timeout) {
     return {
       restrict: 'A',

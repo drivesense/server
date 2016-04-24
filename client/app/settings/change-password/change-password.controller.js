@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .controller('ChangePasswordCtrl', function ($scope, $mdToast, Auth) {
     $scope.changePassword = function (form) {
       $scope.submitted = true;

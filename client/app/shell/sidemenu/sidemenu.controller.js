@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .controller('SideMenu', function ($scope, $rootScope, $state, $mdSidenav, $mdDialog, Auth) {
     $scope.logout = function () {
       Auth.logout();
@@ -9,21 +9,15 @@ angular.module('TripApp')
 
     $scope.loggedInUser = Auth.getCurrentUser();
 
-    $scope.navList = [
-      {
-        text: 'home',
-        state: 'shell.home',
-        'iconClass': 'mdi mdi-home mdi-24px'
-      }, {
-        text: 'my events',
-        state: 'shell.events-history',
-        'iconClass': 'mdi mdi-format-list-bulleted mdi-24px'
-      }, {
-        text: 'settings',
-        state: 'shell.user-settings',
-        'iconClass': 'mdi mdi-settings'
-      }
-    ];
+    $scope.navList = [{
+      text: 'home',
+      state: 'shell.home',
+      iconClass: 'mdi mdi-home mdi-24px'
+    }, {
+      text: 'settings',
+      state: 'shell.user-settings',
+      iconClass: 'mdi mdi-settings'
+    }];
 
     $scope.navList = _.filter($scope.navList, function (item) {
       var permissions = ($state.get(item.state).data || {}).requiredPermissions;

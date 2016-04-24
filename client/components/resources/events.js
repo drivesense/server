@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .service('$events', function ($resource) {
     return $resource('/api/events/:id', {}, {
       'get': {method: 'GET', isArray: true},

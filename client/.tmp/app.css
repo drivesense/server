@@ -31,9 +31,6 @@ body,
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
-.event-dates {
-  margin-bottom: 25px;
-}
 .exterior-logo {
   height: 70px;
   width: 70px;
@@ -92,10 +89,7 @@ body,
 .tool-bar-wrapper .logo {
   cursor: pointer;
 }
-.tool-bar-wrapper .logo .triplete-img {
+.tool-bar-wrapper .logo .logo-img {
   height: 40px;
   width: 40px;
-}
-.user-details .subheader {
-  padding: 0 5px;
 }

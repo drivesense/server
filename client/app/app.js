@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('TripApp', [
+angular.module('drivesenseApp', [
     'ngCookies',
     'ngResource',
     'ngSanitize',
-    'btford.socket-io',
     'ui.router',
     'angularMoment',
     'ngMaterial',
@@ -84,5 +83,5 @@ angular.module('TripApp', [
       }
     });
 
-    amMoment.changeLocale('he');
+    amMoment.changeLocale('en');
   });

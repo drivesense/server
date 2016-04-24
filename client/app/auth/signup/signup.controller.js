@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .controller('SignupCtrl', function ($scope, Auth, $state, $window) {
     $scope.errors = {};
 

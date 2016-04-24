@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('exterior.login', {

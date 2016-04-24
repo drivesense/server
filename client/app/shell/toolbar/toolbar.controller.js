@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .controller('ToolBar', function ($scope, $mdSidenav, $mdComponentRegistry) {
     $scope.isNavIconOpened = false;
 

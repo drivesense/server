@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .controller('Login', function ($scope, $window, $state, $mdToast, Auth) {
     $scope.user = {};
     $scope.errors = {};

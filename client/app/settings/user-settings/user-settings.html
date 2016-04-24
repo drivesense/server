@@ -50,52 +50,6 @@
           </div>
         </md-card>
       </div>
-      <div layout="column" flex="30">
-        <md-card md-whiteframe="1">
-          <md-subheader>
-            <h2>Features</h2>
-          </md-subheader>
-          <div layout="column" layout-margin>
-            <md-input-container class="md-accent">
-              <label>Age range</label>
-              <md-select ng-model="user.features.age">
-                <md-option ng-repeat="age in ageRange" value="{{age.val}}">{{age.name}}</md-option>
-              </md-select>
-            </md-input-container>
-            <md-input-container class="md-accent">
-              <label>Trip type</label>
-              <md-select ng-model="user.features.tripType">
-                <md-option ng-repeat="type in tripType" value="{{type.val}}">
-                  <i class="{{type.class}}"></i>
-                  <span>{{type.name}}</span>
-                </md-option>
-              </md-select>
-            </md-input-container>
-            <md-input-container class="md-accent">
-              <label>Kids no</label>
-              <input ng-model="user.features.kids" type="number" required min="0">
-            </md-input-container>
-            <md-input-container class="md-accent">
-              <label>Favorite location</label>
-              <md-select ng-model="user.features.favoriteLocation">
-                <md-option ng-repeat="location in favoriteLocations" value="{{location.val}}">
-                  <i class="{{location.class}}"></i>
-                  <span>{{location.name}}</span>
-                </md-option>
-              </md-select>
-            </md-input-container>
-            <md-input-container class="md-accent">
-              <label>Extreme level</label>
-              <md-select ng-model="user.features.extreme">
-                <md-option ng-repeat="lev in extremeLevel" value="{{lev.val}}">
-                  <i class="{{lev.class}}"></i>
-                  <span>{{lev.name}}</span>
-                </md-option>
-              </md-select>
-            </md-input-container>
-          </div>
-        </md-card>
-      </div>
       <md-button class="md-fab md-accent mdi mdi-content-save mdi-24px" ng-click="saveChanges()">
       <md-tooltip md-direction="right">update user</md-tooltip>
       </md-button>

@@ -28,10 +28,10 @@ export default app => {
     app.use(require('connect-livereload')());
   }
 
+  routes(app);
+
   app.route('/*')
     .get((req, res) => res.sendFile(resolve(client, 'index.html')));
-
-  routes(app);
 
   app.use(errorHandler());
 };

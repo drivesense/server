@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .controller('Shell', function ($scope, $mdDialog) {
 
     $scope.createNewEvent = function (ev) {

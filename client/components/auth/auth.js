@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .factory('Auth', function Auth($location, $rootScope, $http, $users, $cookieStore, $q) {
     var currentUser = {};
     if ($cookieStore.get('token')) {

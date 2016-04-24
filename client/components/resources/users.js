@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('TripApp')
+angular.module('drivesenseApp')
   .factory('$users', function ($resource) {
     return $resource('/api/users/:id/:controller', {id: '@_id'},
       {
