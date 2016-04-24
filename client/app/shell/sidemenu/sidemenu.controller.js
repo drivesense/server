@@ -20,19 +20,19 @@ angular.module('drivesenseApp')
     }, {
       text: 'Schools',
       state: 'shell.schools',
-      iconClass: 'mdi mdi-settings'
+      iconClass: 'mdi mdi-settings mdi-24px'
     }, {
       text: 'Managers',
       state: 'shell.managers',
-      iconClass: 'mdi mdi-settings'
+      iconClass: 'mdi mdi-settings mdi-24px'
     }, {
       text: 'Teachers',
       state: 'shell.teachers',
-      iconClass: 'mdi mdi-settings'
+      iconClass: 'mdi mdi-settings mdi-24px'
     }, {
       text: 'Profile',
       state: 'shell.profile',
-      iconClass: 'mdi mdi-settings'
+      iconClass: 'mdi mdi-settings mdi-24px'
     }];
 
     $scope.navList = _.filter(navList, function (item) {
