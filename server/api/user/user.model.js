@@ -33,17 +33,7 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'School'
   },
-  manager: Boolean,
-  providers: {
-    facebook: {
-      id: String,
-      link: String
-    },
-    google: {
-      id: String,
-      link: String
-    }
-  }
+  manager: Boolean
 });
 
 /**
@@ -83,21 +73,6 @@ UserSchema
   });
 
 UserSchema
-  .virtual('socialToken')
-  .set(function (socialToken) {
-    this.providers = this.providers || {};
-
-    jwt.verify(socialToken.token, process.env.SESSION_SECRET, (err, decoded) => {
-      if (err) {
-        // TODO: handle error
-        return;
-      }
-
-      this.providers[socialToken.provider] = decoded;
-    });
-  });
-
-UserSchema
   .virtual('password')
   .set(function (password) {
     this._password = password;
@@ -117,34 +92,9 @@ UserSchema
     });
   });
 
-UserSchema
-  .pre('save', function (next) {
-    if (!this.isNew) {
-      return next();
-    }
-
-    // User with providers doesn't need a password
-    if (this.hasProvider()) {
-      return next();
-    }
-
-    if (!(this.hash && this.hash.length)) {
-      return next(new Error('user without providers requires a password'));
-    }
-
-    next();
-  });
-
 /**
  * Methods
  */
-
-// hasProvider - check if user has providers
-UserSchema.methods.hasProvider = function () {
-  return this.providers &&
-    ((this.providers.facebook && this.providers.facebook.id) ||
-    (this.providers.google && this.providers.google.id));
-};
 
 // Use promises
 UserSchema.methods.setPassword = pify(UserSchema.methods.setPassword);
