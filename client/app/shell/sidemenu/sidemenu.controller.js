@@ -13,6 +13,10 @@ angular.module('drivesenseApp')
       text: 'Home',
       state: 'shell.home',
       iconClass: 'mdi mdi-home mdi-24px'
+    },{
+      text: 'agenda',
+      state: 'shell.agenda',
+      iconClass: 'mdi mdi-calendar mdi-24px'
     }, {
       text: 'Schools',
       state: 'shell.schools',

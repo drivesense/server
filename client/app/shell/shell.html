@@ -5,14 +5,5 @@
               ng-include="'app/shell/sidemenu/sidemenu.html'"></md-sidenav>
   <md-content flex layout="column" layout-margin>
     <div ui-view layout-align="center"></div>
-    <div ng-controller="Shell">
-      <md-fab-speed-dial class="md-fab-bottom-left md-scale">
-        <md-fab-trigger>
-          <md-button class="md-fab md-accent mdi mdi-plus mdi-24px" ng-click="createNewEvent($event)">
-            <md-tooltip md-direction="right">create event</md-tooltip>
-          </md-button>
-        </md-fab-trigger>
-      </md-fab-speed-dial>
-    </div>
   </md-content>
 </md-content>

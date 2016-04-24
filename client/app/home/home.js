@@ -5,9 +5,6 @@ angular.module('drivesenseApp')
     $stateProvider
       .state('shell.home', {
         url: '/',
-        templateUrl: 'app/home/home.html',
-        data: {
-          pageTitle: 'triplete'
-        }
+        templateUrl: 'app/home/home.html'
       });
   });
