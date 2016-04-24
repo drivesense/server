@@ -1,0 +1,18 @@
+<md-toolbar class="tool-bar-wrapper md-primary md-hue-2 md-whiteframe-z1"
+            ng-include="'app/shell/toolbar/toolbar.html'"></md-toolbar>
+<md-content layout="row" flex>
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2 side-menu" md-component-id="sideNav"
+              ng-include="'app/shell/sidemenu/sidemenu.html'"></md-sidenav>
+  <md-content flex layout="column" layout-margin>
+    <div ui-view layout-align="center"></div>
+    <div ng-controller="Shell">
+      <md-fab-speed-dial class="md-fab-bottom-left md-scale">
+        <md-fab-trigger>
+          <md-button class="md-fab md-accent mdi mdi-plus mdi-24px" ng-click="createNewEvent($event)">
+            <md-tooltip md-direction="right">create event</md-tooltip>
+          </md-button>
+        </md-fab-trigger>
+      </md-fab-speed-dial>
+    </div>
+  </md-content>
+</md-content>

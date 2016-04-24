@@ -1,0 +1,80 @@
+<!doctype html>
+<html ng-app="TripApp">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+  <title update-title default-title="Drivesense"></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <!-- build:css app/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+  <link rel="stylesheet" href="bower_components/mdi/css/materialdesignicons.css" />
+  <link rel="stylesheet" href="bower_components/mdi/css/materialdesignicons.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-hamburglar/dist/hamburglar.min.css" />
+  <link rel="stylesheet" href="bower_components/angular-material-data-table/dist/md-data-table.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css app/app.css -->
+  <!-- injector:css -->
+  <link rel="stylesheet" href=".tmp/app.css">
+  <!-- endinjector -->
+  <!-- endbuild -->
+</head>
+<body>
+<div ui-view class="main-view"></div>
+<!-- build:js app/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-messages/angular-messages.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/angular-socket-io/socket.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<script src="bower_components/angular-hamburglar/dist/hamburglar.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-material-data-table/dist/md-data-table.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:js app/app.js -->
+<script src="app/app.js"></script>
+<!-- injector:js -->
+<script src="app/event/event.js"></script>
+<script src="app/exterior/exterior.js"></script>
+<script src="app/home/home.js"></script>
+<script src="app/settings/settings.controller.js"></script>
+<script src="app/shell/shell.controller.js"></script>
+<script src="app/shell/shell.js"></script>
+<script src="components/auth/auth.js"></script>
+<script src="components/consts/permissions.js"></script>
+<script src="components/devices/devices.service.js"></script>
+<script src="components/resources/events.js"></script>
+<script src="components/resources/users.js"></script>
+<script src="components/socket/socket.service.js"></script>
+<script src="components/update-title/update-title.directive.js"></script>
+<script src="app/event/edit-event/edit-event.controller.js"></script>
+<script src="app/event/events-history/events-history.controller.js"></script>
+<script src="app/event/new-event/new-event.controller.js"></script>
+<script src="app/event/show-event/show-event.controller.js"></script>
+<script src="app/auth/login/login.controller.js"></script>
+<script src="app/auth/login/login.js"></script>
+<script src="app/auth/signup/signup.controller.js"></script>
+<script src="app/auth/signup/signup.js"></script>
+<script src="app/settings/change-password/change-password.controller.js"></script>
+<script src="app/settings/user-details/user-details.controller.js"></script>
+<script src="app/settings/user-settings/user-settings.Controller.js"></script>
+<script src="app/settings/user-settings/user-settings.js"></script>
+<script src="app/shell/sidemenu/sidemenu.controller.js"></script>
+<script src="app/shell/toolbar/toolbar.controller.js"></script>
+<!-- endinjector -->
+<!-- injector:templatejs -->
+<!-- endinjector -->
+<!-- endbuild -->
+</body>
+</html>

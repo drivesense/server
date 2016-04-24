@@ -1,0 +1,9 @@
+<div layout="row" layout-align="start" ng-controller="ToolBar">
+  <md-button md-no-ink class="md-primary" type="button" ng-click="toggleMenu()" aria-label="Sidenav">
+    <hamburglar ng-class="{'opened' : isNavIconOpened}" scale="0.5"></hamburglar>
+  </md-button>
+  <div class="logo" layout="row" layout-align="center center" ui-sref="shell.home">
+    <img layout-margin class="triplete-img" src="../../../assets/images/tripleteLogo.png">
+    <h2>Triplete</h2>
+  </div>
+</div>

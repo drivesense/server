@@ -1,0 +1,35 @@
+<md-card class="login-card">
+  <md-subheader>
+    <div layout="row" layout-align="center center">
+      <h2>Login</h2>
+    </div>
+  </md-subheader>
+    <form class="form" name="loginForm" layout-align="center center" layout-padding>
+      <div class="form-content" layout="column" layout-fill>
+        <md-input-container class="input-reverse md-accent" flex="85">
+          <label>email</label>
+          <input ng-model="user.email" type="email" required name="userEmail">
+          <div ng-messages="loginForm.userEmail.$error"
+               ng-show="loginForm.userEmail.$invalid && loginForm.userEmail.$touched">
+            <div ng-message="required">required</div>
+            <div ng-message="email">email invalid</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="input-reverse md-accent" flex="85">
+          <label>password</label>
+          <input ng-model="user.password" type="password" required name="password" minlength="8">
+          <div ng-messages="loginForm.password.$error"
+               ng-show="loginForm.password.$invalid && loginForm.password.$touched">
+            <div ng-message="required">required</div>
+            <div ng-message="minlength">min length is 8 digits</div>
+          </div>
+        </md-input-container>
+    </div>
+      <div layout="row" layout-align="space-around">
+        <md-button class="md-raised md-primary" ng-click="login(loginForm)" ng-disabled="loginForm.$invalid">
+          <span>login</span>
+        </md-button>
+        <md-button class="md-primary" ui-sref="exterior.signup">new user?</md-button>
+      </div>
+  </form>
+</md-card>

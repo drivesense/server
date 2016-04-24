@@ -1,0 +1,20 @@
+<div ng-controller="SideMenu" layout="column" layout-fill>
+<md-toolbar class="md-tall pattern" layout="row" layout-fill layout-align="start end">
+  <h2 class="md-toolbar-tools md-toolbar-tools-bottom" flex>
+    <span class="md-flex">{{ loggedInUser.name.first + " " + loggedInUser.name.last }}</span>
+  </h2>
+</md-toolbar>
+<md-content class="side-menu-content" layout="column" layout-align="space-between" flex>
+  <div layout="column">
+    <div class="nav-button" layout="row" layout-fill ng-repeat="item in navList">
+      <md-button ui-sref-active="md-raised" ui-sref="{{item.state}}" type="button" flex ng-click="toggleMenu()">
+        <div layout="row" layout-align="center center">
+          <i ng-class="item.iconClass"
+             flex="25"></i>
+          <span flex>{{ item.text }}</span>
+        </div>
+      </md-button>
+    </div>
+  </div>
+</md-content>
+</div>

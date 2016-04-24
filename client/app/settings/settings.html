@@ -1,0 +1,31 @@
+<md-dialog aria-label="הגדרות" class="user-settings" layout="column" flex="50" flex-sm="100">
+  <div layout="row" class="title">
+    <h2>הגדרות</h2>
+  </div>
+  <md-divider></md-divider>
+  <div layout="row" class="content" flex>
+    <md-list flex="33" class="settings-menu">
+      <div class="nav-button" layout="row" layout-fill ng-repeat="item in listItems">
+        <md-button ng-click="selectIndex($index)" ng-class="{ 'md-raised': $index == selectedIndex }" type="button" flex>
+          <div layout="row" layout-align="start center">
+            <div flex="30" class="icon">
+              <i class="fa" ng-class="item.iconClass"></i>
+            </div>
+            <span>{{ item.text }}</span>
+          </div>
+        </md-button>
+      </div>
+    </md-list>
+    <div ng-repeat="item in listItems"
+                ng-show="$index == selectedIndex"
+                md-swipe-left="next()" md-swipe-right="previous()" flex
+                layout="column" layout-align="space-between end">
+      <div class="settings-page-content" ng-include="item.link" layout-fill></div>
+      <div class="md-actions" layout="row">
+        <md-button ng-click="hide()">
+          <span>finish</span>
+        </md-button>
+      </div>
+    </div>
+  </div>
+</md-dialog>

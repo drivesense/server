@@ -1,0 +1,61 @@
+/**
+ * App-wide Styles
+ */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+md-input-container:not(.margin-container) {
+  .md-errors-spacer {
+    min-height: 0 !important;
+  }
+}
+
+// Stretch page to full height and width
+
+html, body, .main-view{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+// Main view init
+.main-view {
+  display: flex;
+  flex-direction: column;
+}
+
+// Scrolling
+@scrollbar-radius: 10px;
+::-webkit-scrollbar-track
+{
+  background-color: transparent;
+}
+
+::-webkit-scrollbar
+{
+  width: 7px;
+  border-radius: @scrollbar-radius;
+}
+
+::-webkit-scrollbar-thumb
+{
+  border-radius: @scrollbar-radius;
+}
+
+// injector
+@import 'event/event.less';
+@import 'exterior/exterior.less';
+@import 'home/home.less';
+@import 'shell/shell.less';
+@import 'settings/settings.less';
+@import 'auth/login/login.less';
+@import 'shell/sidemenu/sidemenu.less';
+@import 'shell/toolbar/toolbar.less';
+@import 'settings/change-password/change-password.less';
+@import 'settings/user-details/user-details.less';
+// endinjector

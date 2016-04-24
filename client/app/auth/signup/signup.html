@@ -1,0 +1,81 @@
+<md-card>
+  <md-subheader>
+    <div layout="row" layout-align="center center">
+      <h2>Sign up</h2>
+    </div>
+  </md-subheader>
+  <form name="signupForm" layout="column" layout-align="center center">
+    <div class="form-content" layout="column">
+      <div layout="row" layout-align="center center">
+        <md-item-content layout="row" flex="85">
+          <md-input-container class="md-accent" flex="50">
+            <label>first name</label>
+            <input ng-model="user.name.first" type="text" required name="firstName">
+
+            <div ng-messages="signupForm.firstName.$error"
+                 ng-show="signupForm.firstName.$invalid && signupForm.firstName.$touched">
+              <div ng-message="required"><span>required</span></div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-accent" flex="50">
+            <label>last name</label>
+            <input ng-model="user.name.last" type="text" required name="lastName">
+
+            <div ng-messages="signupForm.lastName.$error"
+                 ng-show="signupForm.lastName.$invalid && signupForm.lastName.$touched">
+              <div ng-message="required"><span>required</span></div>
+            </div>
+          </md-input-container>
+        </md-item-content>
+      </div>
+      <div layout="column">
+        <div layout="row" layout-align="center center">
+          <md-input-container class="input-reverse md-accent" flex="85">
+            <label>email</label>
+            <input ng-model="user.email" type="email" required name="email">
+
+            <div ng-messages="signupForm.email.$error"
+                 ng-show="signupForm.email.$invalid && signupForm.email.$touched">
+              <div ng-message="required"><span>required</span></div>
+              <div ng-message="email">email invalid</div>
+              <div ng-message="mongoose"><span>email already exist</span></div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center">
+          <md-input-container class="input-reverse md-accent" flex="85">
+            <label>password</label>
+            <input ng-model="user.password" type="password" required name="password" minlength="8"
+                   ng-change="validatePassword()">
+
+            <div ng-messages="signupForm.password.$error"
+                 ng-show="signupForm.password.$invalid && signupForm.password.$touched">
+              <div ng-message="required"><span>required</span></div>
+              <div ng-message="minlength"><span>min length is 8 digits</span></div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout="row" layout-align="center center">
+          <md-input-container class="input-reverse md-accent" flex="85">
+            <label>confirm password</label>
+            <input ng-model="user.passwordValidate" type="password" required name="passwordValidate" minlength="8"
+                   ng-change="validatePassword()">
+
+            <div ng-messages="signupForm.passwordValidate.$error"
+                 ng-show="signupForm.passwordValidate.$invalid && signupForm.passwordValidate.$touched">
+              <div ng-message="required"><span>required</span></div>
+              <div ng-message="minlength">min length is 8 digits</div>
+              <div ng-message="notEqual">passwords not identical</div>
+            </div>
+          </md-input-container>
+        </div>
+      </div>
+    </div>
+    <div layout="row" layout-align="space-around" layout-margin>
+      <md-button class="md-raised md-primary" ng-click="register(signupForm)" ng-disabled="signupForm.$invalid">
+        <span>sign up</span>
+      </md-button>
+      <md-button class="md-primary" type="button" ui-sref="exterior.login" layout-margin>already a user?</md-button>
+    </div>
+  </form>
+</md-card>

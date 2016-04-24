@@ -1,0 +1,167 @@
+<div layout="row">
+  <div layout="column" flex="30">
+    <md-card md-whiteframe="3">
+      <div layout="column" layout-align="space around">
+        <form name="eventInfoForm">
+          <div layout="row" layout-align="start">
+            <md-subheader flex>
+              <md-input-container ng-if="isEditing">
+                <input ng-model="event.name" maxlength="30">
+
+                <div ng-messages="eventInfoForm.name.$error"
+                     ng-show="eventInfoForm.name.$invalid && eventInfoForm.name.$touched">
+                  <div ng-message="maxlength">max length is 30</div>
+                </div>
+              </md-input-container>
+              <h2 ng-show="!isEditing">{{event.name}}</h2>
+            </md-subheader>
+            <md-button layout-margin class="md-icon-button mdi mdi-pencil mdi-24px" ng-disabled="isEditing"
+                       ng-click="edit()"></md-button>
+          </div>
+          <div layout="row" class="event-dates">
+            <md-datepicker flex="40" ng-model="event.startDate" ng-disabled="!isEditing"></md-datepicker>
+            <md-datepicker flex="40" ng-model="event.endDate" ng-disabled="!isEditing"></md-datepicker>
+          </div>
+          <div layout="row">
+            <md-input-container layout-margin flex="90">
+              <label>description</label>
+            <textarea ng-model="event.description" ng-disabled="!isEditing">
+            </textarea>
+            </md-input-container>
+          </div>
+          <div layout="row" layout-align="end" layout-margin>
+            <md-button layout-margin class="md-primary md-raised" ng-disabled="!(isEditing && eventInfoForm.$dirty)"
+                       ng-click="save()">save
+            </md-button>
+          </div>
+        </form>
+      </div>
+    </md-card>
+    <md-card md-whiteframe="3">
+      <div layout="row">
+        <md-subheader flex>
+          <h2>chat</h2>
+        </md-subheader>
+        <md-button class="md-icon-button launch mdi mdi-arrow-right mdi-24px" ng-click="openChat()">
+        </md-button>
+      </div>
+      <div ng-repeat="message in event.messages | limitTo: 2">
+        <div layout="column">
+          <md-card md-whiteframe="5" layout="row" layout-align="space-between" layout-margin>
+            <label>{{message.from}}: {{message.message | limitTo: 10}}</label>
+            <label style="font-size: 10px">{{message.time | date : 'dd/MM HH:mm'}}</label>
+          </md-card>
+        </div>
+      </div>
+    </md-card>
+  </div>
+  <div layout="column" flex>
+    <md-card md-whiteframe="3" style="min-height: 250px">
+      <md-subheader>
+        <h2>Locations</h2>
+      </md-subheader>
+    </md-card>
+    <div layout="row">
+      <md-card flex md-whiteframe="3">
+        <div layout="row">
+          <md-subheader flex>
+            <h2>Photos</h2>
+          </md-subheader>
+          <md-button class="md-icon-button launch mdi mdi-upload mdi-24px" ng-click="uploadPhotos()">
+          </md-button>
+        </div>
+        <div layout="row" layout-margin>
+          <md-card>
+            <img src="http://blog.groupleader.com/wp-content/uploads/2013/10/meeting-friends-traveling-656x360.jpg"
+                 style="height: 50px; width:50px">
+          </md-card>
+          <md-card>
+            <img
+              src="http://www.easydestination.net/blog/media/Photo/Cocktail.jpg"
+              style="height: 50px; width:50px">
+          </md-card>
+          <md-card>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPLblTUOhjOqtahsYZSFCbovDB3YYCvpa42tSpoy56O_EijZqS"
+              style="height: 50px; width:50px">
+          </md-card>
+        </div>
+      </md-card>
+      <md-card md-whiteframe="3">
+        <div layout="column" layout-margin>
+          <md-subheader>
+            <h2>Invite Friends</h2>
+          </md-subheader>
+          <md-contact-chips ng-model="event.users" flex="90"
+                            md-contact-name="displayName" md-contact-email="email" md-highlight-flags="i"
+                            md-contacts="filter($query)" filter-selected="filterSelected"
+                            md-require-match="true" placehoder="add friend">
+          </md-contact-chips>
+          <div layout="row" layout-align="end end">
+            <md-button class="md-primary md-raised" ng-click="updateFriends()">send</md-button>
+          </div>
+        </div>
+      </md-card>
+    </div>
+  </div>
+  <div layout="column" flex="20">
+    <md-card md-whiteframe="3">
+      <div layout="row">
+        <md-subheader flex>
+          <h2>Shopping List</h2>
+        </md-subheader>
+        <md-button class="md-icon-button launch mdi mdi-arrow-right mdi-24px" ng-click="editShoppingList()">
+        </md-button>
+      </div>
+      <md-table-container ng-if="event.shoppingList.length">
+        <table md-table>
+          <thead md-head>
+          <tr md-row>
+            <th md-column>name</th>
+            <th md-column>amonut</th>
+          </tr>
+          </thead>
+          <tbody md-body>
+          <tr md-row ng-repeat="shoppingItem in event.shoppingList | limitTo:2">
+            <td md-cell>{{shoppingItem.name}}</td>
+            <td md-cell>{{shoppingItem.amount}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+      <div ng-if="!event.shoppingList.length" layout-margin>
+        <span>no items found</span>
+      </div>
+    </md-card>
+    <md-card md-whiteframe="3">
+      <div layout="row">
+        <md-subheader flex>
+          <h2>Item List</h2>
+        </md-subheader>
+        <md-button class="md-icon-button launch mdi mdi-arrow-right mdi-24px" ng-click="editItemList()">
+        </md-button>
+      </div>
+      <md-table-container ng-if="event.itemList.length">
+        <table md-table>
+          <thead md-head>
+          <tr md-row>
+            <th md-column>name</th>
+            <th md-column>owner</th>
+            <th md-column>amonut</th>
+          </tr>
+          </thead>
+          <tbody md-body>
+          <tr md-row ng-repeat="item in event.itemList | limitTo:2">
+            <td md-cell>{{item.name}}</td>
+            <td md-cell>{{item.owner.name.first}}</td>
+            <td md-cell>{{item.amount}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+      <div ng-if="!event.itemList.length" layout-margin>
+        <span>no items found</span>
+      </div>
+    </md-card>
+  </div>
+</div>

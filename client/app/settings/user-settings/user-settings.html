@@ -1,0 +1,104 @@
+<md-card md-whiteframe="1">
+  <form class="form" name="userForm">
+    <div layout="row">
+      <div layout="column" flex="30">
+        <md-card md-whiteframe="1">
+          <md-subheader>
+            <h2>Details</h2>
+          </md-subheader>
+          <div layout="column" layout-margin>
+            <md-input-container class="md-accent" flex="50" layout-fill>
+              <label>first name</label>
+              <input ng-model="user.name.first" type="text" required name="firstName">
+
+              <div ng-messages="userForm.firstName.$error"
+                   ng-show="userForm.firstName.$invalid && userForm.firstName.$touched">
+                <div ng-message="required"><span>required</span></div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-accent" flex="50" layout-fill>
+              <label>last name</label>
+              <input ng-model="user.name.last" type="text" required name="lastName">
+
+              <div ng-messages="userForm.lastName.$error"
+                   ng-show="userForm.lastName.$invalid && userForm.lastName.$touched">
+                <div ng-message="required"><span>required</span></div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-accent" flex="85">
+              <label>email</label>
+              <input ng-model="user.email" type="email" required name="email">
+
+              <div ng-messages="userForm.email.$error"
+                   ng-show="userForm.email.$invalid && userForm.email.$touched">
+                <div ng-message="required"><span>required</span></div>
+                <div ng-message="email">email invalid</div>
+                <div ng-message="mongoose"><span>email already exist</span></div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-accent" flex="85">
+              <label>password</label>
+              <input ng-model="user.password" type="password" required name="password" minlength="8"
+                     ng-change="validatePassword()">
+
+              <div ng-messages="userForm.password.$error"
+                   ng-show="userForm.password.$invalid && userForm.password.$touched">
+                <div ng-message="required"><span>required</span></div>
+                <div ng-message="minlength"><span>min length is 8 digits</span></div>
+              </div>
+            </md-input-container>
+          </div>
+        </md-card>
+      </div>
+      <div layout="column" flex="30">
+        <md-card md-whiteframe="1">
+          <md-subheader>
+            <h2>Features</h2>
+          </md-subheader>
+          <div layout="column" layout-margin>
+            <md-input-container class="md-accent">
+              <label>Age range</label>
+              <md-select ng-model="user.features.age">
+                <md-option ng-repeat="age in ageRange" value="{{age.val}}">{{age.name}}</md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-accent">
+              <label>Trip type</label>
+              <md-select ng-model="user.features.tripType">
+                <md-option ng-repeat="type in tripType" value="{{type.val}}">
+                  <i class="{{type.class}}"></i>
+                  <span>{{type.name}}</span>
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-accent">
+              <label>Kids no</label>
+              <input ng-model="user.features.kids" type="number" required min="0">
+            </md-input-container>
+            <md-input-container class="md-accent">
+              <label>Favorite location</label>
+              <md-select ng-model="user.features.favoriteLocation">
+                <md-option ng-repeat="location in favoriteLocations" value="{{location.val}}">
+                  <i class="{{location.class}}"></i>
+                  <span>{{location.name}}</span>
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <md-input-container class="md-accent">
+              <label>Extreme level</label>
+              <md-select ng-model="user.features.extreme">
+                <md-option ng-repeat="lev in extremeLevel" value="{{lev.val}}">
+                  <i class="{{lev.class}}"></i>
+                  <span>{{lev.name}}</span>
+                </md-option>
+              </md-select>
+            </md-input-container>
+          </div>
+        </md-card>
+      </div>
+      <md-button class="md-fab md-accent mdi mdi-content-save mdi-24px" ng-click="saveChanges()">
+      <md-tooltip md-direction="right">update user</md-tooltip>
+      </md-button>
+    </div>
+  </form>
+</md-card>
