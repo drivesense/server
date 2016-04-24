@@ -39,34 +39,6 @@ body,
   height: 400px;
   width: 400px;
 }
-.user-settings {
-  overflow: hidden;
-  height: 80%;
-}
-.user-settings .title {
-  padding: 0 15px;
-}
-.user-settings .content .form .form-group {
-  display: flex;
-  align-items: center;
-}
-.user-settings .content .settings-menu {
-  border-left: 1px rgba(0, 0, 0, 0.12) solid;
-  padding: 0;
-}
-.user-settings .content .settings-menu .nav-button span {
-  text-align: start;
-}
-.user-settings .content .settings-menu .nav-button .icon {
-  padding: 0 15px;
-}
-.user-settings .content .settings-menu .nav-button .icon .fa {
-  font-size: 1.7em;
-}
-.user-settings .content .settings-menu .nav-button [type='button'] {
-  padding: 15px 0;
-  margin: 0;
-}
 .main-view .content-wrapper {
   background-color: white;
 }

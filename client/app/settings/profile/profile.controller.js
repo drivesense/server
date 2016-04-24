@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .controller('UserSettings', function ($scope, $window, $state, $mdToast, currentUser, $users) {
+  .controller('Profile', function ($scope, $window, $state, $mdToast, currentUser, $users) {
     $scope.user = currentUser;
 
     $scope.saveChanges = function () {

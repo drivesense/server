@@ -30,8 +30,8 @@ angular.module('drivesenseApp')
       state: 'shell.teachers',
       iconClass: 'mdi mdi-settings'
     }, {
-      text: 'Settings',
-      state: 'shell.user-settings',
+      text: 'Profile',
+      state: 'shell.profile',
       iconClass: 'mdi mdi-settings'
     }];
 

@@ -1,10 +1,10 @@
 <md-card md-whiteframe="1">
   <form class="form" name="userForm">
     <div layout="row">
-      <div layout="column" flex="30">
+      <div layout="row">
         <md-card md-whiteframe="1">
           <md-subheader>
-            <h2>Details</h2>
+            <h2>Profile</h2>
           </md-subheader>
           <div layout="column" layout-margin>
             <md-input-container class="md-accent" flex="50" layout-fill>
@@ -36,23 +36,40 @@
                 <div ng-message="mongoose"><span>email already exist</span></div>
               </div>
             </md-input-container>
-            <md-input-container class="md-accent" flex="85">
-              <label>password</label>
-              <input ng-model="user.password" type="password" required name="password" minlength="8"
-                     ng-change="validatePassword()">
+            <div layout="row" layout-align="end end">
+              <md-button class="md-accent" ng-click="saveChanges()">Save</md-button>
+            </div>
+          </div>
+        </md-card>
+        <md-card md-whiteframe="1">
+          <md-subheader>
+            <h2>Change password</h2>
+          </md-subheader>
+          <div layout="column" layout-margin>
+            <md-input-container class="md-accent" flex="50" layout-fill>
+              <label>old password</label>
+              <input ng-model="oldPassword" type="text" required name="oldPassword">
 
-              <div ng-messages="userForm.password.$error"
-                   ng-show="userForm.password.$invalid && userForm.password.$touched">
+              <div ng-messages="userForm.oldPassword.$error"
+                   ng-show="userForm.oldPassword.$invalid && userForm.oldPassword.$touched">
                 <div ng-message="required"><span>required</span></div>
-                <div ng-message="minlength"><span>min length is 8 digits</span></div>
               </div>
             </md-input-container>
+            <md-input-container class="md-accent" flex="50" layout-fill>
+              <label>new password</label>
+              <input ng-model="newPassword" type="text" required name="newPassword">
+
+              <div ng-messages="userForm.newPassword.$error"
+                   ng-show="userForm.newPassword.$invalid && userForm.newPassword.$touched">
+                <div ng-message="required"><span>required</span></div>
+              </div>
+            </md-input-container>
+            <div layout="row" layout-align="end end">
+              <md-button class="md-accent" ng-click="alert('not implemented')">Change password</md-button>
+            </div>
           </div>
         </md-card>
       </div>
-      <md-button class="md-fab md-accent mdi mdi-content-save mdi-24px" ng-click="saveChanges()">
-      <md-tooltip md-direction="right">update user</md-tooltip>
-      </md-button>
     </div>
   </form>
 </md-card>
