@@ -39,12 +39,6 @@ body,
   height: 400px;
   width: 400px;
 }
-.main-view .content-wrapper {
-  background-color: white;
-}
-.main-view .md-subheader {
-  padding-bottom: 5px;
-}
 .user-settings {
   overflow: hidden;
   height: 80%;
@@ -72,6 +66,12 @@ body,
 .user-settings .content .settings-menu .nav-button [type='button'] {
   padding: 15px 0;
   margin: 0;
+}
+.main-view .content-wrapper {
+  background-color: white;
+}
+.main-view .md-subheader {
+  padding-bottom: 5px;
 }
 .login-card {
   width: 300px;

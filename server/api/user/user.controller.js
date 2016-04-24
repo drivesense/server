@@ -21,7 +21,7 @@ export function show (req) {
 // Creates a new user
 export function create (req) {
   const data = req.body;
-  
+
   data.type = 'student';
 
   return new User(data).save()
@@ -35,7 +35,7 @@ export function create (req) {
 
 // Updates an existing user in the DB.
 export function update (req) {
-  const data = _.pick(req.body, ['name', 'email', 'type']);
+  const data = _.pick(req.body, ['name', 'email']);
 
   return User.findById(req.params.id)
     .then(errorIfEmpty)
