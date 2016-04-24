@@ -18,6 +18,10 @@ angular.module('drivesenseApp')
       state: 'shell.agenda',
       iconClass: 'mdi mdi-calendar mdi-24px'
     }, {
+      text: 'Students',
+      state: 'shell.students',
+      iconClass: 'mdi mdi-settings mdi-24px'
+    }, {
       text: 'Schools',
       state: 'shell.schools',
       iconClass: 'mdi mdi-settings mdi-24px'
