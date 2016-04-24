@@ -10,11 +10,23 @@ angular.module('drivesenseApp')
     $scope.loggedInUser = Auth.getCurrentUser();
 
     $scope.navList = [{
-      text: 'home',
+      text: 'Home',
       state: 'shell.home',
       iconClass: 'mdi mdi-home mdi-24px'
     }, {
-      text: 'settings',
+      text: 'Schools',
+      state: 'shell.schools',
+      iconClass: 'mdi mdi-settings'
+    }, {
+      text: 'Managers',
+      state: 'shell.managers',
+      iconClass: 'mdi mdi-settings'
+    }, {
+      text: 'Teachers',
+      state: 'shell.teachers',
+      iconClass: 'mdi mdi-settings'
+    }, {
+      text: 'Settings',
       state: 'shell.user-settings',
       iconClass: 'mdi mdi-settings'
     }];
