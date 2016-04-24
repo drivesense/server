@@ -40,19 +40,73 @@ export default {
     school: schools[0]
   }, {
     name: {
-      first: 'First',
-      last: 'Gear'
+      first: 'Brock',
+      last: 'Rock'
     },
-    email: 'teacher@d.com',
+    email: 'teacher1@d.com',
     password: '12345678',
     type: 'teacher',
     school: schools[0]
   }, {
     name: {
-      first: 'Second',
-      last: 'Gear'
+      first: 'Ash',
+      last: 'Ketchum'
     },
-    email: 'student@d.com',
+    email: 'student11@d.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0]
+  }, {
+    name: {
+      first: 'Yogi',
+      last: 'Ho'
+    },
+    email: 'student12@d.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0]
+  }, {
+    name: {
+      first: 'Naruto',
+      last: 'Ninja'
+    },
+    email: 'student13@d.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0]
+  }, {
+    name: {
+      first: 'Misty',
+      last: 'Water'
+    },
+    email: 'teacher2@d.com',
+    password: '12345678',
+    type: 'teacher',
+    school: schools[0]
+  }, {
+    name: {
+      first: 'Mister',
+      last: 'Nobody'
+    },
+    email: 'student21@d.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0]
+  }, {
+    name: {
+      first: 'Mister',
+      last: 'Anderson'
+    },
+    email: 'student22@d.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0]
+  }, {
+    name: {
+      first: 'Lord',
+      last: 'Voldemort'
+    },
+    email: 'student23@d.com',
     password: '12345678',
     type: 'student',
     school: schools[0]
