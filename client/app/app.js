@@ -63,7 +63,7 @@ angular.module('drivesenseApp', [
       if (!next.data.loginNotRequired) {
         Auth.isLoggedInAsync(function (loggedIn) {
           if (loggedIn) {
-            if (next.data.requiredPermissions && !Auth.hasPermissions(next.data.requiredPermissions)) {
+            if (next.data.requiredRole && !Auth.hasRole(next.data.requiredRole)) {
               event.preventDefault();
               $state.go('shell.home');
             }
@@ -82,6 +82,4 @@ angular.module('drivesenseApp', [
         });
       }
     });
-
-    amMoment.changeLocale('en');
   });

@@ -2,10 +2,10 @@
 
 import {AsyncRouter} from 'express-async-router';
 import * as controller from './manager.controller';
-import {isAuthenticated} from '../../auth/auth.service';
+import {hasRole} from '../../auth/auth.service';
 
 const router = new AsyncRouter();
 
-router.get('/', isAuthenticated(), controller.index);
+router.get('/', hasRole('admin'), controller.index);
 
 export default router;

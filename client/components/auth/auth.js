@@ -75,7 +75,7 @@ angular.module('drivesenseApp')
           return false;
         }
 
-        return (role === 'teacher' && currentUser.type === 'teacher' && currentUser.manager) || role === currentUser.type;
+        return (role === 'manager' && currentUser.type === 'teacher' && currentUser.manager) || role === currentUser.type;
       }
     };
   });

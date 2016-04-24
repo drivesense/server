@@ -11,6 +11,9 @@ angular.module('drivesenseApp')
           managers: function ($managers) {
             return $managers.get().$promise;
           }
+        },
+        data: {
+          requiredRole: 'admin'
         }
       });
   });

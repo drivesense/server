@@ -9,7 +9,7 @@ angular.module('drivesenseApp')
 
     $scope.loggedInUser = Auth.getCurrentUser();
 
-    $scope.navList = [{
+    var navList = [{
       text: 'Home',
       state: 'shell.home',
       iconClass: 'mdi mdi-home mdi-24px'
@@ -35,9 +35,9 @@ angular.module('drivesenseApp')
       iconClass: 'mdi mdi-settings'
     }];
 
-    $scope.navList = _.filter($scope.navList, function (item) {
-      var permissions = ($state.get(item.state).data || {}).requiredPermissions;
-      return permissions ? Auth.hasPermissions(permissions) : true;
+    $scope.navList = _.filter(navList, function (item) {
+      var role = ($state.get(item.state).data || {}).requiredRole;
+      return role ? Auth.hasRole(role) : true;
     });
 
     $scope.toggleMenu = function () {

@@ -11,6 +11,9 @@ angular.module('drivesenseApp')
           teachers: function ($teachers) {
             return $teachers.get().$promise;
           }
+        },
+        data: {
+          requiredRole: 'manager'
         }
       });
   });
