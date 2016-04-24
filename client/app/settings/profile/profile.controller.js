@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .controller('Profile', function ($scope, $window, $state, $mdToast, currentUser, $users) {
+  .controller('Profile', function ($scope, $state, $mdToast, currentUser, $users) {
     $scope.user = currentUser;
 
     $scope.saveChanges = function () {
@@ -13,9 +13,6 @@ angular.module('drivesenseApp')
               .content('The details was saved successfully')
               .hideDelay(6000)
           );
-
-          // Logged in, redirect to home
-          $state.go('shell.home');
         })
         .catch(function () {
           $mdToast.show(
@@ -25,5 +22,25 @@ angular.module('drivesenseApp')
               .hideDelay(6000)
           );
         });
-    }
+    };
+
+    $scope.changePassword = function (oldPassword, newPassword) {
+      $users.changePassword({id: $scope.user._id}, {oldPassword: oldPassword, newPassword: newPassword}).$promise
+        .then(function () {
+          $mdToast.show(
+            $mdToast.simple()
+              .position('bottom right')
+              .content('The details was saved successfully')
+              .hideDelay(6000)
+          );
+        })
+        .catch(function () {
+          $mdToast.show(
+            $mdToast.simple()
+              .position('bottom right')
+              .content('an unexpected error occurred')
+              .hideDelay(6000)
+          );
+        });
+    };
   });

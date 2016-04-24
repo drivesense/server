@@ -5,7 +5,7 @@ angular.module('drivesenseApp')
     var currentUser = {};
 
     if ($cookieStore.get('token')) {
-      currentUser = $users.get();
+      currentUser = $users.me();
     }
 
     return {
@@ -16,7 +16,7 @@ angular.module('drivesenseApp')
           })
           .then(function (data) {
             $cookieStore.put('token', data.data.token);
-            currentUser = $users.get();
+            currentUser = $users.me();
           })
           .catch(function () {
             this.logout();
@@ -32,7 +32,7 @@ angular.module('drivesenseApp')
         return $users.save(user,
           function (data) {
             $cookieStore.put('token', data.token);
-            currentUser = $users.get();
+            currentUser = $users.me();
           },
           function () {
             this.logout();

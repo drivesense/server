@@ -8,7 +8,7 @@
     <div layout="column" flex>
       <div layout="column" flex>
         <div class="nav-button" layout="row" layout-fill ng-repeat="item in navList">
-          <md-button ui-sref-active="md-raised" ui-sref="{{item.state}}" type="button" flex ng-click="toggleMenu()">
+          <md-button ui-sref-active="md-raised" ui-sref="{{item.state}}" type="button" class="flex" ng-click="toggleMenu()">
             <div layout="row" layout-align="center center">
               <i ng-class="item.iconClass"
                  flex="25"></i>
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="nav-button" layout="row" layout-fill>
-        <md-button ui-sref-active="md-raised" flex ng-click="logout()">
+        <md-button ui-sref-active="md-raised" class="flex" ng-click="logout()">
           <div layout="row" layout-align="center center">
             <i class="mdi mdi-duck mdi-24px" flex="25"></i>
             <span flex>Logout</span>

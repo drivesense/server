@@ -66,6 +66,7 @@ export function changePassword (req) {
 
           return Promise.reject(createError(403));
         })
+        .then(user => user.save())
         .then(_.noop);
     });
 }

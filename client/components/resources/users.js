@@ -11,67 +11,10 @@ angular.module('drivesenseApp')
           }
         },
 
-        forgotPassword: {
-          method: 'POST',
-          params: {
-            id: 'forgotPassword'
-          }
-        },
-
-        resetPassword: {
-          method: 'POST',
-          params: {
-            id: 'resetPassword'
-          }
-        },
-
-        validate: {
-          method: 'POST',
-          params: {
-            id: 'validate'
-          }
-        },
-
-        revalidate: {
-          method: 'POST',
-          params: {
-            controller: 'revalidate'
-          }
-        },
-
-        get: {
+        me: {
           method: 'GET',
           params: {
             id: 'me'
-          }
-        },
-
-        getAll: {
-          method: 'GET'
-        },
-
-        update: {
-          method: 'PUT'
-        },
-
-        changeAdmin: {
-          method: 'POST',
-          params: {
-            controller: 'changeAdmin'
-          }
-        },
-
-        addRole: {
-          method: 'POST',
-          params: {
-            controller: 'addRole'
-          }
-        },
-
-        removeRole: {
-          method: 'POST',
-          params: {
-            controller: 'removeRole'
           }
         }
       });
