@@ -4,5 +4,5 @@ import User from '../user/user.model';
 
 // Get list of users
 export function index() {
-  return User.find({type: 'teacher', manager: true});
+  return User.find({type: 'teacher', manager: true}).populate('school');
 }

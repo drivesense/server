@@ -1,3 +1,31 @@
-<div>
-  {{teachers}}
+<div flex layout="row" layout-align="center center">
+  <md-card>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span>
+          Teachers
+        </span>
+      </div>
+    </md-toolbar>
+    <md-table-container>
+      <table md-table>
+        <thead md-head>
+        <tr md-row>
+          <th md-column>First Name</th>
+          <th md-column>Last Name</th>
+          <th md-column>Email</th>
+          <th md-column>School</th>
+        </tr>
+        </thead>
+        <tbody md-body>
+        <tr md-row ng-repeat="teacher in teachers">
+          <td md-cell>{{teacher.name.first}}</td>
+          <td md-cell>{{teacher.name.last}}</td>
+          <td md-cell>{{teacher.email}}</td>
+          <td md-cell>{{teacher.school.name}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </md-table-container>
+  </md-card>
 </div>
