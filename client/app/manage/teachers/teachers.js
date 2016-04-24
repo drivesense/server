@@ -8,7 +8,7 @@ angular.module('drivesenseApp')
         templateUrl: 'app/manage/teachers/teachers.html',
         controller: 'Teachers',
         resolve: {
-          schools: function ($teachers) {
+          teachers: function ($teachers) {
             return $teachers.get().$promise;
           }
         }

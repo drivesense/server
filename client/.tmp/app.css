@@ -76,6 +76,13 @@ body,
 .login-card {
   width: 300px;
 }
+.tool-bar-wrapper .logo {
+  cursor: pointer;
+}
+.tool-bar-wrapper .logo .logo-img {
+  height: 40px;
+  width: 40px;
+}
 .side-menu .side-menu-content {
   height: 100%;
 }
@@ -85,11 +92,4 @@ body,
 .side-menu .side-menu-content .nav-button [type='button'] {
   padding: 15px 0;
   margin: 0;
-}
-.tool-bar-wrapper .logo {
-  cursor: pointer;
-}
-.tool-bar-wrapper .logo .logo-img {
-  height: 40px;
-  width: 40px;
 }

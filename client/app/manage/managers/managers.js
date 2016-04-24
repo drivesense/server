@@ -3,13 +3,13 @@
 angular.module('drivesenseApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('shell.schools', {
-        url: '/manage/schools',
-        templateUrl: 'app/manage/schools/schools.html',
-        controller: 'Schools',
+      .state('shell.managers', {
+        url: '/manage/managers',
+        templateUrl: 'app/manage/managers/managers.html',
+        controller: 'Managers',
         resolve: {
-          schools: function ($schools) {
-            return $schools.get().$promise;
+          managers: function ($managers) {
+            return $managers.get().$promise;
           }
         }
       });

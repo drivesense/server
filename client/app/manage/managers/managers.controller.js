@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .controller('Schools', function ($scope, schools) {
-    $scope.schools = schools;
+  .controller('Managers', function ($scope, managers) {
+    $scope.managers = managers;
   });
