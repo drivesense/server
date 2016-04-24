@@ -54,15 +54,15 @@ angular.module('drivesenseApp')
         return currentUser.hasOwnProperty('_id');
       },
 
-      isLoggedInAsync: function (cb) {
+      isLoggedInAsync: function () {
         if (currentUser.hasOwnProperty('$promise')) {
-          currentUser.$promise.then(function () {
-            cb(true);
+          return currentUser.$promise.then(function () {
+            return true;
           }).catch(function () {
-            cb(false);
+            return false
           });
         } else {
-          cb(currentUser.hasOwnProperty('_id'));
+          return $q.resolve(this.isLoggedIn());
         }
       },
 

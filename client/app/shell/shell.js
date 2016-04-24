@@ -5,6 +5,11 @@ angular.module('drivesenseApp')
     $stateProvider
       .state('shell', {
         abstract: true,
-        templateUrl: 'app/shell/shell.html'
+        templateUrl: 'app/shell/shell.html',
+        resolve: {
+          loggedIn: function (Auth) {
+            return Auth.isLoggedInAsync();
+          }
+        }
       });
   });
