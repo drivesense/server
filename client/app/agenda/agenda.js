@@ -6,6 +6,11 @@ angular.module('drivesenseApp')
       .state('shell.agenda', {
         url: '/agenda',
         controller: 'Agenda',
-        templateUrl: 'app/agenda/agenda.html'
+        templateUrl: 'app/agenda/agenda.html',
+        resolve: {
+          lessons: function ($lessons) {
+            return $lessons.query().$promise;
+          }
+        }
       });
   });
