@@ -48,20 +48,22 @@
           <div layout="column" layout-margin>
             <md-input-container class="md-accent" flex="50" layout-fill>
               <label>old password</label>
-              <input ng-model="oldPassword" type="text" required name="oldPassword">
+              <input ng-model="oldPassword" type="text" required name="oldPassword" minlength="8">
 
               <div ng-messages="userForm.oldPassword.$error"
                    ng-show="userForm.oldPassword.$invalid && userForm.oldPassword.$touched">
                 <div ng-message="required"><span>required</span></div>
+                <div ng-message="minlength"><span>min length is 8 digits</span></div>
               </div>
             </md-input-container>
             <md-input-container class="md-accent" flex="50" layout-fill>
               <label>new password</label>
-              <input ng-model="newPassword" type="text" required name="newPassword">
+              <input ng-model="newPassword" type="text" required name="newPassword" minlength="8">
 
               <div ng-messages="userForm.newPassword.$error"
                    ng-show="userForm.newPassword.$invalid && userForm.newPassword.$touched">
                 <div ng-message="required"><span>required</span></div>
+                <div ng-message="minlength"><span>min length is 8 digits</span></div>
               </div>
             </md-input-container>
             <div layout="row" layout-align="end end">
