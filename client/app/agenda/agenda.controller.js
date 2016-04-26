@@ -3,6 +3,8 @@
 angular.module('drivesenseApp')
   .controller('Agenda', function ($scope, Auth, lessons, moment) {
     $scope.userType = Auth.getCurrentUser().type;
+    $scope.selectedDay = 1;
+
     var groupBy = function (lessonsToGroup, by) {
       return _.groupBy(lessonsToGroup, function(lesson) {
         return moment(lesson.date).startOf(by);

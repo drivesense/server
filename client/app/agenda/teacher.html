@@ -1,5 +1,5 @@
-<md-tabs flex layout="column">
-  <md-tab ng-repeat="day in ::days" label="{{::getDay(day)}}" md-active="$index === 1" ng-init="hours = makeHours(day)">
+<md-tabs flex layout="column" md-enable-disconnect="true" md-selected="selectedDay">
+  <md-tab ng-repeat="day in ::days" label="{{::getDay(day)}}" md-on-select="hours = makeHours(day)">
     <md-card>
       <md-card-content>
         <div ng-repeat="hour in hours" ng-init="quarters = makeQuarters(hour)">
