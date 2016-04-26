@@ -9,6 +9,7 @@ import managerRoute from '../../api/manager';
 import schoolRoute from '../../api/school';
 import teacherRoute from '../../api/teacher';
 import lessonRoute from '../../api/lesson';
+import topicRoute from '../../api/topic';
 
 import authRoute from '../../auth';
 
@@ -20,6 +21,7 @@ export default app => {
   app.use('/api/schools', schoolRoute);
   app.use('/api/teachers', teacherRoute);
   app.use('/api/lessons', lessonRoute);
+  app.use('/api/topics', topicRoute);
 
   app.use('/auth', authRoute);
 

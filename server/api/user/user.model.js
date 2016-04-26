@@ -2,7 +2,6 @@
 
 import pify from 'pify';
 import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
 import emailAddress from 'email-address';
 import {createSeedModel} from 'mongoose-plugin-seed';
 import seed from './user.seed';
