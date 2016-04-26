@@ -1,7 +1,7 @@
 <md-card class="login-card">
   <md-subheader>
     <div layout="row" layout-align="center center">
-      <h2>Login</h2>
+      <span class="md-headline">Login</span>
     </div>
   </md-subheader>
     <form class="form" name="loginForm" layout-align="center center" layout-padding>
@@ -26,10 +26,11 @@
         </md-input-container>
     </div>
       <div layout="row" layout-align="space-around">
-        <md-button class="md-raised md-primary" type="submit" ng-click="login(loginForm)" ng-disabled="loginForm.$invalid">
+        <md-button ui-sref="exterior.signup">new user?</md-button>
+
+        <md-button class="md-raised md-accent" type="submit" ng-click="login(loginForm)" ng-disabled="loginForm.$invalid">
           <span>login</span>
         </md-button>
-        <md-button class="md-primary" ui-sref="exterior.signup">new user?</md-button>
       </div>
   </form>
 </md-card>

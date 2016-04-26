@@ -1,12 +1,21 @@
-<div ng-controller="SideMenu" layout="column" layout-fill>
-  <md-toolbar class="md-tall" layout="row" layout-fill layout-align="start end">
-    <h2 class="md-toolbar-tools" >
-      {{ loggedInUser.name.first }} {{ loggedInUser.name.last }}
-    </h2>
+<div ng-controller="SideMenu" layout="column" flex class="sidenav">
+  <md-toolbar class="md-tall md-hue-2" layout="row" layout-align="start end">
+    <div class="md-toolbar-tools">
+      <div class="user-image">
+        <i class="mdi mdi-account-circle" md-colors="{color: 'grey-A100-0.7'}" ng-hide="loggedInUser.image"></i>
+        <div class="img-wrapper" ng-show="loggedInUser.image">
+          <img src="../../../assets/images/tripleteLogo.png">
+        </div>
+      </div>
+      <h2>
+        {{ loggedInUser.name.first }} {{ loggedInUser.name.last }}
+      </h2>
+    </div>
   </md-toolbar>
   <div layout="column" flex>
     <md-list flex>
-      <md-list-item ng-repeat="item in navList" ui-sref-active="md-raised" ui-sref="{{item.state}}" ng-click="toggleMenu()">
+      <md-list-item ng-repeat="item in navList" ui-sref-active="md-raised" ui-sref="{{item.state}}"
+                    ng-click="toggleMenu()">
         <div layout="row" layout-align="center center">
           <i class="mdi mdi-{{item.iconClass}}"></i>
           <span>{{ item.text }}</span>
@@ -17,7 +26,7 @@
     <md-list>
       <md-list-item ng-click="logout()">
         <div layout="row" layout-align="center center">
-          <i class="mdi mdi-duck" flex="25"></i>
+          <i class="mdi mdi-logout" flex="25"></i>
           <span flex>Logout</span>
         </div>
       </md-list-item>

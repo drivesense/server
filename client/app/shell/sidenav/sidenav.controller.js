@@ -19,7 +19,7 @@ angular.module('drivesenseApp')
     }, {
       text: 'Students',
       state: 'shell.students',
-      iconClass: 'settings'
+      iconClass: 'account-multiple'
     }, {
       text: 'Schools',
       state: 'shell.schools',
@@ -35,7 +35,7 @@ angular.module('drivesenseApp')
     }, {
       text: 'Profile',
       state: 'shell.profile',
-      iconClass: 'settings'
+      iconClass: 'account'
     }];
 
     $scope.navList = _.filter(navList, function (item) {

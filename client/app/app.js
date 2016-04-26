@@ -20,7 +20,7 @@ angular.module('drivesenseApp', [
 
     $mdThemingProvider.theme('default')
       .primaryPalette('indigo')
-      .accentPalette('green');
+      .accentPalette('amber');
   })
   .factory('authInterceptor', function ($q, $cookieStore, $injector) {
     return {

@@ -1,3 +1,4 @@
-<div layout="column" layout-align="center center">
-  <span ng-repeat="lesson in lessons">{{lesson}}</span>
+<div layout="column" flex>
+  <ng-include ng-if="::userType === 'student'" src="'app/agenda/student.html'" flex layout="column"></ng-include>
+  <ng-include ng-if="::userType === 'teacher'" src="'app/agenda/teacher.html'" flex layout="column"></ng-include>
 </div>

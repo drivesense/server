@@ -1,5 +1,14 @@
-<div flex layout="column" layout-align="center center">
-  <md-card ng-repeat="student in students">
-    {{student}}
+<div flex layout="row" layout-align="center start" layout-wrap class="students">
+  <md-card ng-repeat="student in students" flex="20">
+    <div class="user-image" layout="row" layout-align="center">
+      <i class="mdi mdi-account-circle" md-colors="{color: 'grey-A200-0.5'}" ng-hide="student.image"></i>
+      <img ng-src="{{student.image}}" ng-show="student.image">
+    </div>
+    <md-card-title>
+      <md-card-title-text layout="column" layout-align="center center">
+        <span class="md-headline">{{student.name.first}} {{student.name.last}}</span>
+        <span class="md-subhead">{{student.email}}</span>
+      </md-card-title-text>
+    </md-card-title>
   </md-card>
 </div>

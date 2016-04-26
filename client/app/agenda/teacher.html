@@ -1,0 +1,21 @@
+<md-tabs flex layout="column" md-enable-disconnect="true">
+  <md-tab ng-repeat="day in days" label="{{::getDay(day)}}" md-active="$index == 1">
+    <md-card>
+      <md-card-content>
+        <div ng-repeat="hour in hours">
+          <div layout="row">
+            <span class="md-headline">{{hour | amDateFormat: 'HH:mm'}}</span>
+            <div layout="column" flex>
+              <div ng-repeat="quarter in [1, 2, 3, 4]" flex>
+                <md-card ng-repeat="lesson in lessons[day][hour][quarter] track by lesson._id">
+
+                </md-card>
+              </div>
+            </div>
+          </div>
+          <md-divider></md-divider>
+        </div>
+      </md-card-content>
+    </md-card>
+  </md-tab>
+</md-tabs>
