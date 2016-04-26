@@ -5,26 +5,7 @@ angular.module('drivesenseApp')
     $scope.userType = Auth.getCurrentUser().type;
     $scope.selectedDay = 1;
 
-    var groupBy = function (lessonsToGroup, by) {
-      return _.groupBy(lessonsToGroup, function(lesson) {
-        return moment(lesson.date).startOf(by);
-      })
-    };
-
-    var dayLessons = groupBy(lessons, 'day');
-    $scope.newLessons = _.mapValues(dayLessons, function (lessons) {
-      var byHours = groupBy(lessons, 'hour');
-
-      byHours =_.mapValues(byHours, function (temp2) {
-        return _.groupBy(temp2, function(lesson) {
-          return moment(lesson.date);
-        });
-      });
-
-      return byHours;
-    });
-
-    $scope.days = _.times(7, function(i) {
+    $scope.days = _.times(7, function (i) {
       return moment().startOf('day').add(-1 + i, 'day');
     });
 
@@ -45,9 +26,22 @@ angular.module('drivesenseApp')
         lastDay: '[Yesterday]',
         sameDay: '[Today]',
         nextDay: '[Tomorrow]',
-        nextWeek: 'dddd - DD/MM',
+        nextWeek: 'ddd - DD/MM',
         sameElse: 'DD/MM/YYYY'
       });
     };
 
+    var groupBy = function (lessonsToGroup, by) {
+      return _.groupBy(lessonsToGroup, function (lesson) {
+        return moment(lesson.date).startOf(by);
+      })
+    };
+
+    $scope.newLessons = _.mapValues(groupBy(lessons, 'day'), function (lessons) {
+      return _.mapValues(groupBy(lessons, 'hour'), function (lessonsInHour) {
+        return _.groupBy(lessonsInHour, function (lesson) {
+          return moment(lesson.date);
+        });
+      });
+    });
   });
