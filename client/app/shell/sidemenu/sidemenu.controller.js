@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .controller('SideMenu', function ($scope, $rootScope, $state, $mdSidenav, $mdDialog, Auth) {
+  .controller('SideMenu', function ($scope, $rootScope, $mdSidenav, $mdDialog, Auth, $state) {
     $scope.logout = function () {
       Auth.logout();
-      $state.go('exterior.login');
     };
 
     $scope.loggedInUser = Auth.getCurrentUser();

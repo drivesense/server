@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, $users, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $rootScope, $http, $users, $cookieStore, $q, $state) {
     var currentUser = {};
 
     if ($cookieStore.get('token')) {
@@ -26,6 +26,7 @@ angular.module('drivesenseApp')
       logout: function () {
         $cookieStore.remove('token');
         currentUser = {};
+        $state.go('exterior.login');
       },
 
       createUser: function (user) {

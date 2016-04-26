@@ -8,7 +8,7 @@ angular.module('drivesenseApp')
         templateUrl: 'app/shell/shell.html',
         resolve: {
           loggedIn: function (Auth) {
-            return Auth.isLoggedInAsync();
+            return Auth.getCurrentUser().$promise;
           }
         }
       });
