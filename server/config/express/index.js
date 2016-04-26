@@ -25,7 +25,6 @@ export default app => {
 
   if (env !== 'production') {
     app.use(morgan('dev'));
-    app.use(require('connect-livereload')());
   }
 
   routes(app);
