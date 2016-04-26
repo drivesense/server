@@ -67,6 +67,7 @@ export default class AppLeftNav extends React.Component {
     this.menuItems = [
       {route: '/', text: 'Home'},
       {route: '/agenda', text: 'Agenda'},
+      {route: '/profile', text: 'Profile'},
       {route: '/management/managers', text: 'Managers', role: 'admin'},
       {route: '/management/schools', text: 'Schools', role: 'admin'}
     ]
