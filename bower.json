@@ -15,5 +15,8 @@
     "angular-cookies": "^1.5.5",
     "angular-material-data-table": "^0.10.8",
     "angular-material": "1.1.0-rc4"
+  },
+  "resolutions": {
+    "angular": "^1.5.5"
   }
 }
