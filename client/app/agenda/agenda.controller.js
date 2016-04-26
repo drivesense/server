@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .controller('Agenda', function ($scope, Auth, lessons, moment) {
+  .controller('Agenda', function ($scope, Auth, lessons, moment, $mdDialog) {
     $scope.userType = Auth.getCurrentUser().type;
     $scope.selectedDay = 1;
 
@@ -44,4 +44,8 @@ angular.module('drivesenseApp')
         });
       });
     });
+
+    $scope.addNewLesson = function (time) {
+      //$mdDialog.show()
+    }
   });

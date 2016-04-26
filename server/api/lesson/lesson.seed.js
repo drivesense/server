@@ -15,12 +15,18 @@ export default {
         teacher: users[users.length - ((j + 1) * 4)],
         // date: Date.now() + i * (3 + s) * 1000 * 60 * 60 * 24,
         date: moment().add((s + 3) * i, 'days').startOf('hour').add((i % 4) * 15, 'minutes'),
-        duration: 30 + (i % 3) * 15,
+        duration: 45 + (i % 3) * 15,
         progress: [{
           topic: topics[i % 2],
           grade: i + 1
         }]
-      }));
-    }));
+      }))
+    })).concat({
+      comment: 'This is a comments used to describe more about the lesson itself.\nIt can also be multiple lines',
+      student: users[0],
+      teacher: users[users.length - ((j + 1) * 4)],
+      date: moment().startOf('hour').add(15, 'minutes'),
+      duration: 60
+    });
   }))
 };
