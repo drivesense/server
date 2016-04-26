@@ -1,9 +1,12 @@
 'use strict';
 
 import mongoose from 'mongoose';
+import _ from 'lodash';
 import {createSeedModel} from 'mongoose-plugin-seed';
 import seed from './lesson.seed';
 const Schema = mongoose.Schema;
+
+const durations = _.times(7, i => 30 + i * 15);
 
 const LessonSchema = new Schema({
   student: {
@@ -18,6 +21,11 @@ const LessonSchema = new Schema({
   },
   date: {
     type: Date,
+    required: true
+  },
+  duration: {
+    type: Number,
+    enum: durations,
     required: true
   },
   comment: String,
