@@ -61,25 +61,27 @@ angular.module('drivesenseApp', [
       next.data = next.data || {};
 
       if (!next.data.loginNotRequired) {
-        Auth.isLoggedInAsync(function (loggedIn) {
-          if (loggedIn) {
-            if (next.data.requiredRole && !Auth.hasRole(next.data.requiredRole)) {
+        Auth.isLoggedInAsync()
+          .then(function (loggedIn) {
+            if (loggedIn) {
+              if (next.data.requiredRole && !Auth.hasRole(next.data.requiredRole)) {
+                event.preventDefault();
+                $state.go('shell.home');
+              }
+            } else {
+              event.preventDefault();
+              $state.go('exterior.login');
+            }
+          });
+      }
+      else if (next.data.loggedInForbidden) {
+        Auth.isLoggedInAsync()
+          .then(function (loggedIn) {
+            if (loggedIn) {
               event.preventDefault();
               $state.go('shell.home');
             }
-          } else {
-            event.preventDefault();
-            $state.go('exterior.login');
-          }
-        });
-      }
-      else if (next.data.loggedInForbidden) {
-        Auth.isLoggedInAsync(function (loggedIn) {
-          if (loggedIn) {
-            event.preventDefault();
-            $state.go('shell.home');
-          }
-        });
+          });
       }
     });
   });
