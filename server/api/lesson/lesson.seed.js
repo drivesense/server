@@ -13,7 +13,7 @@ export default {
         student: users[users.length - 1 - (j * 4 + s)],
         teacher: users[users.length - ((j + 1) * 4)],
         date: Date.now() + i * (3 + s) * 1000 * 60 * 60 * 24,
-        topics: [{
+        progress: [{
           topic: topics[i % 2],
           grade: i + 1
         }]

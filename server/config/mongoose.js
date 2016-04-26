@@ -6,7 +6,7 @@ import {seed} from 'mongoose-plugin-seed';
 export default mongoose => {
   mongoose.Promise = Promise;
 
-  if (process.env.SEED_DB) {
+  if (process.env.SEED_DB === 'true') {
     seed(mongoose)
       .then(() => {
         logger.info('Finished populating database.');

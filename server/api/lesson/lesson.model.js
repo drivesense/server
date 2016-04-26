@@ -21,7 +21,7 @@ const LessonSchema = new Schema({
     required: true
   },
   comment: String,
-  topics: [{
+  progress: [{
     topic: {
       type: Schema.Types.ObjectId,
       ref: 'Topic',
