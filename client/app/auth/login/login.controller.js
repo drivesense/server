@@ -2,7 +2,7 @@
 
 angular.module('drivesenseApp')
   .controller('Login', function ($scope, $window, $state, $mdToast, Auth) {
-    $scope.user = {password:'12345678'}; // TODO: delete password
+    $scope.user = {password: '12345678'}; // TODO: delete password
     $scope.errors = {};
     $scope.submitted = false;
 
@@ -20,9 +20,9 @@ angular.module('drivesenseApp')
 
       if (form.$valid) {
         Auth.login({
-          email: $scope.user.email,
-          password: $scope.user.password
-        })
+            email: $scope.user.email,
+            password: $scope.user.password
+          })
           .then(function () {
             // Logged in, redirect to home
             $state.go('shell.home');
