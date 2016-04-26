@@ -11,31 +11,31 @@ angular.module('drivesenseApp')
     var navList = [{
       text: 'Home',
       state: 'shell.home',
-      iconClass: 'mdi mdi-home mdi-24px'
+      iconClass: 'home'
     },{
-      text: 'agenda',
+      text: 'Agenda',
       state: 'shell.agenda',
-      iconClass: 'mdi mdi-calendar mdi-24px'
+      iconClass: 'calendar'
     }, {
       text: 'Students',
       state: 'shell.students',
-      iconClass: 'mdi mdi-settings mdi-24px'
+      iconClass: 'settings'
     }, {
       text: 'Schools',
       state: 'shell.schools',
-      iconClass: 'mdi mdi-settings mdi-24px'
+      iconClass: 'settings'
     }, {
       text: 'Managers',
       state: 'shell.managers',
-      iconClass: 'mdi mdi-settings mdi-24px'
+      iconClass: 'settings'
     }, {
       text: 'Teachers',
       state: 'shell.teachers',
-      iconClass: 'mdi mdi-settings mdi-24px'
+      iconClass: 'settings'
     }, {
       text: 'Profile',
       state: 'shell.profile',
-      iconClass: 'mdi mdi-settings mdi-24px'
+      iconClass: 'settings'
     }];
 
     $scope.navList = _.filter(navList, function (item) {

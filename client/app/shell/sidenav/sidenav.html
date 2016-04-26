@@ -1,0 +1,26 @@
+<div ng-controller="SideMenu" layout="column" layout-fill>
+  <md-toolbar class="md-tall" layout="row" layout-fill layout-align="start end">
+    <h2 class="md-toolbar-tools" >
+      {{ loggedInUser.name.first }} {{ loggedInUser.name.last }}
+    </h2>
+  </md-toolbar>
+  <div layout="column" flex>
+    <md-list flex>
+      <md-list-item ng-repeat="item in navList" ui-sref-active="md-raised" ui-sref="{{item.state}}" ng-click="toggleMenu()">
+        <div layout="row" layout-align="center center">
+          <i class="mdi mdi-{{item.iconClass}}"></i>
+          <span>{{ item.text }}</span>
+        </div>
+      </md-list-item>
+    </md-list>
+    <md-divider></md-divider>
+    <md-list>
+      <md-list-item ng-click="logout()">
+        <div layout="row" layout-align="center center">
+          <i class="mdi mdi-duck" flex="25"></i>
+          <span flex>Logout</span>
+        </div>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>

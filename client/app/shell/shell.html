@@ -1,9 +1,7 @@
-<md-toolbar class="tool-bar-wrapper md-primary md-hue-2 md-whiteframe-z1"
+<md-toolbar class="md-primary md-whiteframe-4dp"
             ng-include="'app/shell/toolbar/toolbar.html'"></md-toolbar>
-<md-content layout="row" flex>
-  <md-sidenav class="md-sidenav-left md-whiteframe-z2 side-menu" md-component-id="sideNav"
-              ng-include="'app/shell/sidemenu/sidemenu.html'"></md-sidenav>
-  <md-content flex layout="column" layout-margin>
-    <div ui-view layout-align="center"></div>
-  </md-content>
+<md-content layout="row" flex md-colors="{ background: 'grey-100'}">
+  <md-sidenav class="md-sidenav-left md-whiteframe-7dp side-menu" md-component-id="sideNav"
+              ng-include="'app/shell/sidenav/sidenav.html'"></md-sidenav>
+  <div ui-view flex layout="column"></div>
 </md-content>

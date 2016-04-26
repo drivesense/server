@@ -19,14 +19,8 @@ angular.module('drivesenseApp', [
     $httpProvider.interceptors.push('authInterceptor');
 
     $mdThemingProvider.theme('default')
-      .primaryPalette('light-green', {
-        'default': '400',
-        'hue-1': '100',
-        'hue-2': '500'
-      })
-      .accentPalette('grey', {
-        'default': '800'
-      });
+      .primaryPalette('indigo')
+      .accentPalette('green');
   })
   .factory('authInterceptor', function ($q, $cookieStore, $injector) {
     return {
