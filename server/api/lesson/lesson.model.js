@@ -19,7 +19,21 @@ const LessonSchema = new Schema({
   date: {
     type: Date,
     required: true
-  }
+  },
+  comment: String,
+  topics: [{
+    topic: {
+      type: Schema.Types.ObjectId,
+      ref: 'Topic',
+      required: true
+    },
+    grade: {
+      type: Number,
+      min: 1,
+      max: 10,
+      required: true
+    }
+  }]
 });
 
 export default createSeedModel('Lesson', LessonSchema, seed);
