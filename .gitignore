@@ -8,3 +8,4 @@ coverage
 webpack-assets.json
 npm-debug.log
 client/bower_components
+client/.tmp
