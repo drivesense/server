@@ -2,7 +2,7 @@
 
 angular.module('drivesenseApp')
   .controller('Login', function ($scope, $window, $state, $mdToast, Auth) {
-    $scope.user = {};
+    $scope.user = {password:'12345678'}; // TODO: delete password
     $scope.errors = {};
     $scope.submitted = false;
 
