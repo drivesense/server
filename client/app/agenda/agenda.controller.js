@@ -11,7 +11,7 @@ angular.module('drivesenseApp')
 
     $scope.addNewLesson = function (ev, time) {
       $mdDialog.show({
-        controller: 'newLessonDialog',
+        controller: 'NewLessonDialog',
         templateUrl: '/app/agenda/new-lesson/new-lesson.html',
         locals: {
           time: time
@@ -19,6 +19,11 @@ angular.module('drivesenseApp')
         targetEvent: ev,
         clickOutsideToClose: true
       })
+        .then(function (newLessons) {
+          lessons = lessons.concat(newLessons);
+          lessons = _.sortBy(lessons, 'date');
+          $scope.schedule.load(lessons);
+        });
     };
 
   });

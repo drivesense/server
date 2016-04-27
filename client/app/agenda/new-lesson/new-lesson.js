@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .controller('newLessonDialog', function ($scope, time, Auth, $lessons, $students, $mdDialog) {
+  .controller('NewLessonDialog', function ($scope, time, Auth, $lessons, $students, $mdDialog, $q) {
     $scope.students = [];
     time = time || new moment().startOf('hour');
-
-    var teacher = Auth.getCurrentUser();
 
     $scope.loadStudents = function (query) {
       return $students.query().$promise
@@ -18,16 +16,18 @@ angular.module('drivesenseApp')
     };
 
     $scope.time = time.toDate();
+    $scope.duration = 45;
 
-    $scope.duration = 30;
     $scope.save = function () {
-      $lessons.save({
-        students: $scope.students,
-        duration: $scope.duration,
-        date: $scope.time
-      }).$promise
-        .then(function () {
-          $mdDialog.hide()
-        })
+      $q.all(_.map($scope.students, function (student) {
+          return $lessons.save({
+            student: student._id,
+            duration: $scope.duration,
+            date: $scope.time
+          }).$promise
+        }))
+        .then(function (results) {
+          $mdDialog.hide(results);
+        });
     }
   });

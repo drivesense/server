@@ -14,7 +14,7 @@ angular.module('drivesenseApp')
         theme: '@'
       },
       link: function (scope, elem) {
-        elem.css('left', (258 * scope.index) + 'px');
+        elem.css('left', (182 * scope.index) + 'px');
         elem.css('height', (scope.duration / 15 * 100) + '%');
       }
     }
