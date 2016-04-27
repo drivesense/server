@@ -8,7 +8,8 @@ angular.module('drivesenseApp')
       replace: true,
       scope: {
         api: '=',
-        onLoad: '='
+        onLoad: '=',
+        addNewLesson: '&'
       },
       link: function (scope) {
         var groupBy = function (lessonsToGroup, by) {

@@ -3,7 +3,7 @@
 angular.module('drivesenseApp')
   .controller('newLessonDialog', function ($scope, time, Auth, $lessons, $students, $mdDialog) {
     $scope.students = [];
-    time = time || new moment();
+    time = time || new moment().startOf('hour');
 
     var teacher = Auth.getCurrentUser();
 
