@@ -1,8 +1,5 @@
 'use strict';
 
-/**
- * Updates the title with data from the state
- */
 angular.module('drivesenseApp')
   .directive('updateTitle', function ($rootScope, $timeout) {
     return {

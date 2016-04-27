@@ -3,7 +3,7 @@
     <md-tab ng-repeat="day in ::days" label="{{::getDay(day)}}" md-on-select="hours = makeHours(day)">
       <md-card>
         <md-card-content>
-          <div ng-repeat="hour in hours" ng-init="quarters = makeQuarters(hdownour)">
+          <div ng-repeat="hour in hours" ng-init="quarters = makeQuarters(hour)">
             <div layout="row" class="hour">
               <div layout="column" layout-align="center center">
                 <span class="md-headline">{{hour | amDateFormat: 'HH:mm'}}</span>
@@ -24,9 +24,7 @@
     </md-tab>
   </md-tabs>
   <div layout="column" flex>
-    <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options" control="map.control"
-                        flex="30" layout="column">
-    </ui-gmap-google-map>
+    <drivesense-map layout="column" flex="30" api="map"></drivesense-map>
     <div flex>
       Lesson info
     </div>

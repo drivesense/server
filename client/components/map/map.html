@@ -1,0 +1,9 @@
+<div flex>
+  <ui-gmap-google-map center="map.center" zoom="map.zoom" options="map.options" control="map.control" layout="column" flex>
+    <ui-gmap-marker ng-if="map.location" coords="map.location.coords" idKey="'location'" options="map.location.options">
+      <ui-gmap-marker-label>
+        Own
+      </ui-gmap-marker-label>
+    </ui-gmap-marker>
+  </ui-gmap-google-map>
+</div>
