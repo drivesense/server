@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .directive('drivesenseSchedule', function (moment) {
+  .directive('drivesenseSchedule', function (moment, $mdColorPalette) {
     return {
       restrict: 'E',
       templateUrl: 'components/schedule/schedule.html',
@@ -10,7 +10,7 @@ angular.module('drivesenseApp')
         api: '=',
         onLoad: '='
       },
-      link: function (scope, element) {
+      link: function (scope) {
         var groupBy = function (lessonsToGroup, by) {
           return _.groupBy(lessonsToGroup, function (lesson) {
             return moment(lesson.date).startOf(by);
@@ -30,6 +30,27 @@ angular.module('drivesenseApp')
               lesson.index++;
             }
           });
+        };
+
+        var buildTheme = function (lesson) {
+          var palettes = Object.keys($mdColorPalette);
+          var hues = Object.keys($mdColorPalette[palettes[0]]).filter(function (hue) {
+            return !hue.startsWith('A');
+          });
+
+          var hashCode = function(str) {
+            var hash = 0, i, chr, len;
+            if (str.length === 0) return hash;
+            for (i = 0, len = str.length; i < len; i++) {
+              chr   = str.charCodeAt(i);
+              hash  = ((hash << 5) - hash) + chr;
+              hash |= 0; // Convert to 32bit integer
+            }
+            return Math.abs(hash);
+          };
+
+          var hash = hashCode(lesson.student._id);
+          lesson.theme = palettes[hash % palettes.length] + '-' + hues[hash % hues.length] + '-0.7';
         };
 
         scope.selectedDay = 1;
@@ -71,6 +92,7 @@ angular.module('drivesenseApp')
 
           _.forEach(lessons, function (lesson) {
             buildIndex(lessons, lesson);
+            buildTheme(lesson);
           });
         };
 

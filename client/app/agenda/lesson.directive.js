@@ -6,11 +6,12 @@ angular.module('drivesenseApp')
       restrict: 'E',
       replace: true,
       transclude: true,
-      template: `<md-card class="lesson" md-colors="{background: 'accent-700-0.5'}" ng-transclude>                  
+      template: `<md-card class="lesson" md-colors="{background: ::theme}" ng-transclude>                  
                 </md-card>`,
       scope: {
         duration: '=',
-        index: '@'
+        index: '@',
+        theme: '@'
       },
       link: function (scope, elem) {
         elem.css('left', (258 * scope.index) + 'px');
