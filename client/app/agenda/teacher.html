@@ -1,28 +1,5 @@
 <div layout="row" flex>
-  <md-tabs layout="column" md-enable-disconnect="true" md-selected="selectedDay" class="teacher" flex="60">
-    <md-tab ng-repeat="day in ::days" label="{{::getDay(day)}}" md-on-select="hours = makeHours(day)">
-      <md-card>
-        <md-card-content>
-          <div ng-repeat="hour in hours" ng-init="quarters = makeQuarters(hour)">
-            <div layout="row" class="hour">
-              <div layout="column" layout-align="center center">
-                <span class="md-headline">{{hour | amDateFormat: 'HH:mm'}}</span>
-              </div>
-              <div layout="column" flex>
-                <div class="quarter" ng-repeat="quarter in quarters" flex layout="row" ng-click="addNewLesson($event, quarter)">
-                  <lesson duration="lesson.duration" index="{{lesson.index}}"
-                          ng-repeat="lesson in newLessons[day.toString()][hour.toString()][quarter.toString()]">
-                    <span class="md-subhead">{{lesson.student.name.first}} {{lesson.student.name.last}}</span>
-                  </lesson>
-                </div>
-              </div>
-            </div>
-            <md-divider></md-divider>
-          </div>
-        </md-card-content>
-      </md-card>
-    </md-tab>
-  </md-tabs>
+  <drivesense-schedule layout="column" flex="60" api="schedule" on-load="onLoad"></drivesense-schedule>
   <div layout="column" flex>
     <drivesense-map layout="column" flex="30" api="map"></drivesense-map>
     <div flex>
