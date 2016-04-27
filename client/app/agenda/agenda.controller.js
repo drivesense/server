@@ -60,9 +60,17 @@ angular.module('drivesenseApp')
       });
     });
 
-    $scope.addNewLesson = function (time) {
-      //$mdDialog.show()
-    };
-
+    $scope.addNewLesson = function (ev, time) {
+      $mdDialog.show({
+        controller: 'newLessonDialog',
+        templateUrl: '/app/agenda/new-lesson/new-lesson.html',
+        locals: {
+          time: time
+        },
+        targetEvent: ev,
+        clickOutsideToClose: true
+      })
+    }
+    
     _.forEach(lessons, $scope.buildIndex);
   });
