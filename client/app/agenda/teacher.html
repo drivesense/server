@@ -9,7 +9,7 @@
             </div>
             <div layout="column" flex>
               <div class="quarter" ng-repeat="quarter in quarters" flex layout="row">
-                <lesson duration="lesson.duration" index="{{$index}}"
+                <lesson duration="lesson.duration" index="{{lesson.index}}"
                         ng-repeat="lesson in newLessons[day.toString()][hour.toString()][quarter.toString()]">
                   <span class="md-subhead">{{lesson.student.name.first}} {{lesson.student.name.last}}</span>
                 </lesson>

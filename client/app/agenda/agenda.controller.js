@@ -31,6 +31,21 @@ angular.module('drivesenseApp')
       });
     };
 
+    $scope.buildIndex = function (lesson) {
+      lesson.index = 0;
+
+      _.forEach(lessons, function (otherLesson) {
+        if (lesson._id === otherLesson._id) {
+          return false;
+        }
+
+        if (moment(lesson.date).isBetween(moment(otherLesson.date), moment(otherLesson.date).add(otherLesson.duration, 'minutes'), null, '[)')
+          && otherLesson.index <= lesson.index) {
+          lesson.index++;
+        }
+      });
+    };
+
     var groupBy = function (lessonsToGroup, by) {
       return _.groupBy(lessonsToGroup, function (lesson) {
         return moment(lesson.date).startOf(by);
@@ -47,5 +62,7 @@ angular.module('drivesenseApp')
 
     $scope.addNewLesson = function (time) {
       //$mdDialog.show()
-    }
+    };
+
+    _.forEach(lessons, $scope.buildIndex);
   });

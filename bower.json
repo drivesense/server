@@ -6,7 +6,7 @@
     "mdi": "^1.5.54",
     "angular-socket-io": "^0.7.0",
     "angular-ui-router": "^0.2.18",
-    "angular-moment": "^0.10.3",
+    "angular-moment": "^1.0.0-beta.6",
     "angular-sanitize": "^1.5.5",
     "lodash": "^4.11.2",
     "angular-hamburglar": "~0.1.1",

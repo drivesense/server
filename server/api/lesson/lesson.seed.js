@@ -9,24 +9,17 @@ export default {
   dependencies: [User, Topic],
   seed: (users, topics) => _.flatten(_.times(2, j => {
     return _.flatten(_.times(3, s => {
-      return _.times(10, i => ({
+      return _.times(30, i => ({
         comment: 'This is a comments used to describe more about the lesson itself.\nIt can also be multiple lines',
         student: users[users.length - 1 - (j * 4 + s)],
         teacher: users[users.length - ((j + 1) * 4)],
-        // date: Date.now() + i * (3 + s) * 1000 * 60 * 60 * 24,
-        date: moment().add((s + 3) * i, 'days').startOf('hour').add((i % 4) * 15, 'minutes'),
+        date: moment().startOf('day').add((i % 3), 'days').add(((i + s) % 14) + 6, 'hours').add((i % 8) * 15, 'minutes'),
         duration: 45 + (i % 3) * 15,
         progress: [{
           topic: topics[i % 2],
-          grade: i + 1
+          grade: 10
         }]
       }))
-    })).concat({
-      comment: 'This is a comments used to describe more about the lesson itself.\nIt can also be multiple lines',
-      student: users[0],
-      teacher: users[users.length - ((j + 1) * 4)],
-      date: moment().startOf('hour').add(15, 'minutes'),
-      duration: 60
-    });
+    }));
   }))
 };
