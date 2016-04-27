@@ -72,5 +72,18 @@ angular.module('drivesenseApp')
       })
     }
     
+    $scope.map = {
+      center: {
+        latitude: 31,
+        longitude: 34
+      },
+      zoom: 8,
+      markers: [],
+      control: {},
+      options: {
+        scrollwheel: true
+      }
+    };
+
     _.forEach(lessons, $scope.buildIndex);
   });

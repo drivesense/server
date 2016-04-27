@@ -9,7 +9,8 @@ angular.module('drivesenseApp', [
     'ngMaterial',
     'angular-hamburglar',
     'ngMessages',
-    'md.data.table'
+    'md.data.table',
+    'uiGmapgoogle-maps'
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
     $urlRouterProvider
