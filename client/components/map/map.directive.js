@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .directive('drivesenseMap', function ($timeout) {
+  .directive('dsMap', function ($timeout) {
     return {
       restrict: 'E',
       templateUrl: 'components/map/map.html',

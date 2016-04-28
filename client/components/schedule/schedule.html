@@ -1,4 +1,4 @@
-<div layout="column" flex>
+<div layout="column" flex class="schedule">
   <md-tabs layout="column" md-enable-disconnect="true" md-selected="selectedDay" class="teacher" flex>
     <md-tab ng-repeat="day in ::days" label="{{::getDay(day)}}" md-on-select="hours = makeHours(day)">
       <md-card>
@@ -9,12 +9,13 @@
                 <span class="md-headline">{{hour | amDateFormat: 'HH:mm'}}</span>
               </div>
               <div layout="column" flex>
-                <div class="quarter" ng-repeat="quarter in quarters" flex layout="row"
+                <div class="quarter" ng-repeat="quarter in quarters" flex layout="row" md-ink-ripple
                      ng-click="addNewLesson()($event, quarter)">
-                  <lesson duration="lesson.duration" index="{{lesson.index}}" theme="{{lesson.theme}}"
+                  <ds-timeline ng-if="currentTime(hour, quarter)" leftover="{{now.minutes() % quarter.minutes()}}"></ds-timeline>
+                  <ds-lesson duration="lesson.duration" index="{{lesson.index}}" theme="{{lesson.theme}}" ng-click="selectLesson($event, lesson)"
                           ng-repeat="lesson in newLessons[day.toString()][hour.toString()][quarter.toString()]">
                     <span class="md-subhead">{{lesson.student.name.first}} {{lesson.student.name.last}}</span>
-                  </lesson>
+                  </ds-lesson>
                 </div>
               </div>
             </div>

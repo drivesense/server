@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .directive('drivesenseSchedule', function (moment, $mdColorPalette) {
+  .directive('dsSchedule', function (moment, $mdColorPalette, $interval) {
     return {
       restrict: 'E',
       templateUrl: 'components/schedule/schedule.html',
@@ -9,7 +9,8 @@ angular.module('drivesenseApp')
       scope: {
         api: '=',
         onLoad: '=',
-        addNewLesson: '&'
+        addNewLesson: '&',
+        lessonDetails: '&'
       },
       link: function (scope) {
         var groupBy = function (lessonsToGroup, by) {
@@ -98,6 +99,23 @@ angular.module('drivesenseApp')
         };
 
         scope.onLoad();
+
+        scope.selectLesson = function (ev, lesson) {
+          ev.stopPropagation();
+          ev.preventDefault();
+
+          scope.lessonDetails()(lesson);
+        };
+
+        scope.now = new moment();
+        
+        $interval(function () {
+          scope.now = new moment();
+        }, 1000);
+
+        scope.currentTime = function (hour, quarter) {
+          return hour.hour() == scope.now.hour() && Math.floor(quarter.minutes() / 15) == Math.floor(scope.now.minutes() / 15);
+        }
       }
     };
   });

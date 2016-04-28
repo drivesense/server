@@ -45,4 +45,7 @@ angular.module('drivesenseApp')
           $scope.schedule.load(lessons);
         });
     };
+    $scope.selectLesson = function (lesson) {
+      // $scope.selectedLesson = lesson;
+    }
   });

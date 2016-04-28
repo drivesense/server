@@ -1,7 +1,7 @@
 <div layout="row" flex>
-  <drivesense-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new-lesson="addNewLesson"></drivesense-schedule>
+  <ds-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new-lesson="addNewLesson" lesson-details="selectLesson"></ds-schedule>
   <div layout="column" flex>
-    <drivesense-map layout="column" flex="30" api="map"></drivesense-map>
+    <ds-map layout="column" flex api="map"></ds-map>
     <div flex>
       Last Lessons
       <div ng-repeat="lesson in lastLessons">
