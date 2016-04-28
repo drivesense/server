@@ -7,6 +7,26 @@ angular.module('drivesenseApp')
 
     $scope.onLoad = function () {
       $scope.schedule.load(lessons);
+      $scope.updateInfo();
+    };
+
+    $scope.updateInfo = function () {
+      var now = moment().startOf('day').add(16, 'hours').add(30, 'minutes');
+      var nextLessonsTime = moment(_.find(lessons, function (lesson) {
+        return moment(lesson.date).isAfter(now);
+      }).date);
+
+      $scope.currentLessons = _.filter(lessons, function (lesson) {
+        return now.isBetween(moment(lesson.date), moment(lesson.date).add(lesson.duration, 'minutes'), null, '[)');
+      });
+
+      $scope.lastLessons = _.filter(lessons, function (lesson) {
+        return moment(lesson.date).add(lesson.duration, 'minutes').isBetween(moment(now).subtract(10, 'minutes'), now, null, '[]');
+      });
+
+      $scope.nextLessons = _.filter(lessons, function (lesson) {
+        return nextLessonsTime.isSame(moment(lesson.date));
+      });
     };
 
     $scope.addNewLesson = function (ev, time) {
@@ -25,5 +45,4 @@ angular.module('drivesenseApp')
           $scope.schedule.load(lessons);
         });
     };
-
   });
