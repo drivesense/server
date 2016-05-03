@@ -1,5 +1,3 @@
-'use strict';
-
 import pify from 'pify';
 import mongoose from 'mongoose';
 import emailAddress from 'email-address';

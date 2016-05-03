@@ -1,5 +1,3 @@
-'use strict';
-
 import mongoose from 'mongoose';
 import {createSeedModel} from 'mongoose-plugin-seed';
 import seed from './topic.seed';

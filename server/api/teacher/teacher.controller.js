@@ -1,8 +1,6 @@
-'use strict';
-
 import User from '../user/user.model';
 
 // Get list of users
-export function index() {
+export function index () {
   return User.find({type: 'teacher'}).populate('school');
 }

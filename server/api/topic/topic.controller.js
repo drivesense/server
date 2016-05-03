@@ -1,8 +1,6 @@
-'use strict';
-
 import Topic from './topic.model';
 
 // Get list of users
-export function index() {
+export function index () {
   return Topic.find({});
 }

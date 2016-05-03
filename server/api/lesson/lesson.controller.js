@@ -1,18 +1,16 @@
-'use strict';
-
 import Lesson from './lesson.model';
 import createError from 'http-errors';
 import _ from 'lodash';
 
 const errorIfEmpty = result => result || Promise.reject(createError(404));
 
-export function index(req) {
+export function index (req) {
   return Lesson.find({$or: [{student: req.user._id}, {teacher: req.user._id}]})
     .sort('date')
     .populate('student teacher');
 }
 
-export function create(req) {
+export function create (req) {
   const lesson = _.pick(req.body, ['date', 'duration', 'comment', 'student']);
 
   lesson.teacher = req.user._id;

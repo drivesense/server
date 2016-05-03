@@ -1,5 +1,3 @@
-'use strict';
-
 import passport from 'passport';
 import {signToken} from '../auth.service';
 

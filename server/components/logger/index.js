@@ -1,5 +1,3 @@
-'use strict';
-
 import bunyan from 'bunyan';
 import format from 'bunyan-format';
 

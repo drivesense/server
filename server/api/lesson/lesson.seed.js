@@ -1,5 +1,3 @@
-'use strict';
-
 import User from '../user/user.model';
 import Topic from '../topic/topic.model';
 import _ from 'lodash';
@@ -19,7 +17,7 @@ export default {
           topic: topics[i % 2],
           grade: 10
         }]
-      }))
+      }));
     }));
   }))
 };

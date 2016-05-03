@@ -1,5 +1,3 @@
-'use strict';
-
 import School from '../school/school.model';
 
 export default {

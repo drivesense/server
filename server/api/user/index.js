@@ -1,5 +1,3 @@
-'use strict';
-
 import {AsyncRouter} from 'express-async-router';
 import * as controller from './user.controller';
 import {isAuthenticated} from '../../auth/auth.service';

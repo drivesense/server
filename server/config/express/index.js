@@ -1,5 +1,3 @@
-'use strict';
-
 import {resolve, normalize, join} from 'path';
 import morgan from 'morgan';
 import compression from 'compression';

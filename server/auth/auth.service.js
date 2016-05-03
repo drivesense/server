@@ -11,7 +11,7 @@ const validateJwt = pify(expressJwt({secret: process.env.SESSION_SECRET}));
  *
  * @returns {Function} middleware
  */
-export function isAuthenticated() {
+export function isAuthenticated () {
   return (req, res) => {
     // Allow access_token to be passed through query parameter as well
     if (req.query && req.query.hasOwnProperty('access_token')) {
@@ -32,7 +32,7 @@ export function isAuthenticated() {
   };
 }
 
-export function hasRole(role) {
+export function hasRole (role) {
   return (req, res) => {
     return isAuthenticated()(req, res)
       .then(() => {
@@ -44,7 +44,7 @@ export function hasRole(role) {
   };
 }
 
-export function fillAuthorizationHeaderFromCookie() {
+export function fillAuthorizationHeaderFromCookie () {
   return req => {
     if (req.cookies && req.cookies.token) {
       // Allow access_token to be passed through the token cookie as well
@@ -63,8 +63,8 @@ export function fillAuthorizationHeaderFromCookie() {
  * @param {ObjectId} id the user id to keep in the jwt
  * @returns {String} signed jwt token
  */
-export function signToken(id) {
-  return jwt.sign({_id: id}, process.env.SESSION_SECRET, {expiresIn: "7d"});
+export function signToken (id) {
+  return jwt.sign({_id: id}, process.env.SESSION_SECRET, {expiresIn: '7d'});
 }
 
 /**
@@ -73,7 +73,7 @@ export function signToken(id) {
  * @param {Object} req the express request object
  * @param {Object} res the express response object
  */
-export function setTokenCookie(req, res) {
+export function setTokenCookie (req, res) {
   if (!req.user) {
     res.status(404).json({message: 'something went wrong, try again'});
     return;

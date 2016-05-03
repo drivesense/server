@@ -1,5 +1,3 @@
-'use strict';
-
 import User from './user.model';
 import createError from 'http-errors';
 import {signToken} from '../../auth/auth.service';

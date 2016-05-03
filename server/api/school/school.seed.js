@@ -1,5 +1,3 @@
-'use strict';
-
 export default {
   seed: () => [{
     name: 'College of Management',

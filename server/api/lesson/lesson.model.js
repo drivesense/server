@@ -1,5 +1,3 @@
-'use strict';
-
 import mongoose from 'mongoose';
 import _ from 'lodash';
 import {createSeedModel} from 'mongoose-plugin-seed';

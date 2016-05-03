@@ -1,5 +1,3 @@
-'use strict';
-
 import School from './school.model';
 import createError from 'http-errors';
 import _ from 'lodash';

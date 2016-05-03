@@ -1,5 +1,3 @@
-'use strict';
-
 import 'dotenv/config';
 import mongoose from 'mongoose';
 import mongooseConfig from './config/mongoose';

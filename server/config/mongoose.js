@@ -1,5 +1,3 @@
-'use strict';
-
 import logger from '../components/logger';
 import {seed} from 'mongoose-plugin-seed';
 
