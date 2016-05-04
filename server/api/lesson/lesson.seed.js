@@ -15,7 +15,7 @@ export default {
         duration: 45 + (i % 4) * 15,
         progress: [{
           topic: topics[i % 2],
-          grade: 10
+          grade: i % 10 + 1
         }]
       }));
     }));

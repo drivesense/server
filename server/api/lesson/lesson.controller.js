@@ -7,7 +7,7 @@ const errorIfEmpty = result => result || Promise.reject(createError(404));
 export function index (req) {
   return Lesson.find({$or: [{student: req.user._id}, {teacher: req.user._id}]})
     .sort('date')
-    .populate('student teacher');
+    .populate('student teacher progress.topic');
 }
 
 export function create (req) {

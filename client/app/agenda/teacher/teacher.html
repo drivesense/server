@@ -3,17 +3,20 @@
   <div layout="column" flex>
     <ds-map layout="column" flex api="map"></ds-map>
     <div flex>
-      Last Lessons
-      <div ng-repeat="lesson in lastLessons">
-        {{lesson.student.name.first + ' ' + lesson.student.name.last + ' - ' + (lesson.date | amDateFormat:'HH:mm')}}
-      </div>
-      Current Lessons
-      <div ng-repeat="lesson in currentLessons">
-        {{lesson.student.name.first + ' ' + lesson.student.name.last + ' - ' + (lesson.date | amDateFormat:'HH:mm')}}
-      </div>
-      Next Lessons
-      <div ng-repeat="lesson in nextLessons">
-        {{lesson.student.name.first + ' ' + lesson.student.name.last + ' - ' + (lesson.date | amDateFormat:'HH:mm')}}
+      <div ng-if="currentLesson" layout="column" layout-margin>
+        {{currentLesson.lesson.student.name.first + ' ' + currentLesson.lesson.student.name.last + ' - ' + (currentLesson.lesson.date | amDateFormat:'HH:mm')}}
+        <label>Current</label>
+        <div layout="row">
+          <div ng-repeat="prog in currentLesson.progress">
+            <label>{{prog.topic.name + ' - ' + prog.grade}}</label>
+          </div>
+        </div>
+        <label>Lesson</label>
+        <div layout="row">
+          <div ng-repeat="prog in currentLesson.lesson.progress">
+            <label>{{prog.topic.name + ' - ' + prog.grade}}</label>
+          </div>
+        </div>
       </div>
     </div>
   </div>
