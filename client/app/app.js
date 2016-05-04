@@ -14,7 +14,7 @@ angular.module('drivesenseApp', [
   ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, $mdThemingProvider) {
     $urlRouterProvider
-      .otherwise('/login');
+      .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');

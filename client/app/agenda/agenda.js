@@ -3,10 +3,9 @@
 angular.module('drivesenseApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('shell.agenda-teacher', {
-        url: '/agenda-teacher',
-        controller: 'AgendaTeacher',
-        templateUrl: 'app/agenda/teacher/teacher.html',
+      .state('shell.agenda', {
+        abstract: true,
+        templateUrl: 'app/agenda/agenda.html',
         resolve: {
           lessons: function ($lessons) {
             return $lessons.query().$promise;

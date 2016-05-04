@@ -14,7 +14,11 @@ angular.module('drivesenseApp')
       iconClass: 'home'
     },{
       text: 'Agenda',
-      state: 'shell.agenda-teacher',
+      state: 'shell.agenda.student',
+      iconClass: 'calendar'
+    },{
+      text: 'Agenda',
+      state: 'shell.agenda.teacher',
       iconClass: 'calendar'
     }, {
       text: 'Students',
