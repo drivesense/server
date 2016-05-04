@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .controller('Agenda', function ($scope, Auth, lessons, moment, $mdDialog, $timeout) {
+  .controller('AgendaTeacher', function ($scope, Auth, lessons, moment, $mdDialog, $timeout) {
     $scope.schedule = {};
     $scope.userType = Auth.getCurrentUser().type;
 
@@ -32,7 +32,7 @@ angular.module('drivesenseApp')
     $scope.addNewLesson = function (ev, time) {
       $mdDialog.show({
         controller: 'NewLessonDialog',
-        templateUrl: '/app/agenda/new-lesson/new-lesson.html',
+        templateUrl: '/app/agenda/teacher/new-lesson/new-lesson.html',
         locals: {
           time: time
         },
