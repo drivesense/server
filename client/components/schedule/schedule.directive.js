@@ -9,6 +9,7 @@ angular.module('drivesenseApp')
       scope: {
         api: '=',
         onLoad: '=',
+        display: '@',
         addNewLesson: '&',
         lessonDetails: '&'
       },
@@ -108,7 +109,7 @@ angular.module('drivesenseApp')
         };
 
         scope.now = new moment();
-        
+
         $interval(function () {
           scope.now = new moment();
         }, 1000);

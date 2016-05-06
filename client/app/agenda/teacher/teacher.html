@@ -1,10 +1,12 @@
 <div layout="row" flex>
-  <ds-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new-lesson="addNewLesson" lesson-details="selectLesson"></ds-schedule>
+  <ds-schedule layout="column" flex="60" api="schedule" display="student" on-load="onLoad" add-new-lesson="addNewLesson"
+               lesson-details="selectLesson"></ds-schedule>
   <div layout="column" flex>
-    <ds-map layout="column" flex api="map"></ds-map>
+    <ds-map layout="column" api="map" flex="30"></ds-map>
     <div flex>
       <div ng-if="currentLesson" layout="column" layout-margin>
-        {{currentLesson.lesson.student.name.first + ' ' + currentLesson.lesson.student.name.last + ' - ' + (currentLesson.lesson.date | amDateFormat:'HH:mm')}}
+        {{currentLesson.lesson.student.name.first + ' ' + currentLesson.lesson.student.name.last + ' - ' +
+        (currentLesson.lesson.date | amDateFormat:'HH:mm')}}
         <label>Current</label>
         <div layout="row">
           <div ng-repeat="prog in currentLesson.progress">

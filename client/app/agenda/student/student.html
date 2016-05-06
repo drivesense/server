@@ -1,6 +1,20 @@
 <div layout="row" flex>
-  <ds-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new-lesson="addNewLesson" lesson-details="selectLesson"></ds-schedule>
-  <div layout="column" layout-align="center center" flex>
-    Info
+  <ds-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new-lesson="addNewLesson"
+               lesson-details="selectLesson" display="teacher"></ds-schedule>
+  <div layout="column" flex layout-padding>
+    <div layout="row" layout-align="center center">
+      <h4>Lessons</h4>
+    </div>
+    <div layout="row" layout-align="space-around start" flex>
+      <span>
+        Num of lessons
+      </span>
+      <span>
+        Last lesson
+      </span>
+      <span>
+        Next lesson
+      </span>
+    </div>
   </div>
 </div>
