@@ -31,6 +31,16 @@ const UserSchema = new Schema({
     ref: 'School'
   },
   manager: Boolean,
+  constraints: [{
+    start: {
+      type: Date,
+      required: true
+    },
+    end: {
+      type: Date,
+      required: true
+    }
+  }],
   location: {
     type: [Number],
     index: '2dsphere'

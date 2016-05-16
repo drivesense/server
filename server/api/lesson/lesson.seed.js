@@ -12,15 +12,63 @@ export default {
       progress: [{
         topic: highway,
         grade: 2
+      }, {
+        topic: squares,
+        grade: 2
       }]
     }, {
       student: hodaya._id,
       progress: [{
-        topic: bumpers,
+        topic: highway,
         grade: 2
       }]
     }],
-    date: moment().startOf('day').subtract(1, 'days').add(16, 'hours'),
+    date: moment().startOf('day').subtract(1, 'days').add(10, 'hours').add(0, 'minutes'),
+    duration: 90
+  }, {
+    teacher: amos._id,
+    participants: [{
+      student: tomer._id,
+      progress: [{
+        topic: highway,
+        grade: 2
+      }]
+    }, {
+      student: ziv._id,
+      progress: [{
+        topic: squares,
+        grade: 2
+      }]
+    }],
+    date: moment().startOf('day').subtract(1, 'days').add(11, 'hours').add(30, 'minutes'),
+    duration: 45
+  }, {
+    teacher: amos._id,
+    participants: [{
+      student: nessi._id,
+      progress: [{
+        topic: squares,
+        grade: 1
+      }]
+    }, {
+      student: noam._id,
+      progress: [{
+        topic: squares,
+        grade: 1
+      }]
+    }],
+    date: moment().startOf('day').subtract(1, 'days').add(12, 'hours').add(15, 'minutes'),
+    duration: 60
+  }, {
+    teacher: amos._id,
+    participants: [{
+      student: sean._id,
+      progress: [{
+        topic: highway,
+        grade: 1
+      }]
+    }],
+    date: moment().startOf('day').subtract(1, 'days').add(13, 'hours').add(15, 'minutes'),
     duration: 90
   }]
 };

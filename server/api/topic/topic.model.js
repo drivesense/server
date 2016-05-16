@@ -8,10 +8,7 @@ const TopicSchema = new Schema({
     type: String,
     required: true
   },
-  locations: [{
-    type: [Number],
-    index: '2dsphere'
-  }]
+  locations: []
 });
 
 export default createSeedModel('Topic', TopicSchema, seed);
