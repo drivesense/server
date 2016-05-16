@@ -4,26 +4,10 @@ export default {
   dependencies: [School],
   seed: schools => [{
     name: {
-      first: 'Noam',
-      last: 'Okman'
+      first: 'admin',
+      last: 'admin'
     },
-    email: 'noamokman@gmail.com',
-    password: '12345678',
-    type: 'admin'
-  }, {
-    name: {
-      first: 'Omri',
-      last: 'Litov'
-    },
-    email: 'omrilitov@gmail.com',
-    password: '12345678',
-    type: 'admin'
-  }, {
-    name: {
-      first: 'Elad',
-      last: 'Bezalel'
-    },
-    email: 'elad.bezalel@gmail.com',
+    email: 'admin@gmail.com',
     password: '12345678',
     type: 'admin'
   }, {
@@ -31,82 +15,106 @@ export default {
       first: 'Moti',
       last: 'Luchim'
     },
-    email: 'manager@d.com',
+    email: 'moti@gmail.com',
     password: '12345678',
     type: 'teacher',
-    manager: true,
-    school: schools[0]
+    manager: true
   }, {
     name: {
-      first: 'Brock',
-      last: 'Rock'
+      first: 'Amos',
+      last: 'Zigdon'
     },
-    email: 'teacher1@d.com',
+    email: 'amos@gmail.com',
+    password: '12345678',
+    type: 'teacher'
+  }, {
+    name: {
+      first: 'Omri',
+      last: 'Litov'
+    },
+    email: 'omrilitov@gmail.com',
+    password: '12345678',
+    type: 'student',
+    location: [31.77673825, 34.70854104]
+  }, {
+    name: {
+      first: 'Noam',
+      last: 'Okman'
+    },
+    email: 'noamokman@gmail.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0],
+    location: [31.78128934, 34.69164312]
+  }, {
+    name: {
+      first: 'Hodaya',
+      last: 'Magidi'
+    },
+    email: 'hodaya@gmail.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0],
+    location: [31.782594, 34.703531]
+  }, {
+    name: {
+      first: 'Tomer',
+      last: 'Cohen'
+    },
+    email: 'tomer@gmail.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0],
+    location: [31.783914, 34.693508]
+  }, {
+    name: {
+      first: 'Ayala',
+      last: 'Friesm'
+    },
+    email: 'ayala@gmail.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0],
+    location: [31.781551, 34.695192]
+  }, {
+    name: {
+      first: 'Nessi',
+      last: 'Larros'
+    },
+    email: 'nessi@gmail.com',
+    password: '12345678',
+    type: 'student',
+    school: schools[0],
+    location: [31.784665, 34.693859]
+  }, {
+    name: {
+      first: 'Ziv',
+      last: 'Rom'
+    },
+    email: 'ziv@gmail.com',
     password: '12345678',
     type: 'teacher',
-    school: schools[0]
+    school: schools[0],
+    location: [31.784606, 34.692626]
   }, {
     name: {
-      first: 'Ash',
-      last: 'Ketchum'
+      first: 'Sean',
+      last: 'Barzilay'
     },
-    email: 'student11@d.com',
+    email: 'sean@gmail.com',
     password: '12345678',
     type: 'student',
-    school: schools[0]
+    school: schools[0],
+    location: [31.783008, 34.692726]
   }, {
     name: {
-      first: 'Yogi',
-      last: 'Ho'
+      first: 'Alon',
+      last: 'Bla'
     },
-    email: 'student12@d.com',
+    email: 'alon@gmail.com',
     password: '12345678',
     type: 'student',
-    school: schools[0]
-  }, {
-    name: {
-      first: 'Naruto',
-      last: 'Ninja'
-    },
-    email: 'student13@d.com',
-    password: '12345678',
-    type: 'student',
-    school: schools[0]
-  }, {
-    name: {
-      first: 'Misty',
-      last: 'Water'
-    },
-    email: 'teacher2@d.com',
-    password: '12345678',
-    type: 'teacher',
-    school: schools[0]
-  }, {
-    name: {
-      first: 'Mister',
-      last: 'Nobody'
-    },
-    email: 'student21@d.com',
-    password: '12345678',
-    type: 'student',
-    school: schools[0]
-  }, {
-    name: {
-      first: 'Mister',
-      last: 'Anderson'
-    },
-    email: 'student22@d.com',
-    password: '12345678',
-    type: 'student',
-    school: schools[0]
-  }, {
-    name: {
-      first: 'Lord',
-      last: 'Voldemort'
-    },
-    email: 'student23@d.com',
-    password: '12345678',
-    type: 'student',
-    school: schools[0]
+    school: schools[0],
+    location: [31.782201, 34.688496]
   }]
 };

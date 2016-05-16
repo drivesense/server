@@ -8,12 +8,10 @@ const TopicSchema = new Schema({
     type: String,
     required: true
   },
-  priority: {
-    type: Number,
-    min: 1,
-    max: 10,
-    required: true
-  }
+  locations: [{
+    type: [Number],
+    index: '2dsphere'
+  }]
 });
 
 export default createSeedModel('Topic', TopicSchema, seed);

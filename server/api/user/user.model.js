@@ -30,7 +30,11 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'School'
   },
-  manager: Boolean
+  manager: Boolean,
+  location: {
+    type: [Number],
+    index: '2dsphere'
+  }
 });
 
 /**

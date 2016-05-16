@@ -7,11 +7,26 @@ const Schema = mongoose.Schema;
 const durations = _.times(7, i => 30 + i * 15);
 
 const LessonSchema = new Schema({
-  student: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
+  participants: [{
+    student: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    progress: [{
+      topic: {
+        type: Schema.Types.ObjectId,
+        ref: 'Topic',
+        required: true
+      },
+      grade: {
+        type: Number,
+        min: 1,
+        max: 10,
+        required: true
+      }
+    }]
+  }],
   teacher: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -26,20 +41,7 @@ const LessonSchema = new Schema({
     enum: durations,
     required: true
   },
-  comment: String,
-  progress: [{
-    topic: {
-      type: Schema.Types.ObjectId,
-      ref: 'Topic',
-      required: true
-    },
-    grade: {
-      type: Number,
-      min: 1,
-      max: 10,
-      required: true
-    }
-  }]
+  comment: String
 });
 
 export default createSeedModel('Lesson', LessonSchema, seed);
