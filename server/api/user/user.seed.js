@@ -42,7 +42,7 @@ export default {
     constraints: [{
       start: moment().startOf('day').add(8, 'hours'),
       end: moment().startOf('day').add(20, 'hours'),
-      duration: 90
+      duration: 45
     }],
     location: [31.77673825, 34.70854104]
   }, {
@@ -72,7 +72,7 @@ export default {
     constraints: [{
       start: moment().startOf('day').add(8, 'hours'),
       end: moment().startOf('day').add(20, 'hours'),
-      duration: 90
+      duration: 45
     }],
     location: [31.782594, 34.703531]
   }, {

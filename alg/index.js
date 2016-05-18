@@ -7,14 +7,15 @@ import logger from '../server/components/logger';
 import mongoose from 'mongoose';
 import moment from 'moment';
 import mongooseConfig from '../server/config/mongoose';
-import {getMatches} from './util';
+import {getLessons} from './greedy';
+import {print} from './util/measure';
 
 mongooseConfig(mongoose)
   .then(() => {
-    return getMatches(moment());
+    return getLessons(moment());
   })
-  .then(matches => {
-    logger.info(matches);
+  .then(lessons => {
+    print('greedy', lessons);
   })
   .catch(err => {
     logger.error(err);
