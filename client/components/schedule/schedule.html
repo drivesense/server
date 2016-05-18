@@ -14,7 +14,9 @@
                   <ds-timeline ng-if="currentTime(hour, quarter)" leftover="{{now.minutes() % quarter.minutes()}}"></ds-timeline>
                   <ds-lesson duration="lesson.duration" index="{{lesson.index}}" theme="{{lesson.theme}}" ng-click="selectLesson($event, lesson)"
                           ng-repeat="lesson in newLessons[day.toString()][hour.toString()][quarter.toString()]">
-                    <span ng-if="display === 'student'" class="md-subhead">{{lesson.student.name.first}} {{lesson.student.name.last}}</span>
+                    <div ng-if="display === 'student'" >
+                      <span class="user" ng-repeat="participant in lesson.participants">{{participant.student.name.first}} {{participant.student.name.last}} </span>
+                    </div>
                     <span ng-if="display === 'teacher'" class="md-subhead">{{lesson.teacher.name.first}} {{lesson.teacher.name.last}}</span>
                   </ds-lesson>
                 </div>

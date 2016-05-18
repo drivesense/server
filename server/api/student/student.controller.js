@@ -10,14 +10,15 @@ export function index (req) {
 
 // Get list of users
 export function topics (req) {
-  if (req.user.type !== 'teacher' && req.user._id.equals(req.params._id)) {
+  if (req.user.type !== 'teacher' && req.user._id.equals(req.params.id)) {
     return Promise.reject(createError(403));
   }
-
-  return Lesson.find({student: req.params.id})
-    .sort('-date')
-    .populate('progress.topic')
+  console.log(req.params.id);
+  return Lesson.find({'participants.student': req.params.id})
+    // .sort('-date')
+    // .populate('participants.progress.topic')
     .then(lessons => {
+      console.log(lessons);
       return _.reduce(lessons, (total, lesson) => {
         lesson.progress.forEach(p => {
           const id = p.topic._id.toString();

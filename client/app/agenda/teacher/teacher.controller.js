@@ -4,6 +4,7 @@ angular.module('drivesenseApp')
   .controller('AgendaTeacher', function ($scope, lessons, moment, $mdDialog, $students, $q) {
     $scope.schedule = {};
 
+    console.log(lessons);
     $scope.onLoad = function () {
       $scope.schedule.load(lessons);
     };
@@ -25,12 +26,20 @@ angular.module('drivesenseApp')
         });
     };
     $scope.selectLesson = function (lesson) {
-      $students.topics({id: lesson.student._id}).$promise
-        .then(function (progress) {
-          $scope.currentLesson = {
-            lesson: lesson,
-            progress: progress
-          };
-        });
+      $scope.currentLesson = {
+        lesson: lesson,
+        participants: lesson.participants
+      };
+
+      lesson.participants.forEach(function (student) {
+        $students.topics({id: student._id}).$promise
+          .then(function (progress) {
+            console.log(progress);
+            $scope.currentLesson = {
+              lesson: lesson,
+              progress: progress
+            };
+          });
+      })
     }
   });

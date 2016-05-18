@@ -52,7 +52,7 @@ angular.module('drivesenseApp')
             return Math.abs(hash);
           };
 
-          var hash = hashCode(lesson.student._id);
+          var hash = hashCode(lesson._id);
           lesson.theme = palettes[hash % palettes.length] + '-' + hues[hash % hues.length] + '-0.7';
         };
 

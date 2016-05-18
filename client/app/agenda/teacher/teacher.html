@@ -5,12 +5,17 @@
     <ds-map layout="column" api="map" flex="30"></ds-map>
     <div flex>
       <div ng-if="currentLesson" layout="column" layout-margin>
-        {{currentLesson.lesson.student.name.first + ' ' + currentLesson.lesson.student.name.last + ' - ' +
-        (currentLesson.lesson.date | amDateFormat:'HH:mm')}}
-        <label>Current</label>
+        <span class="md-display-2">
+          <span>{{currentLesson.lesson.date | amDateFormat:'HH:mm'}}</span>
+        </span>
         <div layout="row">
-          <div ng-repeat="prog in currentLesson.progress">
-            <label>{{prog.topic.name + ' - ' + prog.grade}}</label>
+          <div ng-repeat="participant in currentLesson.participants" flex layout="column">
+            <span class="md-title">{{ participant.student.name.first }} {{ participant.student.name.last}} </span>
+            <div ng-repeat="prog in participant.progress" layout="row" class="topic">
+              <i class="mdi mdi-{{prog.topic.name === 'Highway' ? 'highway' : prog.topic.name === 'Squares' ? 'radiobox-marked' : 'alert'}}" flex></i>
+              <span flex layout-align="center">{{ prog.grade }}</span>
+              <span flex></span>
+            </div>
           </div>
         </div>
         <label>Lesson</label>
