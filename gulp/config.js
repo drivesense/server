@@ -19,6 +19,7 @@ export default {
       ]
     },
     server: ['server/**/*.js'],
+    alg: ['alg/**/*.js'],
     gulp: ['./gulpfile.js', './gulp/**/*.js']
   }
 };

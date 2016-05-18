@@ -39,6 +39,10 @@ const UserSchema = new Schema({
     end: {
       type: Date,
       required: true
+    },
+    duration: {
+      type: Number,
+      required: true
     }
   }],
   location: {

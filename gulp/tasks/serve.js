@@ -16,4 +16,10 @@ export default gulp => {
       'watch',
       cb);
   });
+
+  gulp.task('serve:alg', cb => {
+    runSequence(
+      'nodemon:alg',
+      cb);
+  });
 };

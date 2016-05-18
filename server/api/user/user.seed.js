@@ -1,4 +1,5 @@
 import School from '../school/school.model';
+import moment from 'moment';
 
 export default {
   dependencies: [School],
@@ -17,6 +18,7 @@ export default {
     },
     email: 'moti@gmail.com',
     password: '12345678',
+    school: schools[0],
     type: 'teacher',
     manager: true
   }, {
@@ -26,6 +28,7 @@ export default {
     },
     email: 'amos@gmail.com',
     password: '12345678',
+    school: schools[0],
     type: 'teacher'
   }, {
     name: {
@@ -35,6 +38,12 @@ export default {
     email: 'omrilitov@gmail.com',
     password: '12345678',
     type: 'student',
+    school: schools[0],
+    constraints: [{
+      start: moment().startOf('day').add(8, 'hours'),
+      end: moment().startOf('day').add(20, 'hours'),
+      duration: 90
+    }],
     location: [31.77673825, 34.70854104]
   }, {
     name: {
@@ -45,6 +54,11 @@ export default {
     password: '12345678',
     type: 'student',
     school: schools[0],
+    constraints: [{
+      start: moment().startOf('day').add(8, 'hours'),
+      end: moment().startOf('day').add(20, 'hours'),
+      duration: 45
+    }],
     location: [31.78128934, 34.69164312]
   }, {
     name: {
@@ -55,6 +69,11 @@ export default {
     password: '12345678',
     type: 'student',
     school: schools[0],
+    constraints: [{
+      start: moment().startOf('day').add(8, 'hours'),
+      end: moment().startOf('day').add(20, 'hours'),
+      duration: 90
+    }],
     location: [31.782594, 34.703531]
   }, {
     name: {
@@ -65,6 +84,11 @@ export default {
     password: '12345678',
     type: 'student',
     school: schools[0],
+    constraints: [{
+      start: moment().startOf('day').add(8, 'hours'),
+      end: moment().startOf('day').add(20, 'hours'),
+      duration: 45
+    }],
     location: [31.783914, 34.693508]
   }, {
     name: {
@@ -75,6 +99,11 @@ export default {
     password: '12345678',
     type: 'student',
     school: schools[0],
+    constraints: [{
+      start: moment().startOf('day').add(8, 'hours'),
+      end: moment().startOf('day').add(20, 'hours'),
+      duration: 45
+    }],
     location: [31.781551, 34.695192]
   }, {
     name: {
@@ -85,6 +114,11 @@ export default {
     password: '12345678',
     type: 'student',
     school: schools[0],
+    constraints: [{
+      start: moment().startOf('day').add(8, 'hours'),
+      end: moment().startOf('day').add(20, 'hours'),
+      duration: 45
+    }],
     location: [31.784665, 34.693859]
   }, {
     name: {
@@ -93,8 +127,13 @@ export default {
     },
     email: 'ziv@gmail.com',
     password: '12345678',
-    type: 'teacher',
+    type: 'student',
     school: schools[0],
+    constraints: [{
+      start: moment().startOf('day').add(8, 'hours'),
+      end: moment().startOf('day').add(20, 'hours'),
+      duration: 45
+    }],
     location: [31.784606, 34.692626]
   }, {
     name: {
@@ -105,6 +144,11 @@ export default {
     password: '12345678',
     type: 'student',
     school: schools[0],
+    constraints: [{
+      start: moment().startOf('day').add(8, 'hours'),
+      end: moment().startOf('day').add(20, 'hours'),
+      duration: 45
+    }],
     location: [31.783008, 34.692726]
   }, {
     name: {

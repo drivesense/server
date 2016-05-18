@@ -40,7 +40,7 @@ export default {
         grade: 2
       }]
     }],
-    date: moment().startOf('day').subtract(1, 'days').add(11, 'hours').add(30, 'minutes'),
+    date: moment().startOf('day').subtract(1, 'days').add(11, 'hours').add(45, 'minutes'),
     duration: 45
   }, {
     teacher: amos._id,
@@ -57,7 +57,7 @@ export default {
         grade: 1
       }]
     }],
-    date: moment().startOf('day').subtract(1, 'days').add(12, 'hours').add(15, 'minutes'),
+    date: moment().startOf('day').subtract(1, 'days').add(12, 'hours').add(45, 'minutes'),
     duration: 60
   }, {
     teacher: amos._id,
@@ -68,7 +68,7 @@ export default {
         grade: 1
       }]
     }],
-    date: moment().startOf('day').subtract(1, 'days').add(13, 'hours').add(15, 'minutes'),
+    date: moment().startOf('day').subtract(1, 'days').add(14, 'hours').add(0, 'minutes'),
     duration: 90
   }]
 };
