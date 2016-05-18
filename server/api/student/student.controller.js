@@ -13,14 +13,18 @@ export function topics (req) {
   if (req.user.type !== 'teacher' && req.user._id.equals(req.params.id)) {
     return Promise.reject(createError(403));
   }
-  console.log(req.params.id);
   return Lesson.find({'participants.student': req.params.id})
-    // .sort('-date')
-    // .populate('participants.progress.topic')
+    .sort('-date')
+    .populate('participants.progress.topic')
     .then(lessons => {
-      console.log(lessons);
       return _.reduce(lessons, (total, lesson) => {
-        lesson.progress.forEach(p => {
+        const participant = _.find(lesson.participants, p => p.student.equals(req.params.id));
+
+        if(!participant) {
+          return total;
+        }
+
+        participant.progress.forEach(p => {
           const id = p.topic._id.toString();
 
           total[id] = total[id] || {

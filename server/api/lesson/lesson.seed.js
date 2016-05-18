@@ -1,6 +1,5 @@
 import User from '../user/user.model';
 import Topic from '../topic/topic.model';
-import _ from 'lodash';
 import moment from 'moment';
 
 export default {

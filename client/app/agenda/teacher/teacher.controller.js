@@ -31,8 +31,8 @@ angular.module('drivesenseApp')
         participants: lesson.participants
       };
 
-      lesson.participants.forEach(function (student) {
-        $students.topics({id: student._id}).$promise
+      lesson.participants.forEach(function (p) {
+        $students.topics({id: p.student._id}).$promise
           .then(function (progress) {
             console.log(progress);
             $scope.currentLesson = {
