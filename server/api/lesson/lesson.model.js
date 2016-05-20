@@ -44,4 +44,8 @@ const LessonSchema = new Schema({
   comment: String
 });
 
+LessonSchema.methods.getStudents = function () {
+  return _.map(this.participants, 'student');
+};
+
 export default createSeedModel('Lesson', LessonSchema, seed);

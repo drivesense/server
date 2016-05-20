@@ -4,16 +4,24 @@ import mongooseConfig from './config/mongoose';
 import express from 'express';
 import expressConfig from './config/express';
 import logger from './components/logger';
-
-mongooseConfig(mongoose);
-mongoose.connect(process.env.MONGO_URI);
+import {test} from './components/alg';
 
 const app = express();
 
 expressConfig(app);
 
-app.listen(process.env.PORT, () => {
-  logger.info('Express listening on port %s', process.env.PORT);
-});
+mongooseConfig(mongoose)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      logger.info('Express listening on port %s', process.env.PORT);
+    });
+
+    test()
+      .catch(err => {
+        logger.error({err});
+      });
+  });
+
+mongoose.connect(process.env.MONGO_URI);
 
 export default app;
