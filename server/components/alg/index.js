@@ -11,10 +11,10 @@ export function test() {
     .then(amos => {
       return Promise.all([naive(moment(), amos), brute(moment(), amos), greedy(moment(), amos)]);
     })
-    .then(results => {
-      print('naive', results[0]);
-      print('brute', results[1]);
-      print('greedy', results[2]);
+    .then(([naive, brute, greedy]) => {
+      print('naive', naive);
+      print('brute', brute);
+      print('greedy', greedy);
     });
 }
 

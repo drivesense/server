@@ -1,9 +1,10 @@
 import {AsyncRouter} from 'express-async-router';
 import * as controller from './teacher.controller';
-import {isAuthenticated} from '../../auth/auth.service';
+import {isAuthenticated, hasRole} from '../../auth/auth.service';
 
 const router = new AsyncRouter();
 
 router.get('/', isAuthenticated(), controller.index);
+router.get('/schedule', hasRole('teacher'), controller.schedule);
 
 export default router;
