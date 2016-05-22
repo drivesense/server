@@ -8,7 +8,14 @@ export function index (req) {
   return User.find({type: 'student', school: req.user.school});
 }
 
-// Get list of users
+export function constraints ({user, body: constraint}) {
+  user.constraints.push(constraint);
+  user.markModified('constraints');
+
+  return user.save()
+    .then(_.noop);
+}
+
 export function topics (req) {
   if (req.user.type !== 'teacher' && req.user._id.equals(req.params.id)) {
     return Promise.reject(createError(403));
