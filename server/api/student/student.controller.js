@@ -8,7 +8,7 @@ export function index(req) {
   return User.find({type: 'student', school: req.user.school});
 }
 
-export function constraints({user, body: constraint}) {
+export function constraints ({user, body: {constraint}}) {
   user.constraints.push(constraint);
   user.markModified('constraints');
 

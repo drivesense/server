@@ -6,7 +6,7 @@ const router = new AsyncRouter();
 
 router.get('/', hasRole('teacher'), controller.index);
 router.get('/me/topics', controller.topics);
-router.put('/me/constraints', controller.constraints);
+router.put('/me/constraints', isAuthenticated(), controller.constraints);
 router.get('/:id/topics', isAuthenticated(), controller.topics);
 
 export default router;

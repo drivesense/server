@@ -1,0 +1,28 @@
+<md-dialog flex="30">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <span class="md-headline">Create new constraint</span>
+    </div>
+  </md-toolbar>
+  <md-dialog-contnet layout="column" class="md-dialog-content">
+    <md-input-container>
+      <label>Date</label>
+      <input ng-model="date" type="date" aria-label="Constraint date"/>
+    </md-input-container>
+    <md-input-container>
+      <label>Start time</label>
+      <input ng-model="start" type="time" aria-label="Constraint start time"/>
+    </md-input-container>
+    <md-input-container>
+      <label>End time</label>
+      <input ng-model="end" type="time" aria-label="Constraint end time"/>
+    </md-input-container>
+    <md-input-container>
+      <label>Duration</label>
+      <input ng-model="duration" type="number" step="45" min="45" max="90" aria-label="Lesson duration"/>
+    </md-input-container>
+  </md-dialog-contnet>
+  <md-dialog-actions>
+    <md-button ng-click="save()" class="md-primary">Save</md-button>
+  </md-dialog-actions>
+</md-dialog>

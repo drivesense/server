@@ -10,8 +10,9 @@ angular.module('drivesenseApp')
         api: '=',
         onLoad: '=',
         display: '@',
-        addNewLesson: '&',
-        lessonDetails: '&'
+        addNew: '&',
+        lessonDetails: '&',
+        constraints: '='
       },
       link: function (scope) {
         var groupBy = function (lessonsToGroup, by) {
@@ -116,6 +117,13 @@ angular.module('drivesenseApp')
 
         scope.currentTime = function (hour, quarter) {
           return hour.hour() == scope.now.hour() && Math.floor(quarter.minutes() / 15) == Math.floor(scope.now.minutes() / 15);
+        };
+
+        scope.inConstraints = function (day, hour, quarter) {
+          return scope.constraints.some(function (constraint) {
+            var time = moment(day).add(hour.hour(), 'hours').add(quarter.minutes(), 'minutes');
+            return time.isBetween(moment(constraint.start), moment(constraint.end), '[]');
+          });
         }
       }
     };

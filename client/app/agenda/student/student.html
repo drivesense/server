@@ -1,6 +1,6 @@
 <div layout="row" flex>
-  <ds-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new-lesson="addNewLesson"
-               lesson-details="selectLesson" display="teacher"></ds-schedule>
+  <ds-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new="addNewConstraint"
+               lesson-details="selectLesson" display="teacher" constraints="user.constraints"></ds-schedule>
   <div layout="column" flex layout-padding>
     <div layout="row" layout-align="center center">
       <h4>Lessons</h4>
@@ -18,3 +18,7 @@
     </div>
   </div>
 </div>
+<md-button class="md-fab md-fab-bottom-right md-primary" layout layout-align="center center"
+           ng-click="addNewConstraint($event)" aria-label="Add new constraint">
+  <i class="mdi mdi-plus"></i>
+</md-button>
