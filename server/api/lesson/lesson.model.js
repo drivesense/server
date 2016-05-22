@@ -48,4 +48,32 @@ LessonSchema.methods.getStudents = function () {
   return _.map(this.participants, 'student');
 };
 
+LessonSchema.statics.getProgress = function (id) {
+  return this.find({'participants.student': id})
+    .sort('-date')
+    .populate('participants.progress.topic')
+    .then(lessons => {
+      return _.reduce(lessons, (total, lesson) => {
+        const participant = _.find(lesson.participants, p => p.student.equals(id));
+
+        if (!participant) {
+          return total;
+        }
+
+        participant.progress.forEach(p => {
+          const id = p.topic._id.toString();
+
+          total[id] = total[id] || {
+              topic: p.topic,
+              grade: p.grade,
+              date: lesson.date
+            };
+        });
+
+        return total;
+      }, {});
+    })
+    .then(total => _.values(total));
+};
+
 export default createSeedModel('Lesson', LessonSchema, seed);

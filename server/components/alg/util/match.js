@@ -30,7 +30,7 @@ export function getCoupleDuration(date, student1, student2) {
   return dur1 === dur2 && dur2 !== -1 ? dur1 : -1;
 }
 
-export function getMatches(date, students, teacher) {
+export function getMatches(date, students, teacher, normalize) {
   return _(combination(students, 2))
     .map(couple => ({couple, duration: getCoupleDuration(date, ...couple)}))
     .filter(({duration}) => duration !== -1)
@@ -41,6 +41,6 @@ export function getMatches(date, students, teacher) {
         teacher,
         duration
       }),
-      grade: grade(...couple)
+      grade: grade(normalize, ...couple)
     })).value();
 }

@@ -111,6 +111,10 @@ UserSchema
  * Methods
  */
 
+UserSchema.methods.getProgress = function () {
+
+};
+
 // Use promises
 UserSchema.methods.setPassword = pify(UserSchema.methods.setPassword);
 UserSchema.methods.authenticate = pify(UserSchema.methods.authenticate);

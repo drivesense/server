@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import {grade} from './grade';
 
-export function print(name, lessons) {
-  const combos = lessons.map(lesson => ({lesson, grade: grade(...lesson.getStudents())}));
+export function print(name, lessons, normalize) {
+  const combos = lessons.map(lesson => ({lesson, grade: grade(normalize, ...lesson.getStudents())}));
   const mean = _.meanBy(combos, 'grade');
 
   console.log(`${name}: ${mean}`);
