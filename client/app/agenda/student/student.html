@@ -1,31 +1,29 @@
 <div layout="row" flex>
   <ds-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new="addNewConstraint"
                lesson-details="selectLesson" display="teacher" constraints="user.constraints"></ds-schedule>
-  <div layout="column" layout-padding flex>
+  <div layout="column" flex md-colors="{background: 'background-300-0.7'}">
+    <ds-map layout="column" api="map" flex></ds-map>
     <div layout="column" flex>
-      <div layout="row" layout-align="center center">
-        <h4>Lessons</h4>
+      <div layout="column" layout-padding layout-align="start center" md-colors="{background: 'background-300-0.7'}">
+        <span class="md-display-4">{{numOfLessons}}</span>
+        <span class="md-body-2">Lessons so far</span>
       </div>
-      <div layout="column" layout-align="space-around center" flex>
-      <span>
-        Num of lessons: {{numOfLessons}}
-      </span>
-      <span>
-        Last lesson: {{lastLesson}}
-      </span>
-      <span>
-        Next lesson: {{nextLesson}}
-      </span>
+      <div layout="row" layout-padding>
+        <div flex layout="column" layout-align="start center">
+          <span class="md-headline">Last lesson</span>
+          <span class="md-subhead">{{lastLesson | amCalendar}}</span>
+        </div>
+        <div flex layout="column" layout-align="start center">
+          <span class="md-headline">Next lesson</span>
+          <span class="md-subhead" ng-if="nextLesson === NaN">{{nextLesson}}</span>
+          <span class="md-subhead">No lesson yet</span>
+        </div>
       </div>
-    </div>
-    <div layout="column" flex>
-      <span ng-repeat="constraint in user.constraints">
-        {{constraint.start | amDateFormat:'L'}}: {{constraint.start | amDateFormat:'HH:mm'}} - {{constraint.end | amDateFormat:'HH:mm'}} ({{constraint.duration}})
-      </span>
     </div>
   </div>
 </div>
 <md-button class="md-fab md-fab-bottom-right md-primary" layout layout-align="center center"
            ng-click="addNewConstraint($event)" aria-label="Add new constraint">
   <i class="mdi mdi-plus"></i>
+  <md-tooltip>Add new constraint</md-tooltip>
 </md-button>

@@ -122,7 +122,7 @@ angular.module('drivesenseApp')
         scope.inConstraints = function (day, hour, quarter) {
           return scope.constraints.some(function (constraint) {
             var time = moment(day).add(hour.hour(), 'hours').add(quarter.minutes(), 'minutes');
-            return time.isBetween(moment(constraint.start), moment(constraint.end), '[]');
+            return time.isBetween(moment(constraint.start).clone().subtract(1, 'minutes'), moment(constraint.end), '[]');
           });
         }
       }

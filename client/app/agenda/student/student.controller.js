@@ -37,4 +37,20 @@ angular.module('drivesenseApp')
           $scope.user.constraints.push(constraint);
         });
     };
+
+    $scope.selectLesson = function (lesson) {
+      $scope.currentLesson = {
+        lesson: lesson,
+        participants: lesson.participants
+      };
+
+      // $students.topics({id: $scope.user._id}).$promise
+      //   .then(function (progress) {
+      //     console.log(progress);
+      //     $scope.currentLesson = {
+      //       lesson: lesson,
+      //       progress: progress
+      //     };
+      //   });
+    };
   });

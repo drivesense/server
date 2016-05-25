@@ -10,7 +10,7 @@
               </div>
               <div layout="column" flex>
                 <div class="quarter" ng-repeat="quarter in quarters" flex layout="row" md-ink-ripple
-                     ng-click="addNew()($event, quarter)" ng-class="{ constraint: inConstraints(day, hour, quarter) }">
+                     ng-click="addNew()($event, quarter)" ng-class="{ constraint: display === 'teacher' ? inConstraints(day, hour, quarter) : false }">
                   <ds-timeline ng-if="currentTime(hour, quarter)" leftover="{{now.minutes() % quarter.minutes()}}"></ds-timeline>
                   <ds-lesson duration="lesson.duration" index="{{lesson.index}}" theme="{{lesson.theme}}" ng-click="selectLesson($event, lesson)"
                           ng-repeat="lesson in newLessons[day.toString()][hour.toString()][quarter.toString()]">
