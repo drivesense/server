@@ -72,8 +72,7 @@ LessonSchema.statics.getProgress = function (id) {
 
         return total;
       }, {});
-    })
-    .then(total => _.values(total));
+    });
 };
 
 export default createSeedModel('Lesson', LessonSchema, seed);

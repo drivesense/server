@@ -8,7 +8,7 @@ export function index(req) {
   return User.find({type: 'student', school: req.user.school});
 }
 
-export function constraints ({user, body: {constraint}}) {
+export function constraints({user, body: {constraint}}) {
   user.constraints.push(constraint);
   user.markModified('constraints');
 
@@ -20,6 +20,7 @@ export function topics(req) {
   if (req.user.type !== 'teacher' && req.user._id.equals(req.params.id)) {
     return Promise.reject(createError(403));
   }
-  
-  return Lesson.getProgress(req.params.id);
+
+  return Lesson.getProgress(req.params.id)
+    .then(_.values);
 }
