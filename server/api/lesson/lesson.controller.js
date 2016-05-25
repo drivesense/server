@@ -5,7 +5,7 @@ import _ from 'lodash';
 const errorIfEmpty = result => result || Promise.reject(createError(404));
 
 export function index (req) {
-  return Lesson.find({$or: [{student: req.user._id}, {teacher: req.user._id}]})
+  return Lesson.find({$or: [{'participants.student': req.user._id}, {teacher: req.user._id}]})
     .sort('date')
     .populate('teacher participants.student participants.progress.topic');
 }

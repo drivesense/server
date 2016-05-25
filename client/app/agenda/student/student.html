@@ -1,19 +1,26 @@
 <div layout="row" flex>
   <ds-schedule layout="column" flex="60" api="schedule" on-load="onLoad" add-new="addNewConstraint"
                lesson-details="selectLesson" display="teacher" constraints="user.constraints"></ds-schedule>
-  <div layout="column" flex layout-padding>
-    <div layout="row" layout-align="center center">
-      <h4>Lessons</h4>
+  <div layout="column" layout-padding flex>
+    <div layout="column" flex>
+      <div layout="row" layout-align="center center">
+        <h4>Lessons</h4>
+      </div>
+      <div layout="column" layout-align="space-around center" flex>
+      <span>
+        Num of lessons: {{numOfLessons}}
+      </span>
+      <span>
+        Last lesson: {{lastLesson}}
+      </span>
+      <span>
+        Next lesson: {{nextLesson}}
+      </span>
+      </div>
     </div>
-    <div layout="row" layout-align="space-around start" flex>
-      <span>
-        Num of lessons
-      </span>
-      <span>
-        Last lesson
-      </span>
-      <span>
-        Next lesson
+    <div layout="column" flex>
+      <span ng-repeat="constraint in user.constraints">
+        {{constraint.start | amDateFormat:'L'}}: {{constraint.start | amDateFormat:'HH:mm'}} - {{constraint.end | amDateFormat:'HH:mm'}} ({{constraint.duration}})
       </span>
     </div>
   </div>
