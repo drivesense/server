@@ -10,19 +10,9 @@ export function index(req) {
     .populate('teacher participants.student participants.progress.topic');
 }
 
-export function create(req) {
-  const lesson = _.pick(req.body, ['date', 'duration', 'comment', 'student']);
-
-  lesson.teacher = req.user._id;
-
-  return new Lesson(lesson).save()
-    .then(errorIfEmpty)
-    .then(lesson => Lesson.populate(lesson, {path: 'student'}));
-}
-
 export function schedule(req) {
-  return Promise.all(req.lessons.map(lesson => {
-    const newLesson = _.pick(lesson, ['date', 'duration', 'comment', 'student']);
+  return Promise.all(req.body.lessons.map(lesson => {
+    const newLesson = _.pick(lesson, ['date', 'duration', 'comment', 'participants']);
 
     newLesson.teacher = req.user._id;
 

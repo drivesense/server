@@ -4,7 +4,7 @@ import moment from 'moment';
 
 export default {
   dependencies: [User, Topic],
-  seed: ([,, amos, omri, noam, hodaya, tomer, ayala, nessi, ziv, sean, alon], [squares, highway, bumpers]) => [{
+  seed: ([,, amos, omri, noam, hodaya, tomer, ayala, nessi, ziv, sean], [squares, highway, bumpers]) => [{
     teacher: amos._id,
     participants: [{
       student: ayala._id,

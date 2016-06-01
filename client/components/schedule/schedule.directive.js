@@ -100,6 +100,10 @@ angular.module('drivesenseApp')
           });
         };
 
+        scope.api.getDay = function () {
+          return scope.days[scope.selectedDay];
+        };
+
         scope.onLoad();
 
         scope.selectLesson = function (ev, lesson) {

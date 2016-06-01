@@ -1,5 +1,5 @@
 <div layout="row" flex>
-  <ds-schedule layout="column" flex="60" api="schedule" display="student" on-load="onLoad" add-new="addNewLesson"
+  <ds-schedule layout="column" flex="60" api="schedule" display="student" on-load="onLoad" add-new="generateDay"
                lesson-details="selectLesson"></ds-schedule>
   <div layout="column" flex md-colors="{background: 'background-300'}">
     <ds-map layout="column" api="map" flex="30"></ds-map>
@@ -29,6 +29,6 @@
   </div>
 </div>
 <md-button class="md-fab md-fab-bottom-right md-primary" layout layout-align="center center"
-           ng-click="addNewLesson($event)" aria-label="Add new lesson">
-  <i class="mdi mdi-plus"></i>
+           ng-click="generateDay($event)" aria-label="Generate Day">
+  <i class="mdi mdi-calendar"></i>
 </md-button>

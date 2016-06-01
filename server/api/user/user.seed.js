@@ -150,15 +150,5 @@ export default {
       duration: 45
     }],
     location: [31.783008, 34.692726]
-  }, {
-    name: {
-      first: 'Alon',
-      last: 'Bla'
-    },
-    email: 'alon@gmail.com',
-    password: '12345678',
-    type: 'student',
-    school: schools[0],
-    location: [31.782201, 34.688496]
   }]
 };

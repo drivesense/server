@@ -2,9 +2,9 @@
 
 angular.module('drivesenseApp')
   .service('$lessons', function ($resource) {
-    return $resource('/api/lessons/:id/:ctrl/:student', {id: '@_id'}, {
+    return $resource('/api/lessons/:ctrl', {}, {
       'get': {method: 'GET', isArray: true},
       'save': {method: 'POST'},
-      'topics': {method: 'GET', isArray: true, params: {ctrl: 'topics'}}
+      'schedule': {method: 'POST', isArray: true, params: {ctrl: 'schedule'}}
     });
   });

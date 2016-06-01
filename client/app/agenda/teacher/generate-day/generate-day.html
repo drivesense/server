@@ -1,0 +1,22 @@
+<md-dialog flex="30">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <span class="md-headline">Generate lessons</span>
+    </div>
+  </md-toolbar>
+  <md-dialog-contnet layout="column" class="md-dialog-content" layout-align="center center">
+    <md-progress-circular md-mode="indeterminate" ng-if="!lessons"></md-progress-circular>
+    <div ng-if="lessons.length">
+      <div layout="column" ng-repeat="lesson in lessons">
+        <span class="md-title">{{lesson.date | amDateFormat: 'HH:mm'}} for {{lesson.duration}} minutes</span>
+        <span class="md-body-2">{{lesson.participants[0].student.name.first}} {{lesson.participants[0].student.name.last}} & {{lesson.participants[1].student.name.first}} {{lesson.participants[1].student.name.last}}</span>
+      </div>
+    </div>
+    <div ng-if="!lessons.length">
+      <span>No lessons found</span>
+    </div>
+  </md-dialog-contnet>
+  <md-dialog-actions>
+    <md-button ng-click="save()" class="md-primary" ng-disabled="!lessons">Ok</md-button>
+  </md-dialog-actions>
+</md-dialog>

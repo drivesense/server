@@ -5,6 +5,6 @@ import {isAuthenticated, hasRole} from '../../auth/auth.service';
 const router = new AsyncRouter();
 
 router.get('/', isAuthenticated(), controller.index);
-router.get('/schedule', hasRole('teacher'), controller.schedule);
+router.post('/schedule', hasRole('teacher'), controller.schedule);
 
 export default router;
