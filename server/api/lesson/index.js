@@ -6,5 +6,6 @@ const router = new AsyncRouter();
 
 router.get('/', isAuthenticated(), controller.index);
 router.post('/', hasRole('teacher'), controller.create);
+router.post('/schedule', hasRole('teacher'), controller.schedule);
 
 export default router;
