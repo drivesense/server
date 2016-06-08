@@ -3,7 +3,7 @@ import _ from 'lodash';
 import {getStudents} from './source';
 import {createNormalize} from './normalize';
 
-export function iterateDay(date, teacher, getCombo) {
+export function iterateDay(date, teacher, getCombo, factor) {
   const day = date.startOf('day');
   let minutes = 8 * 60;
 
@@ -14,7 +14,7 @@ export function iterateDay(date, teacher, getCombo) {
           const combos = [];
 
           while (students.length > 1) {
-            const combo = getCombo(moment(day).add(minutes, 'minutes'), students, teacher, normalize);
+            const combo = getCombo(moment(day).add(minutes, 'minutes'), students, teacher, normalize, factor);
 
             if (!combo) {
               break;
