@@ -4,7 +4,7 @@ import User from '../../api/user/user.model';
 import {getLessons as greedy} from './greedy';
 import {getLessons as brute} from './brute';
 import {getLessons as naive} from './naive';
-import {print} from './util/measure';
+import {measure} from './util/measure';
 import {createNormalize} from './util/normalize';
 
 export function test() {
@@ -12,12 +12,10 @@ export function test() {
     .then(amos => {
       return createNormalize(moment(), amos)
         .then(normalize => {
-          return Promise.all([naive(moment(), amos), brute(moment(), amos), greedy(moment(), amos)])
-            .then(([naive, brute, greedy]) => {
-              print('naive', naive, normalize);
-              print('brute', brute, normalize);
-              print('greedy', greedy, normalize);
-            });
+          return measure('naive', () => naive(moment(), amos), normalize)
+            .then(() => measure('brute', () => brute(moment(), amos), normalize))
+            .then(() => measure('greedy', () => greedy(moment(), amos), normalize))
+            .then(() => console.log('done'));
         });
     });
 }

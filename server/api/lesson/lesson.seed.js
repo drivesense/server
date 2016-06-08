@@ -1,73 +1,28 @@
 import User from '../user/user.model';
 import Topic from '../topic/topic.model';
 import moment from 'moment';
+import _ from 'lodash';
+
+const prog = (stu, topics) => ({
+  student: stu,
+  progress: [{
+    topic: _.sample(topics),
+    grade: Math.ceil(Math.random() * 10)
+  }, {
+    topic: _.sample(topics),
+    grade: Math.ceil(Math.random() * 10)
+  }]
+});
 
 export default {
   dependencies: [User, Topic],
-  seed: ([,, amos, omri, noam, hodaya, tomer, ayala, nessi, ziv, sean], [squares, highway, bumpers]) => [{
+  seed: ([,, amos, ...students], topics) => _.times(Math.ceil(students.length / 2.0), i => ({
     teacher: amos._id,
-    participants: [{
-      student: ayala._id,
-      progress: [{
-        topic: highway,
-        grade: 2
-      }, {
-        topic: squares,
-        grade: 2
-      }]
-    }, {
-      student: hodaya._id,
-      progress: [{
-        topic: highway,
-        grade: 2
-      }]
-    }],
-    date: moment().startOf('day').subtract(1, 'days').add(10, 'hours').add(0, 'minutes'),
-    duration: 90
-  }, {
-    teacher: amos._id,
-    participants: [{
-      student: tomer._id,
-      progress: [{
-        topic: highway,
-        grade: 2
-      }]
-    }, {
-      student: ziv._id,
-      progress: [{
-        topic: squares,
-        grade: 2
-      }]
-    }],
-    date: moment().startOf('day').subtract(1, 'days').add(11, 'hours').add(45, 'minutes'),
+    participants: [
+      prog(students[i], topics),
+      prog(students[i + Math.floor(students.length / 2)], topics)
+    ],
+    date: moment().startOf('day').subtract(10, 'days').add(8, 'hours').add(i * 45, 'minutes'),
     duration: 45
-  }, {
-    teacher: amos._id,
-    participants: [{
-      student: nessi._id,
-      progress: [{
-        topic: squares,
-        grade: 1
-      }]
-    }, {
-      student: noam._id,
-      progress: [{
-        topic: squares,
-        grade: 1
-      }]
-    }],
-    date: moment().startOf('day').subtract(1, 'days').add(12, 'hours').add(45, 'minutes'),
-    duration: 60
-  }, {
-    teacher: amos._id,
-    participants: [{
-      student: sean._id,
-      progress: [{
-        topic: highway,
-        grade: 1
-      }]
-    }],
-    date: moment().startOf('day').subtract(1, 'days').add(14, 'hours').add(0, 'minutes'),
-    duration: 90
-  }]
+  }))
 };
