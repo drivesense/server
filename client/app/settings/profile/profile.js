@@ -10,12 +10,6 @@ angular.module('drivesenseApp')
         resolve: {
           currentUser: function (Auth) {
             return Auth.getCurrentUser();
-          },
-          topics: function ($students, Auth) {
-            return Auth.getCurrentUser().$promise
-              .then(function (user) {
-                return $students.topics({id: user._id}).$promise
-              })
           }
         }
       });
