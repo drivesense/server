@@ -3,16 +3,19 @@ import Topic from '../topic/topic.model';
 import moment from 'moment';
 import _ from 'lodash';
 
-const prog = (stu, topics) => ({
-  student: stu,
-  progress: [{
-    topic: _.sample(topics),
-    grade: Math.ceil(Math.random() * 10)
-  }, {
-    topic: _.sample(topics),
-    grade: Math.ceil(Math.random() * 10)
-  }]
-});
+const prog = (stu, topics) => {
+  var firstTopic = _.sample(topics);
+  return {
+    student: stu,
+    progress: [{
+      topic: firstTopic,
+      grade: Math.ceil(Math.random() * 10)
+    }, {
+      topic: _.sample(_.without(topics, firstTopic)),
+      grade: Math.ceil(Math.random() * 10)
+    }]
+  }
+};
 
 export default {
   dependencies: [User, Topic],

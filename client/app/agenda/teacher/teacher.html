@@ -1,28 +1,36 @@
 <div layout="row" flex>
-  <ds-schedule layout="column" flex="60" api="schedule" display="student" on-load="onLoad" add-new="generateDay"
+  <ds-schedule layout="column" flex="60" api="schedule" display="student" on-load="onLoad"
                lesson-details="selectLesson"></ds-schedule>
   <div layout="column" flex md-colors="{background: 'background-300'}">
     <ds-map layout="column" api="map" flex="30"></ds-map>
     <div flex>
       <div ng-if="currentLesson" layout="column" layout-margin>
         <span class="md-display-2">
-          <span>{{currentLesson.lesson.date | amDateFormat:'HH:mm'}}</span>
+          <span>{{currentLesson.date | amDateFormat:'HH:mm'}}</span>
         </span>
         <div layout="row">
           <div ng-repeat="participant in currentLesson.participants" flex layout="column">
             <span class="md-title">{{ participant.student.name.first }} {{ participant.student.name.last}} </span>
-            <div ng-repeat="prog in participant.progress" layout="row" class="topic">
-              <i class="mdi mdi-{{prog.topic.name === 'Highway' ? 'highway' : prog.topic.name === 'Squares' ? 'radiobox-marked' : 'alert'}}" flex></i>
-              <span flex layout-align="center">{{ prog.grade }}</span>
+            <div ng-repeat="prog in participant.progress" layout="row" class="topic" layout-align="start center">
+              <div flex layout="row">
+                <i class="mdi mdi-{{prog.topic.name === 'Highway' ? 'highway' : prog.topic.name === 'Squares' ? 'radiobox-marked' : 'alert'}}" ></i>
+                <span>{{prog.topic.name}}</span>
+              </div>
+              <div>
+                <span>
+                  <span>({{(totalProgress[participant.student._id][prog.topic._id] || {grade: 0}).grade}})</span>
+                  <md-tooltip>Total progress</md-tooltip>
+                </span>
+              </div>
+              <md-input-container>
+                <input min="0" max="10" ng-model="prog.grade" type="number"/>
+              </md-input-container>
               <span flex></span>
             </div>
           </div>
         </div>
-        <label>Lesson</label>
-        <div layout="row">
-          <div ng-repeat="prog in currentLesson.lesson.progress">
-            <label>{{prog.topic.name + ' - ' + prog.grade}}</label>
-          </div>
+        <div layout="row" layout-align="end">
+          <md-button class="md-accent md-raised" ng-click="save()">save</md-button>
         </div>
       </div>
     </div>

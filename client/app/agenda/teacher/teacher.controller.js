@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('drivesenseApp')
-  .controller('AgendaTeacher', function ($scope, lessons, moment, $mdDialog, $students, $lessons) {
+  .controller('AgendaTeacher', function ($scope, lessons, moment, $mdDialog, $students, $lessons, topics) {
     $scope.schedule = {};
+    $scope.totalProgress = {};
 
     $scope.onLoad = function () {
       $scope.schedule.load(lessons);
@@ -25,21 +26,33 @@ angular.module('drivesenseApp')
           $lessons.schedule({lessons: newLessons});
         });
     };
-    $scope.selectLesson = function (lesson) {
-      $scope.currentLesson = {
-        lesson: lesson,
-        participants: lesson.participants
-      };
 
-      lesson.participants.forEach(function (p) {
-        $students.topics({id: p.student._id}).$promise
+    $scope.selectLesson = function (lesson) {
+      $scope.totalProgress = {};
+      $scope.currentLesson = lesson;
+
+      lesson.participants.forEach(function (participant) {
+        participant.progress = participant.progress.concat(_.map(_.differenceBy(topics, _.map(participant.progress, 'topic'), '_id'), function (topic) {
+          return {
+            topic: topic,
+            grade: 0
+          };
+        }));
+
+        $students.topics({id: participant.student._id}).$promise
           .then(function (progress) {
-            console.log(progress);
-            $scope.currentLesson = {
-              lesson: lesson,
-              progress: progress
-            };
+            $scope.totalProgress[participant.student._id] = _.keyBy(progress, 'topic._id');
           });
       })
-    }
+    };
+
+    $scope.save = function () {
+      $scope.currentLesson.participants.forEach(function (participant) {
+        participant.progress = _.filter(participant.progress, function (prog) {
+          return !(prog.grade === 0 && !prog._id);
+        })
+      });
+
+      console.log($scope.currentLesson.participants)
+    };
   });

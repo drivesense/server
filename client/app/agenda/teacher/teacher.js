@@ -7,6 +7,11 @@ angular.module('drivesenseApp')
         url: '/agenda/teacher',
         controller: 'AgendaTeacher',
         templateUrl: 'app/agenda/teacher/teacher.html',
+        resolve: {
+          topics: function ($topics) {
+            return $topics.get().$promise;
+          }
+        },
         data: {
           requiredRole: 'teacher'
         }

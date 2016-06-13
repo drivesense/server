@@ -7,8 +7,7 @@ const TopicSchema = new Schema({
   name: {
     type: String,
     required: true
-  },
-  locations: []
+  }
 });
 
 export default createSeedModel('Topic', TopicSchema, seed);
