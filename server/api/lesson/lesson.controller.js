@@ -10,6 +10,15 @@ export function index(req) {
     .populate('teacher participants.student participants.progress.topic');
 }
 
+export function update (req) {
+  const data = _.pick(req.body, ['participants']);
+
+  return Lesson.findById(req.params.id)
+    .then(errorIfEmpty)
+    .then(lesson => lesson.set(data).save())
+    .then(_.noop);
+}
+
 export function schedule(req) {
   return Promise.all(req.body.lessons.map(lesson => {
     const newLesson = _.pick(lesson, ['date', 'duration', 'comment', 'participants']);

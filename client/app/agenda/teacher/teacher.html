@@ -11,7 +11,7 @@
         <div layout="row">
           <div ng-repeat="participant in currentLesson.participants" flex layout="column">
             <span class="md-title">{{ participant.student.name.first }} {{ participant.student.name.last}} </span>
-            <div ng-repeat="prog in participant.progress" layout="row" class="topic" layout-align="start center">
+            <div ng-repeat="prog in participant.progress | orderBy:'topic.name'" layout="row" class="topic" layout-align="start center">
               <div flex layout="row">
                 <i class="mdi mdi-{{prog.topic.name === 'Highway' ? 'highway' : prog.topic.name === 'Squares' ? 'radiobox-marked' : 'alert'}}" ></i>
                 <span>{{prog.topic.name}}</span>

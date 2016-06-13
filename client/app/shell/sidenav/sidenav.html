@@ -1,11 +1,8 @@
 <div ng-controller="SideMenu" layout="column" flex class="sidenav">
-  <md-toolbar class="md-tall md-hue-2" layout="row" layout-align="start end">
+  <md-toolbar class="md-tall md-hue-2 user-cover" layout="row" layout-align="start end">
     <div class="md-toolbar-tools">
       <div class="user-image">
-        <i class="mdi mdi-account-circle" md-colors="{color: 'grey-A100-0.7'}" ng-hide="loggedInUser.image"></i>
-        <div class="img-wrapper" ng-show="loggedInUser.image">
-          <img src="../../../assets/images/tripleteLogo.png">
-        </div>
+        <i class="mdi mdi-account-circle" md-colors="{color: 'grey-A100-0.7'}"></i>
       </div>
       <h2>
         {{ loggedInUser.name.first }} {{ loggedInUser.name.last }}

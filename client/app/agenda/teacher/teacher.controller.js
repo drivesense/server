@@ -35,7 +35,7 @@ angular.module('drivesenseApp')
         participant.progress = participant.progress.concat(_.map(_.differenceBy(topics, _.map(participant.progress, 'topic'), '_id'), function (topic) {
           return {
             topic: topic,
-            grade: 0
+            grade: null
           };
         }));
 
@@ -49,10 +49,13 @@ angular.module('drivesenseApp')
     $scope.save = function () {
       $scope.currentLesson.participants.forEach(function (participant) {
         participant.progress = _.filter(participant.progress, function (prog) {
-          return !(prog.grade === 0 && !prog._id);
+          return !(!prog.grade && !prog._id);
         })
       });
 
-      console.log($scope.currentLesson.participants)
+      $lessons.update({id: $scope.currentLesson._id}, $scope.currentLesson).$promise
+        .then(function () {
+          $scope.selectLesson($scope.currentLesson);
+        });
     };
   });

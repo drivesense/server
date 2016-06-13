@@ -25,7 +25,7 @@ export default {
       prog(students[i], topics),
       prog(students[i + Math.floor(students.length / 2)], topics)
     ],
-    date: moment().startOf('day').subtract(students.length > 30 ? 10 : 1, 'days').add(8, 'hours').add(i * 45, 'minutes'),
+    date: moment().startOf('day').subtract(students.length > 30 ? 10 : 1, 'days').add(8, 'hours').add(i * 60, 'minutes'),
     duration: 45
   }))
 };
