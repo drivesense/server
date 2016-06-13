@@ -16,10 +16,12 @@ mongooseConfig(mongoose)
       logger.info('Express listening on port %s', process.env.PORT);
     });
 
-    test()
-      .catch(err => {
-        logger.error({err});
-      });
+    if (process.env.USE_TEST === 'true') {
+      test()
+        .catch(err => {
+          logger.error({err});
+        });
+    }
   });
 
 mongoose.connect(process.env.MONGO_URI);

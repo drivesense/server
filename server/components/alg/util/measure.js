@@ -12,14 +12,13 @@ export function measure(name, promise, normalize) {
       const end = now();
       const total = end - start;
 
-      // console.log(`${name}: ${mean}. Took: ${total} miliseconds`);
-      console.log(`${name}: ${mean}`);
+      console.log(`${name}: ${mean}. Took: ${total} miliseconds`);
       combos.forEach(combo => {
         const students = combo.lesson.getStudents();
         const stu1 = students[0];
         const stu2 = students[1];
 
-        // console.log(`\t${combo.lesson.teacher.name.first}: ${stu1.name.first}, ${stu2.name.first} - ${combo.grade}`);
+        console.log(`\t${combo.lesson.teacher.name.first}: ${stu1.name.first}, ${stu2.name.first} - ${combo.grade}`);
       });
     });
 }

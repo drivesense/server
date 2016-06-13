@@ -8,7 +8,7 @@ import {measure} from './util/measure';
 import {createNormalize} from './util/normalize';
 
 const promiseReq = (promise, times) => {
-  if(times === 1) {
+  if (times === 1) {
     return promise();
   }
 
@@ -21,9 +21,10 @@ export function test() {
     .then(amos => {
       return createNormalize(moment(), amos)
         .then(normalize => {
-          return promiseReq(() => measure('greedy', () => greedy(moment(), amos, 0.3), normalize), 30)
-            // .then(() => measure('brute', () => brute(moment(), amos), normalize))
-            .then(() => measure('greedy (no random)', () => greedy(moment(), amos), normalize))
+          return measure('greedy (no random)', () => greedy(moment(), amos), normalize)
+          //promiseReq(() => measure('greedy', () => greedy(moment(), amos, 0.3), normalize), 30)
+            .then(() => measure('brute', () => brute(moment(), amos), normalize))
+            //.then(() => measure('greedy (no random)', () => greedy(moment(), amos), normalize))
             .then(() => measure('naive', () => naive(moment(), amos), normalize))
             .then(() => console.log('done'));
         });

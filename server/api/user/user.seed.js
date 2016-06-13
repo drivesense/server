@@ -33,7 +33,7 @@ export default {
     school: schools[0],
     type: 'teacher'
   }]
-    .concat(_.times(28, i => {
+    .concat(_.times(8, i => {
       const minX = 31.782950;
       const maxX = 31.791545;
       const minY = 34.684182;
