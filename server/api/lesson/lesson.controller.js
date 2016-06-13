@@ -27,6 +27,6 @@ export function schedule(req) {
 
     return new Lesson(newLesson).save()
       .then(errorIfEmpty)
-      .then(lesson => Lesson.populate(lesson, {path: 'student'}));
+      .then(lesson => Lesson.populate(lesson, {path: 'teacher participants.student participants.progress.topic'}));
   }));
 }

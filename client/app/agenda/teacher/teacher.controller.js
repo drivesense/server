@@ -19,11 +19,13 @@ angular.module('drivesenseApp')
         targetEvent: ev,
         clickOutsideToClose: true
       })
-        .then(function (newLessons) {
-          lessons = lessons.concat(newLessons);
-          lessons = _.sortBy(lessons, 'date');
-          $scope.schedule.load(lessons);
-          $lessons.schedule({lessons: newLessons});
+        .then(function (pickedLessons) {
+          $lessons.schedule({lessons: pickedLessons}).$promise
+            .then(function (newLessons) {
+              lessons = lessons.concat(newLessons);
+              lessons = _.sortBy(lessons, 'date');
+              $scope.schedule.load(lessons);
+            });
         });
     };
 
